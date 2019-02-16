@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
 
+  get 'rails/g'
+  get 'rails/controller'
+  get 'rails/users'
   root "static_pages#root"
   # This redirects the localhost:3000 to the 'root' page
 
