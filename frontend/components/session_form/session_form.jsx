@@ -4,8 +4,8 @@ class SessionForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            fname: '',
-            lname: '',
+            first_name: '',
+            last_name: '',
             email: '',
             password: '',
             zipcode: ''
@@ -43,7 +43,7 @@ class SessionForm extends React.Component {
             <div className="login-form-container">
                 <div className="login-form-background-image">
                     <form onSubmit={this.handleSubmit} className="login-form-box">
-                        Welcome to Task Rabbit!
+                        Welcome to Task Hero!
                         <br />
                         Please {this.props.formType} or {this.props.navLink}
                         {this.renderErrors()}
@@ -52,8 +52,8 @@ class SessionForm extends React.Component {
                             <label>First Name:
                         <input
                                     type="text"
-                                    value={this.state.fname}
-                                    onChange={this.handleInput('fname')}
+                                    value={this.state.first_name}
+                                    onChange={this.handleInput('first_name')}
                                     className="login-input"
                                 />
                             </label>
@@ -62,8 +62,8 @@ class SessionForm extends React.Component {
                             <label>Last Name:
                         <input
                                     type="text"
-                                    value={this.state.lname}
-                                    onChange={this.handleInput('lname')}
+                                    value={this.state.last_name}
+                                    onChange={this.handleInput('last_name')}
                                     className="login-input"
                                 />
                             </label>
