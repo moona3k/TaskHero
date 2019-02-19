@@ -15,3 +15,12 @@ const Root = ({ store }) => {
 };
 
 export default Root;
+
+// <Provider /> is what makes redux store available to any nested components 
+// that have been wrapped in 'connect()' function
+
+// react-router-dom allows React to intercept GET request to a certain path before it hits the server
+// To set-up the react router, simply encapsulate all components inside the BrowserRouter tag
+
+// HashRouter vs. BrowerRouter
+// https://stackoverflow.com/questions/51974369/hashrouter-vs-browserrouter

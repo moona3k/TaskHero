@@ -40,68 +40,70 @@ class SessionForm extends React.Component {
 
     render() {
         return (
-            <div className="login-form-container">
-                <div className="login-form-background-image">
-                    <form onSubmit={this.handleSubmit} className="login-form-box">
-                        Welcome to Task Hero!
-                        <br />
-                        Please {this.props.formType} or {this.props.navLink}
-                        {this.renderErrors()}
-
-                        <div className="login-form">
-                            <label>First Name:
-                        <input
-                                    type="text"
-                                    value={this.state.first_name}
-                                    onChange={this.handleInput('first_name')}
-                                    className="login-input"
-                                />
-                            </label>
+            <div className="session-form-container">
+                <div className="session-form-background-image">
+                    <div className="session-form-box">
+                        <form onSubmit={this.handleSubmit}>
+                            Welcome to Task Hero!
                             <br />
+                            Please {this.props.formType} or {this.props.navLink}
+                            {this.renderErrors()}
 
-                            <label>Last Name:
-                        <input
-                                    type="text"
-                                    value={this.state.last_name}
-                                    onChange={this.handleInput('last_name')}
-                                    className="login-input"
-                                />
-                            </label>
-                            <br />
+                            <div className="session-form">
+                                <label>First Name:
+                            <input
+                                        type="text"
+                                        value={this.state.first_name}
+                                        onChange={this.handleInput('first_name')}
+                                        className="login-input"
+                                    />
+                                </label>
+                                <br />
 
-                            <label>Email Address:
-                        <input
-                                    type="text"
-                                    value={this.state.email}
-                                    onChange={this.handleInput('email')}
-                                    className="login-input"
-                                />
-                            </label>
-                            <br />
+                                <label>Last Name:
+                            <input
+                                        type="text"
+                                        value={this.state.last_name}
+                                        onChange={this.handleInput('last_name')}
+                                        className="login-input"
+                                    />
+                                </label>
+                                <br />
 
-                            <label>Password:
-                        <input
-                                    type="password"
-                                    value={this.state.password}
-                                    onChange={this.handleInput('password')}
-                                    className="login-input"
-                                />
-                            </label>
-                            <br />
+                                <label>Email Address:
+                            <input
+                                        type="text"
+                                        value={this.state.email}
+                                        onChange={this.handleInput('email')}
+                                        className="login-input"
+                                    />
+                                </label>
+                                <br />
 
-                            <label>Zip Code:
-                        <input
-                                    type="text"
-                                    value={this.state.zipcode}
-                                    onChange={this.handleInput('zipcode')}
-                                    className="login-input"
-                                />
-                            </label>
-                            <br />
+                                <label>Password:
+                            <input
+                                        type="password"
+                                        value={this.state.password}
+                                        onChange={this.handleInput('password')}
+                                        className="login-input"
+                                    />
+                                </label>
+                                <br />
 
-                            <input type="submit" value={this.props.formType} className="session-submit" />
-                        </div>
-                    </form>
+                                <label>Zip Code:
+                            <input
+                                        type="text"
+                                        value={this.state.zipcode}
+                                        onChange={this.handleInput('zipcode')}
+                                        className="login-input"
+                                    />
+                                </label>
+                                <br />
+
+                                <input type="submit" value={this.props.formType} className="session-submit" />
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         );

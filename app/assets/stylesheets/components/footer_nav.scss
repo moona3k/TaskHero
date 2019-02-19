@@ -1,0 +1,36 @@
+.footer-nav {
+  background-color: #67727E;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  padding-top: 70px;
+  padding-bottom: 90px;
+  margin-top: 100px;
+
+  strong {
+    color: #ADB4BF;
+    font-size: 18px;
+    margin-bottom: 8px;
+    letter-spacing: 0.02em;
+  }
+
+  a {
+    color: white;
+    margin-bottom: 7px;
+    font-size: 17px;
+    font-weight: lighter;
+    letter-spacing: 0.05em;
+  }
+
+  div {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.footer-icon {
+  width: 150px;
+  height: 45px;
+  margin-left: 10px;
+  margin-right: 50px;
+}

@@ -1,0 +1,27 @@
+.session-bar {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    box-sizing: border-box;
+    background: white;
+    padding: 14px 20px;
+    align-items: center;
+    border-bottom: 1px solid #dce0e6;
+}
+
+.task-hero-logo {
+    margin-left: 55px;
+    height: 30px;
+}
+
+.session-button {
+    margin-right: 100px;
+
+    a {
+        margin-left: 20px;
+    }
+}
+
+.logout-button {
+  margin-right: 50px;
+}
