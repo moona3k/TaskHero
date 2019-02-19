@@ -1,0 +1,87 @@
+.testimonial-root-container {
+    background-color: white;
+    padding: 3em 0;
+    display: block;
+    box-sizing: border-box;
+}
+
+.testimonial-container{
+    padding-left: 0;
+    padding-right: 0;
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+
+}
+
+.testimonial-header {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 1em;
+    font-weight: 300;
+    line-height: 1.25;
+    margin-block-start: 0.83em;
+    margin-block-end: 0.83em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
+
+.testimonial-main {
+    display: block;
+}
+
+.test-content-row {
+    width: 100%;
+    float: left;
+    margin-bottom: 1rem;
+    position: relative;
+    display: block;
+}
+
+.test-client-content {
+    width: 50%;
+    float: left;
+    text-align: left;
+    margin-bottom: 1rem;
+}
+
+.test-client-content-1 {
+    display: flex;
+}
+
+.test-client-image {
+    margin-left: auto;
+    margin-right: auto;
+    width: 125px;
+    height: 125px;
+    margin: 0;
+    flex: 0 0 auto;
+    border-radius: 50%;
+}
+
+.test-client-text {
+    color: #242a30;
+    flex: 0 1 75%;
+    padding-left: 2.5rem;
+    text-align: left;
+    line-height: 1.35;
+}
+
+.test-client-quote {
+    font-size: 1.25rem;
+    margin-bottom: 1.5rem;
+    color: #242a30;
+
+}
+
+.test-client-name {
+    font-weight: normal;
+    font-size: 1.125rem;
+
+}
+
+.test-client-location {
+    font-size: 1.125rem;
+    margin-bottom: 1.5rem;
+
+}

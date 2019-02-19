@@ -600,25 +600,71 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch, ownProps) {
 
 /***/ }),
 
-/***/ "./frontend/components/splash_page/splash_body_bottom_container.js":
-/*!*************************************************************************!*\
-  !*** ./frontend/components/splash_page/splash_body_bottom_container.js ***!
-  \*************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+/***/ "./frontend/components/splash_page/splash_guide.jsx":
+/*!**********************************************************!*\
+  !*** ./frontend/components/splash_page/splash_guide.jsx ***!
+  \**********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 
 
+var SplashGuide = function SplashGuide() {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "splashGuide-root-container"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "splashGuide-container"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "splashGuide-header"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, "How It Works")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "splashGuide-all-steps-container"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "splashGuide-step-container"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+    className: "step-image-icon",
+    src: "https://bit.ly/2NfgF0O"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "step-content"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "step-content-number"
+  }, "1"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "step-content-title"
+  }, "Describe the task"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "step-content-description"
+  }, "Choose from a variety of home services and select the day and time you'd like a qualified Tasker to show up. Give us the details and we'll find you the help."))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "splashGuide-step-container"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "step-content"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "step-content-number"
+  }, "2"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "step-content-title"
+  }, "Get matched"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "step-content-description"
+  }, "Select from a list of qualified and fully vetted Taskers for the job. Choose Taskers by their hourly rate and start chatting with them right in the app.")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+    className: "step-image-icon",
+    src: "https://bit.ly/2T4lUWv"
+  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "splashGuide-step-container"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+    className: "step-image-icon",
+    src: "https://bit.ly/2DUf4t1"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "step-content"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "step-content-number"
+  }, "3"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "step-content-title"
+  }, "Get it done"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "step-content-description"
+  }, "Just like that, your Tasker arrives and gets the job done. When your task is complete, payment will happen seamlessly and securely through the app."))))));
+};
 
-/***/ }),
-
-/***/ "./frontend/components/splash_page/splash_body_top_container.js":
-/*!**********************************************************************!*\
-  !*** ./frontend/components/splash_page/splash_body_top_container.js ***!
-  \**********************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-
+/* harmony default export */ __webpack_exports__["default"] = (SplashGuide);
 
 /***/ }),
 
@@ -634,10 +680,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _nav_bar_navBar_container__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../nav_bar/navBar_container */ "./frontend/components/nav_bar/navBar_container.js");
-/* harmony import */ var _splash_body_top_container__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./splash_body_top_container */ "./frontend/components/splash_page/splash_body_top_container.js");
-/* harmony import */ var _splash_body_top_container__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_splash_body_top_container__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _splash_body_bottom_container__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./splash_body_bottom_container */ "./frontend/components/splash_page/splash_body_bottom_container.js");
-/* harmony import */ var _splash_body_bottom_container__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_splash_body_bottom_container__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _splash_guide__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./splash_guide */ "./frontend/components/splash_page/splash_guide.jsx");
+/* harmony import */ var _splash_testimonial__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./splash_testimonial */ "./frontend/components/splash_page/splash_testimonial.jsx");
 /* harmony import */ var _footer_nav__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../footer_nav */ "./frontend/components/footer_nav.jsx");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
@@ -660,6 +704,8 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
+ // import SplashBodyTop from './splash_body_top_container';
+// import SplashBodyBottom from './splash_body_bottom_container';
 
 
 
@@ -679,7 +725,7 @@ function (_React$Component) {
     value: function render() {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "splash-page"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_nav_bar_navBar_container__WEBPACK_IMPORTED_MODULE_1__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_footer_nav__WEBPACK_IMPORTED_MODULE_4__["default"], null));
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_nav_bar_navBar_container__WEBPACK_IMPORTED_MODULE_1__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_splash_guide__WEBPACK_IMPORTED_MODULE_2__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_splash_testimonial__WEBPACK_IMPORTED_MODULE_3__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_footer_nav__WEBPACK_IMPORTED_MODULE_4__["default"], null));
     }
   }]);
 
@@ -687,6 +733,99 @@ function (_React$Component) {
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
 /* harmony default export */ __webpack_exports__["default"] = (SplashPage);
+
+/***/ }),
+
+/***/ "./frontend/components/splash_page/splash_testimonial.jsx":
+/*!****************************************************************!*\
+  !*** ./frontend/components/splash_page/splash_testimonial.jsx ***!
+  \****************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+
+var SplashTestimonial = function SplashTestimonial() {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
+    className: "testimonial-root-container"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "testimonial-container"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
+    className: "testimonial-header"
+  }, "Real People, Real Tasks"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "testimonial-main"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "test-content-row"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "test-client-content"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "test-client-content-1"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+    className: "test-client-image",
+    src: "https://bit.ly/2DTezzh"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "test-client-text"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "test-client-quote"
+  }, "Using TaskHero to have a new bookcase built was a great choice! Rick did wonderful work with a job that was much bigger than we anticipated."), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "test-client-name"
+  }, "Nadine S."), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "test-client-location"
+  }, "San Francisco, CA")))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "test-client-content"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "test-client-content-1"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+    className: "test-client-image",
+    src: "https://bit.ly/2EiI7ba"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "test-client-text"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "test-client-quote"
+  }, "I finally have expertly installed shelves and additional storage in my tiny apartment, all thanks to my Tasker."), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "test-client-name"
+  }, "Kevin S."), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "test-client-location"
+  }, "Los Angeles, CA"))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "test-content-row"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "test-client-content"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "test-client-content-1"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+    className: "test-client-image",
+    src: "https://bit.ly/2tsrJOS"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "test-client-text"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "test-client-quote"
+  }, "I'd been agonizing over how to get my new flat screen mounted to my wall. In comes Nick on the same day. He arrived with all the tools for the job and was just a super nice guy."), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "test-client-name"
+  }, "Gabrielle K."), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "test-client-location"
+  }, "Chicago, IL")))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "test-client-content"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "test-client-content-1"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+    className: "test-client-image",
+    src: "https://bit.ly/2GS2m1a"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "test-client-text"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "test-client-quote"
+  }, "TaskHero makes moving into your new apartment a 1 hr job instead of 1 day job! Moving my belongings from Manhattan to Queens was seamless."), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "test-client-name"
+  }, "Obinna O."), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "test-client-location"
+  }, "NYC, NY"))))))));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (SplashTestimonial);
 
 /***/ }),
 

@@ -1,0 +1,79 @@
+.splashGuide-root-container {
+    background: #f9fafb;
+    padding: 6em 0;
+}
+
+.splashGuide-container {
+    display: block;
+    box-sizing: border-box;
+    max-width: 1200px;
+    margin: 0 auto;
+    
+    margin-left: auto;
+    margin-right: auto;
+    float: none;
+    width: 50%;
+
+    margin-bottom: 1rem;
+    position: relative;
+    
+}
+
+.splashGuide-header {
+    font-size: 2.5rem;
+    text-align: center;
+    font-weight: 300;
+    margin-bottom: 1em;
+    line-height: 1.25;
+    box-sizing: border-box;
+}
+
+.splashGuide-all-steps-container {
+    
+}
+
+.splashGuide-step-container {
+    margin-bottom: 6rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.step-image-icon {
+    width: 180px;
+    margin-bottom: 2.5rem;
+}
+
+.step-content {
+    padding-left: 1.5rem;
+    display: block;
+    box-sizing: border-box;
+}
+
+
+.step-content-number {
+    color: #86919d;
+    font-size: 1.5rem;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    border: 1px solid #86919d;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.step-content-title {
+    font-size: 1.75rem;
+    margin-bottom: 1rem;
+    text-align: left;
+    color: #242a30;
+}
+
+.step-content-description {
+    font-size: 1.125rem;
+    text-align: left;
+    line-height: 1.5;
+    color: #242a30;
+}
