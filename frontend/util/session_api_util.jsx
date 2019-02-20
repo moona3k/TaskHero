@@ -11,7 +11,7 @@ export const postUser = user => {
     })
 }
 
-// Ajax call returns an ajax promise object
+// Ajax call returns an promise object
 
 // Login user (creates new session)
 // Send out POST request to SessionController

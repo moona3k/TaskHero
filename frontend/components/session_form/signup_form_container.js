@@ -1,24 +1,26 @@
 import React from 'react';
-import SessionForm from './session_form';
+import SignupForm from './signup_form';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { signup } from '../../actions/session_actions';
+import { signup, removeErrors } from '../../actions/session_actions';
 
 const mapStateToProps = (state, ownProps) => {
     return {
         errors: state.errors.session,
-        formType: "signup",
-        navLink: <Link to="/login">Log in instead</Link>
+        // formType: "signup",
+        navLink: <Link to="/login">Log in</Link>
+        // It's pretty cool how you can pass in components as props!
     }
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
-        processForm: (formUser) => dispatch(signup(formUser))
+        processForm: (formUser) => dispatch(signup(formUser)),
+        removeErrors: () => dispatch(removeErrors())
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(SessionForm);
+export default connect(mapStateToProps, mapDispatchToProps)(SignupForm);
 
 // import { connect } from 'react-redux';
 // import { signup } from '../../actions/session_actions';
@@ -37,4 +39,3 @@ export default connect(mapStateToProps, mapDispatchToProps)(SessionForm);
 // // 'formUser' will be what is submitted via the form
 
 // export default connect(null, mapDispatchToProps)(Signup);
-

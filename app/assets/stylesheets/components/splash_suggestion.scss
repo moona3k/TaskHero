@@ -1,0 +1,109 @@
+.get-inspired-container {
+    background-color: white;
+    padding: 3em 0;
+    display: block;
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.get-inspired-content {
+    background-color: white;
+    padding: 3em 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    display: block;
+    max-width: 1200px;
+    position: relative;
+}
+
+.get-inspired-header {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 1em;
+    font-weight: 300;
+    line-height: 1.25;
+}
+
+.get-inspired-top {
+    align-items: stretch;
+    justify-content: center;
+    margin: 0 2.5rem 2.5rem;
+    display: flex;
+}
+
+.get-inspired-image-big {
+    height: 390px;
+    flex: 1 1 66.666%;
+    margin: 0 0.75rem;
+}
+
+.get-inspired-box {
+    flex: 0 0 33.333%;
+    padding: 0 1rem;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+    background: #f9fafb;
+    padding: 2rem;
+}
+
+.get-inspired-text-main {
+  background-color: $lightest-gray;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-left: 12px;
+}
+
+.get-inspired-bottom {
+    display: flex;
+    align-items: stretch;
+    justify-content: center;
+}
+
+.task-suggestion-box {
+    flex: 0 0 33.333%;
+    padding: 0 0.75rem;
+
+}
+
+.task-details-container {
+    padding: 2rem 0.5rem;
+    background: #f9fafb;
+    text-align: center;
+
+}
+
+
+.task-suggestion-image {
+    height: 300px;
+    width: 100%;
+}
+
+.task-suggestion-title {
+    font-size: 1.5rem;
+    font-weight: 300;
+    color: #242a30;
+    margin-bottom: 0.5rem;
+}
+
+.task-suggestion-price {
+    color: #31a7a8;
+    margin-bottom: 1rem;
+}
+
+.task-suggestion-button {
+    padding-top: 0.625em;
+    padding-bottom: 0.625em;
+    font-size: 1rem;
+    padding: .475em 1.75em .325em;
+    color: white;
+    border: 1px solid #51af33;
+    background-color: #51af33;
+}
+

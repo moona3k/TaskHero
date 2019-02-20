@@ -1,6 +1,44 @@
-
 .session-form-background-image {
     background-image: image-url('apartment-background.jpg');
+    opacity: 1;
+
+    background-position: center center;
+    background-repeat: no-repeat;
     background-size: cover;
     
+    transition: opacity .3s ease-in-out;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}
+
+.session-form-logo {
+    width: 50%;
+}
+
+.session-form-box {
+    max-width: 500px;
+    margin-bottom: 1em;
+    border-radius: 4px;
+
+    position: relative;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    width: 100%;
+    top: 2em;
+
+    padding: 1.5rem 2rem;
+
+    background: white;
+    border: 1px solid #dce0e6;
+
+    transition: all 0.2s ease-in-out;
+    overflow: hidden;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

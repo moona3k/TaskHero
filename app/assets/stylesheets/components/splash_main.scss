@@ -1,0 +1,50 @@
+.splash-main-container {
+    background-size: 1597px 500px;
+    height: 500px;
+    background-image: url(https://bit.ly/2T67c19);
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    background-position: center center;
+    background-repeat: no-repeat;
+    transition: height .15s;
+    position: relative;
+    vertical-align: middle
+}
+
+.splash-main-content {
+    margin-top: 5em;
+    max-width: 90%;
+    display: block;
+    text-align: center;
+}
+
+.main-header {
+    font-size: 3rem;
+    font-weight: 300;
+    line-height: 1.2;
+    margin-bottom: 1rem;
+}
+
+.main-sub-header {
+    font-size: 1.5rem;
+    font-weight: 300;
+}
+
+.main-task-categories-container {
+    max-width: 665px;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    margin-bottom: 1rem;
+}
+
+.task-category-button {
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+    margin-top: 1.25rem;
+    padding-top: 0.625em;
+    padding-bottom: 0.625em;
+    font-size: 1rem;
+
+}

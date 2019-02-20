@@ -20,11 +20,17 @@ main {
 }
 
 button {
-  border: 1px solid green;
-	color: green;
+  color: #51af33;
+  border: 1px solid #51af33;
+  background-color: white;
 	padding: 12px 25px;
-	border-radius: 4px;
-	transition: background-color 0.2s;
+  border-radius: 4px;
+  // font-weight: normal;
+  text-align: center;
+  transition: background-color 0.16s;  
+  line-height: 1.4;
+    user-select: none;
+  cursor: pointer;
 }
 
 button:hover:enabled {
