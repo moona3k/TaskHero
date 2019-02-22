@@ -245,8 +245,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _nav_bar_navBar_container__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../nav_bar/navBar_container */ "./frontend/components/nav_bar/navBar_container.js");
 /* harmony import */ var _task_booking_main__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./task_booking_main */ "./frontend/components/dashboard/task_booking_main.jsx");
-/* harmony import */ var _task_booking_sub__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./task_booking_sub */ "./frontend/components/dashboard/task_booking_sub.jsx");
-/* harmony import */ var _footer_nav__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../footer_nav */ "./frontend/components/footer_nav.jsx");
+/* harmony import */ var _footer_nav__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../footer_nav */ "./frontend/components/footer_nav.jsx");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -267,7 +266,7 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
-
+ // import TaskBookingSub from './task_booking_sub';
 
 
 
@@ -287,7 +286,7 @@ function (_React$Component) {
     value: function render() {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "dashboard-container"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_nav_bar_navBar_container__WEBPACK_IMPORTED_MODULE_1__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_task_booking_main__WEBPACK_IMPORTED_MODULE_2__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_task_booking_sub__WEBPACK_IMPORTED_MODULE_3__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_footer_nav__WEBPACK_IMPORTED_MODULE_4__["default"], null));
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_nav_bar_navBar_container__WEBPACK_IMPORTED_MODULE_1__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_task_booking_main__WEBPACK_IMPORTED_MODULE_2__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_footer_nav__WEBPACK_IMPORTED_MODULE_3__["default"], null));
     }
   }]);
 
@@ -381,43 +380,6 @@ var TaskBookingMain = function TaskBookingMain() {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (TaskBookingMain);
-
-/***/ }),
-
-/***/ "./frontend/components/dashboard/task_booking_sub.jsx":
-/*!************************************************************!*\
-  !*** ./frontend/components/dashboard/task_booking_sub.jsx ***!
-  \************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-
-
-var TaskBookingSub = function TaskBookingSub() {
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "task-booking-sub-container"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "task-booking-sub-top-container"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "task-booking-sub-title-container"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
-    className: "task-booking-sub-title"
-  }, "What else is on your to-do list?")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "task-booking-sub-text-container"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
-    className: "task-booking-sub-text"
-  }, "Make a list of all the things that you need to get done. We'll help you match these items to the right category!"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "task-booking-sub-bottom-container"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "task-booking-sub-bottom-images"
-  })));
-};
-
-/* harmony default export */ __webpack_exports__["default"] = (TaskBookingSub);
 
 /***/ }),
 
@@ -1474,13 +1436,29 @@ function (_React$Component) {
   _createClass(TaskDescription, [{
     key: "render",
     value: function render() {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Describe Your Task: ________"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Is _______ not the right task? (Pick another task)")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "YOUR TASK LOCATION"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Search: Enter street address"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Unit or Apt #"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", null, "Continue")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "TASK OPTIONS"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "How big is your task?"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "task-description-container"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "task-description-header"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
+        className: "task-description-header-title"
+      }, "Describe Your Task: ________"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
+        className: "task-description-header-sub"
+      }, "Is _______ not the right task? (Pick another task)")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "task-description-box"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "YOUR TASK LOCATION"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Search: Enter street address"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Unit or Apt #"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", null, "Continue")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "task-description-box"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "TASK OPTIONS"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "How big is your task?"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "task-description-radio-button-container"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "radio"
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Small - Est. 1 hr"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "radio"
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Medium - Est. 2-3 hrs"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "radio"
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Large - Est. 4+ hrs"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", null, "Continue")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "TELL US THE DETAILS OF YOUR TASK"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Start the conversation and tell your Tasker what you need done. This helps us show you only qualified and available Taskers for the job. Don't worry, you can edit this later."), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Large - Est. 4+ hrs")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", null, "Continue")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "task-description-box"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "TELL US THE DETAILS OF YOUR TASK"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Start the conversation and tell your Tasker what you need done. This helps us show you only qualified and available Taskers for the job. Don't worry, you can edit this later."), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
         cols: "30",
         rows: "10",
         placeholder: "Provide a summary of what you need done for your Tasker. Be sure to include details like the size of your space, any equipment/tools needed, and how to get in."
