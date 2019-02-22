@@ -1474,7 +1474,17 @@ function (_React$Component) {
   _createClass(TaskDescription, [{
     key: "render",
     value: function render() {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "hello");
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Describe Your Task: ________"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Is _______ not the right task? (Pick another task)")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "YOUR TASK LOCATION"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Search: Enter street address"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Unit or Apt #"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", null, "Continue")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "TASK OPTIONS"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "How big is your task?"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "radio"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Small - Est. 1 hr"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "radio"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Medium - Est. 2-3 hrs"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "radio"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Large - Est. 4+ hrs"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", null, "Continue")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "TELL US THE DETAILS OF YOUR TASK"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Start the conversation and tell your Tasker what you need done. This helps us show you only qualified and available Taskers for the job. Don't worry, you can edit this later."), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
+        cols: "30",
+        rows: "10",
+        placeholder: "Provide a summary of what you need done for your Tasker. Be sure to include details like the size of your space, any equipment/tools needed, and how to get in."
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "If you need two or more Taskers, please post additional tasks for each Tasker needed."), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", null, "See Taskers & Prices"))));
     }
   }]);
 
