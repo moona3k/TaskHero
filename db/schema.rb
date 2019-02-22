@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_16_095937) do
+ActiveRecord::Schema.define(version: 2019_02_22_025753) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,16 @@ ActiveRecord::Schema.define(version: 2019_02_16_095937) do
     t.string "session_token", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "profile_img", default: "https://bit.ly/2tvrRgG"
+    t.boolean "is_tasker", default: false, null: false
+    t.decimal "hourly_rate"
+    t.text "tasker_aboutme"
+    t.string "tasker_rank"
+    t.string "tasker_skill_type"
+    t.string "vehicle_type"
+    t.integer "num_completed_tasks"
+    t.integer "reviews_rating"
+    t.integer "reviews_num"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["session_token"], name: "index_users_on_session_token", unique: true
   end
