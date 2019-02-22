@@ -149,9 +149,9 @@ var signup = function signup(formUser) {
     .then(function (user) {
       return dispatch(receiveCurrentUser(user));
     } // dispatch action to store; update the frontend redux-store
-    ), function (err) {
+    , function (err) {
       return dispatch(receiveErrors(err.responseJSON));
-    };
+    });
   };
 }; // thunk is middleware that allows us to curry actions
 // login user
@@ -194,7 +194,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _splash_page_splash_page__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./splash_page/splash_page */ "./frontend/components/splash_page/splash_page.jsx");
 /* harmony import */ var _session_form_login_form_container__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./session_form/login_form_container */ "./frontend/components/session_form/login_form_container.js");
 /* harmony import */ var _session_form_signup_form_container__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./session_form/signup_form_container */ "./frontend/components/session_form/signup_form_container.js");
+/* harmony import */ var _dashboard_dashboard_container__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./dashboard/dashboard_container */ "./frontend/components/dashboard/dashboard_container.js");
+/* harmony import */ var _task_form_task_form_page__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./task_form/task_form_page */ "./frontend/components/task_form/task_form_page.jsx");
 // This is where we nest all the components!
+
+
 
 
 
@@ -215,10 +219,205 @@ var App = function App() {
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_2__["AuthRoute"], {
     path: "/login",
     component: _session_form_login_form_container__WEBPACK_IMPORTED_MODULE_4__["default"]
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_2__["ProtectedRoute"], {
+    path: "/dashboard",
+    component: _dashboard_dashboard_container__WEBPACK_IMPORTED_MODULE_6__["default"]
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
+    path: "/task-form",
+    component: _task_form_task_form_page__WEBPACK_IMPORTED_MODULE_7__["default"]
   })));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (App);
+
+/***/ }),
+
+/***/ "./frontend/components/dashboard/dashboard.jsx":
+/*!*****************************************************!*\
+  !*** ./frontend/components/dashboard/dashboard.jsx ***!
+  \*****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _nav_bar_navBar_container__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../nav_bar/navBar_container */ "./frontend/components/nav_bar/navBar_container.js");
+/* harmony import */ var _task_booking_main__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./task_booking_main */ "./frontend/components/dashboard/task_booking_main.jsx");
+/* harmony import */ var _task_booking_sub__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./task_booking_sub */ "./frontend/components/dashboard/task_booking_sub.jsx");
+/* harmony import */ var _footer_nav__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../footer_nav */ "./frontend/components/footer_nav.jsx");
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+
+
+
+
+var Dashboard =
+/*#__PURE__*/
+function (_React$Component) {
+  _inherits(Dashboard, _React$Component);
+
+  function Dashboard(props) {
+    _classCallCheck(this, Dashboard);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(Dashboard).call(this, props));
+  }
+
+  _createClass(Dashboard, [{
+    key: "render",
+    value: function render() {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "dashboard-container"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_nav_bar_navBar_container__WEBPACK_IMPORTED_MODULE_1__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_task_booking_main__WEBPACK_IMPORTED_MODULE_2__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_task_booking_sub__WEBPACK_IMPORTED_MODULE_3__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_footer_nav__WEBPACK_IMPORTED_MODULE_4__["default"], null));
+    }
+  }]);
+
+  return Dashboard;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+/* harmony default export */ __webpack_exports__["default"] = (Dashboard);
+
+/***/ }),
+
+/***/ "./frontend/components/dashboard/dashboard_container.js":
+/*!**************************************************************!*\
+  !*** ./frontend/components/dashboard/dashboard_container.js ***!
+  \**************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _dashboard__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./dashboard */ "./frontend/components/dashboard/dashboard.jsx");
+
+
+
+
+var mapStateToProps = function mapStateToProps(state, ownProps) {
+  return {};
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch, ownProps) {
+  return {};
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps, mapDispatchToProps)(_dashboard__WEBPACK_IMPORTED_MODULE_2__["default"]));
+
+/***/ }),
+
+/***/ "./frontend/components/dashboard/task_booking_main.jsx":
+/*!*************************************************************!*\
+  !*** ./frontend/components/dashboard/task_booking_main.jsx ***!
+  \*************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+
+var TaskBookingMain = function TaskBookingMain() {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "dashboard-search-container"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "dashboard-search-container-inner"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "dashboard-search-content"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "dashboard-search-content-top"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
+    className: "dashboard-search-header"
+  }, "Book Your Next Task"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), "Search Bar Component Will Render Here")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "dashboard-search-content-bottom"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+    className: "dashboard-search-content-bottom-container"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    className: "task-category-button"
+  }, "Moving")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    className: "task-category-button"
+  }, "Plumbing")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    className: "task-category-button"
+  }, "Mounting")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    className: "task-category-button"
+  }, "Home Repairs")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    className: "task-category-button"
+  }, "Cleaning"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+    className: "dashboard-search-content-bottom-container"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    className: "task-category-button"
+  }, "Furniture Assembly")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    className: "task-category-button"
+  }, "Heavy Lifting")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    className: "task-category-button"
+  }, "Yard Work")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    className: "task-category-button"
+  }, "Wait in Line")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    className: "task-category-button"
+  }, "Event Staffing"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "See More")))));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (TaskBookingMain);
+
+/***/ }),
+
+/***/ "./frontend/components/dashboard/task_booking_sub.jsx":
+/*!************************************************************!*\
+  !*** ./frontend/components/dashboard/task_booking_sub.jsx ***!
+  \************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+
+var TaskBookingSub = function TaskBookingSub() {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "task-booking-sub-container"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "task-booking-sub-top-container"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "task-booking-sub-title-container"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
+    className: "task-booking-sub-title"
+  }, "What else is on your to-do list?")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "task-booking-sub-text-container"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
+    className: "task-booking-sub-text"
+  }, "Make a list of all the things that you need to get done. We'll help you match these items to the right category!"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "task-booking-sub-bottom-container"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "task-booking-sub-bottom-images"
+  })));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (TaskBookingSub);
 
 /***/ }),
 
@@ -464,15 +663,11 @@ function (_React$Component) {
   }, {
     key: "handleSubmit",
     value: function handleSubmit(e) {
-      var _this3 = this;
-
       e.preventDefault();
       var user = Object.assign({}, this.state); // Object.assign creates a copy of an object
 
-      this.props.processForm(user) // alternatively, you can simply write processForm(this.state)
-      .then(function () {
-        return _this3.props.history.push('/dashboard');
-      });
+      this.props.processForm(user); // alternatively, you can simply write processForm(this.state)
+      // .then(() => this.props.history.push('/dashboard'));
     }
   }, {
     key: "render",
@@ -645,15 +840,11 @@ function (_React$Component) {
   }, {
     key: "handleSubmit",
     value: function handleSubmit(e) {
-      var _this3 = this;
-
       e.preventDefault();
       var user = Object.assign({}, this.state); // Object.assign creates a copy of an object
 
-      this.props.processForm(user) // alternatively, you can simply write processForm(this.state)
-      .then(function () {
-        return _this3.props.history.push('/dashboard');
-      });
+      this.props.processForm(user); // alternatively, you can simply write processForm(this.state)
+      // .then(() => this.props.history.push('/dashboard'));
     }
   }, {
     key: "render",
@@ -1235,6 +1426,186 @@ var SplashTestimonial = function SplashTestimonial() {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (SplashTestimonial);
+
+/***/ }),
+
+/***/ "./frontend/components/task_form/task_description.jsx":
+/*!************************************************************!*\
+  !*** ./frontend/components/task_form/task_description.jsx ***!
+  \************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+var TaskDescription =
+/*#__PURE__*/
+function (_React$Component) {
+  _inherits(TaskDescription, _React$Component);
+
+  function TaskDescription() {
+    _classCallCheck(this, TaskDescription);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(TaskDescription).apply(this, arguments));
+  }
+
+  _createClass(TaskDescription, [{
+    key: "render",
+    value: function render() {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "hello");
+    }
+  }]);
+
+  return TaskDescription;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+/* harmony default export */ __webpack_exports__["default"] = (TaskDescription);
+
+/***/ }),
+
+/***/ "./frontend/components/task_form/task_description_container.js":
+/*!*********************************************************************!*\
+  !*** ./frontend/components/task_form/task_description_container.js ***!
+  \*********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _task_description__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./task_description */ "./frontend/components/task_form/task_description.jsx");
+
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(null, null)(_task_description__WEBPACK_IMPORTED_MODULE_1__["default"]));
+
+/***/ }),
+
+/***/ "./frontend/components/task_form/task_form_header.jsx":
+/*!************************************************************!*\
+  !*** ./frontend/components/task_form/task_form_header.jsx ***!
+  \************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+
+var TaskFormHeader = function TaskFormHeader() {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "task-form-header-container"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "task-form-header-container-top"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "task-form-header-steps"
+  }, "1. Fill Out Task Details"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "task-form-header-steps"
+  }, "2. View Taskers & Prices"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "task-form-header-steps"
+  }, "3. Confirm & Book")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "task-form-header-container-bottom"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+    className: "task-form-trust-icon",
+    src: "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+Cjxzdmcgd2lkdGg9IjM0cHgiIGhlaWdodD0iNDVweCIgdmlld0JveD0iMCAwIDM0IDQ1IiB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHhtbG5zOnNrZXRjaD0iaHR0cDovL3d3dy5ib2hlbWlhbmNvZGluZy5jb20vc2tldGNoL25zIj4KICAgIDwhLS0gR2VuZXJhdG9yOiBTa2V0Y2ggMy4zLjMgKDEyMDcyKSAtIGh0dHA6Ly93d3cuYm9oZW1pYW5jb2RpbmcuY29tL3NrZXRjaCAtLT4KICAgIDx0aXRsZT5BcnRib2FyZCA3MzwvdGl0bGU+CiAgICA8ZGVzYz5DcmVhdGVkIHdpdGggU2tldGNoLjwvZGVzYz4KICAgIDxkZWZzPjwvZGVmcz4KICAgIDxnIGlkPSJQYWdlLTEiIHN0cm9rZT0ibm9uZSIgc3Ryb2tlLXdpZHRoPSIxIiBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiIHNrZXRjaDp0eXBlPSJNU1BhZ2UiPgogICAgICAgIDxnIGlkPSJBcnRib2FyZC03MyIgc2tldGNoOnR5cGU9Ik1TQXJ0Ym9hcmRHcm91cCI+CiAgICAgICAgICAgIDxnIGlkPSJJbXBvcnRlZC1MYXllcnMiIHNrZXRjaDp0eXBlPSJNU0xheWVyR3JvdXAiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDEuMDAwMDAwLCAwLjAwMDAwMCkiPgogICAgICAgICAgICAgICAgPHBhdGggZD0iTTE1LjEyODY3OTcsMy44MDg3MzU5NiBMMjkuNDIwMzM5OSwxMC42MzYyNjA2IEMyOS40MjAzMzk5LDEwLjYzNjI2MDYgMzEuNjUxNTU1NiwyMC45MTI5MDU1IDI4LjAyNjE0MzgsMjguNzQ2NDA1NSBDMjQuNDAwNzMyLDM2LjU3OTQ3NDQgMTYuMTA0NTc1Miw0MC4zMTY2MzIyIDE1LjQ3NzEyNDIsNDAuMzE2NjMyMiBDMTQuODQ5NjczMiw0MC4zMTY2MzIyIDE0LjM2MTUxNjMsMzcuOTQ1MDY1NiAxNC4zNjE1MTYzLDM3Ljk0NTA2NTYgTDE1LjEyODY3OTcsMy44MDg3MzU5NiIgaWQ9IkZpbGwtMSIgZmlsbD0iIzI1NEYxNyIgc2tldGNoOnR5cGU9Ik1TU2hhcGVHcm91cCI+PC9wYXRoPgogICAgICAgICAgICAgICAgPHBhdGggZD0iTTMxLjAzNjY1MzYsOC42OTQ1OTQzNCBDMzEuMjU2Njc5Nyw4LjgwNzk5ODM0IDMxLjQyODYwMTMsOC45NzA5ODk2NSAzMS41NTI4MzY2LDkuMTgzNTY4MjUgQzMxLjY3NjIzNTMsOS4zOTYxNDY4NiAzMS43MzgxNDM4LDkuNjI5ODUzOTcgMzEuNzM4MTQzOCw5Ljg4NTEyMDc3IEwzMS43MzgxNDM4LDIwLjc3Mjc2NzQgQzMxLjczODE0MzgsMjIuMjc1OTA5NSAzMS42NDE1MTYzLDIzLjcwMDU3NDIgMzEuNDQ5NTE2MywyNS4wNDcxOTI4IEMzMS4yNTY2Nzk3LDI2LjM5NDI0MjcgMzAuOTc1MTYzNCwyNy42ODM5NDM3IDMwLjYwMzI5NDEsMjguOTE3MTU4MyBDMzAuMjMyMjYxNCwzMC4xNTA4MDQxIDI5Ljc1NzkwODUsMzEuMzIwMjAyMSAyOS4xODAyMzUzLDMyLjQyNjIxNDUgQzI4LjYwMjU2MjEsMzMuNTMxNzk1NyAyNy45MjgyNjE0LDM0LjU4MTMyMTcgMjcuMTU4NTg4MiwzNS41NzMwNjc4IEMyNS45NDc2MDc4LDM3LjEzMzEyNzQgMjQuNDkwMjQ4NCwzOC41NjQyNiAyMi43ODUyNTQ5LDM5Ljg2ODYyMTcgQzIxLjA3OTQyNDgsNDEuMTcyNTUyMSAxOC45NzQ5NTQyLDQyLjQ3NjkxMzcgMTYuNDcyNjc5Nyw0My43ODE3MDY2IEMxNi4zOTAyNzQ1LDQzLjgwOTczNDIgMTYuMzAwNzU4Miw0My44Mzc3NjE4IDE2LjIwNDU0OSw0My44NjY2NTE4IEMxNi4xMDc5MjE2LDQzLjg5NDY3OTQgMTYuMDA0NjAxMyw0My45MDg5MDg4IDE1Ljg5NTAwNjUsNDMuOTA4OTA4OCBDMTUuNzg0NTc1Miw0My45MDg5MDg4IDE1LjY4MTY3MzIsNDMuODk0Njc5NCAxNS41ODU0NjQxLDQzLjg2NjY1MTggQzE1LjQ4ODgzNjYsNDMuODM3NzYxOCAxNS4zOTk3Mzg2LDQzLjgwOTczNDIgMTUuMzE3MzMzMyw0My43ODE3MDY2IEMxMi44MTQyMjIyLDQyLjQ3NjkxMzcgMTAuNzEwMTY5OSw0MS4xNzI1NTIxIDkuMDA0NzU4MTcsMzkuODY4NjIxNyBDNy4yOTg5MjgxLDM4LjU2NDI2IDUuODQxNTY4NjMsMzcuMTMzMTI3NCA0LjYzMTQyNDg0LDM1LjU3MzA2NzggQzMuODYxMzMzMzMsMzQuNTgxMzIxNyAzLjE4NzQ1MDk4LDMzLjUzMTc5NTcgMi42MDk3Nzc3OCwzMi40MjYyMTQ1IEMyLjAzMjEwNDU4LDMxLjMyMDIwMjEgMS41NTc3NTE2MywzMC4xNTA4MDQxIDEuMTg2NzE4OTUsMjguOTE3MTU4MyBDMC44MTQ4NDk2NzMsMjcuNjgzOTQzNyAwLjUzMjQ5NjczMiwyNi4zOTQyNDI3IDAuMzQwOTE1MDMzLDI1LjA0NzE5MjggQzAuMTQ3NjYwMTMxLDIzLjcwMDU3NDIgMC4wNTE4NjkyODEsMjIuMjc1OTA5NSAwLjA1MTg2OTI4MSwyMC43NzI3Njc0IEwwLjA1MTg2OTI4MSw5Ljg4NTEyMDc3IEMwLjA1MTg2OTI4MSw5LjYyOTg1Mzk3IDAuMTEzNzc3Nzc4LDkuMzk2MTQ2ODYgMC4yMzcxNzY0NzEsOS4xODM1NjgyNSBDMC4zNjE0MTE3NjUsOC45NzA5ODk2NSAwLjUzMjQ5NjczMiw4LjgwNzk5ODM0IDAuNzUzMzU5NDc3LDguNjk0NTk0MzQgTDE1LjI3NjMzOTksMC41Mjg2NDM3NTQgQzE1LjM1ODc0NTEsMC40NzIxNTczNSAxNS40NTQ1MzU5LDAuNDI5OTAwMzQ1IDE1LjU2NDk2NzMsMC40MDEwMTAzNTIgQzE1LjY3NDU2MjEsMC4zNzI5ODI3NDcgMTUuNzg0NTc1MiwwLjM1ODMyMjE1MyAxNS44OTUwMDY1LDAuMzU4MzIyMTUzIEMxNi4wMDQ2MDEzLDAuMzU4MzIyMTUzIDE2LjExNDYxNDQsMC4zNzI5ODI3NDcgMTYuMjI1MDQ1OCwwLjQwMTAxMDM1MiBDMTYuMzM0NjQwNSwwLjQyOTkwMDM0NSAxNi40MzEyNjgsMC40NzIxNTczNSAxNi41MTQwOTE1LDAuNTI4NjQzNzU0IEwzMS4wMzY2NTM2LDguNjk0NTk0MzQgTDMxLjAzNjY1MzYsOC42OTQ1OTQzNCBaIE0yNy43NzcyNTQ5LDIwLjc3Mjc2NzQgTDI3Ljc3NzI1NDksMTEuNTAxMjM1NiBMMTUuODk1MDA2NSw0LjgyNDE5NzY1IEwxNS44OTUwMDY1LDM5LjQ4NjE1MjcgQzE3Ljc5MjgzNjYsMzguNDY1MDg1NCAxOS4zOTQ5MjgxLDM3LjQzMDY1MTIgMjAuNzAxMjgxLDM2LjM4MTEyNTIgQzIyLjAwNzYzNCwzNS4zMzI0NjE2IDIzLjEyODY3OTcsMzQuMjEyMjE5NyAyNC4wNjQsMzMuMDIxMjYyMSBDMjQuNjk2NDcwNiwzMi4yMjc4NjUzIDI1LjIzOTg0MzEsMzEuMzkxMzQ5MSAyNS42OTQxMTc2LDMwLjUxMjE0NDcgQzI2LjE0NzU1NTYsMjkuNjMzODAyNiAyNi41MjUyODEsMjguNjk4MTExOCAyNi44Mjg1NDksMjcuNzA1MDcyMiBDMjcuMTU4NTg4MiwyNi42NTY0MDg2IDI3LjM5OTExMTEsMjUuNTY1MDU2NyAyNy41NTAxMTc2LDI0LjQzMDU4NTUgQzI3LjcwMTU0MjUsMjMuMjk2NTQ1NSAyNy43NzcyNTQ5LDIyLjA3NzU2MDIgMjcuNzc3MjU0OSwyMC43NzI3Njc0IEwyNy43NzcyNTQ5LDIwLjc3Mjc2NzQgWiIgaWQ9IkZpbGwtMiIgZmlsbD0iIzQzOEUyOSIgc2tldGNoOnR5cGU9Ik1TU2hhcGVHcm91cCI+PC9wYXRoPgogICAgICAgICAgICAgICAgPHBhdGggZD0iTTIxLjk2MjAzOTIsMTguNDk2MDYzNSBDMjIuMjcxMTYzNCwxOC40OTYwNjM1IDIyLjUzMzg1NjIsMTguNjA3MzExNSAyMi43NTAxMTc2LDE4LjgzMDIzODggQzIyLjk2NjM3OTEsMTkuMDUzMTY2IDIzLjA3NDMwMDcsMTkuMzIzOTU1OCAyMy4wNzQzMDA3LDE5LjY0MjE3NjkgTDIzLjA3NDMwMDcsMzEuMTA3NjIzNSBDMjMuMDc0MzAwNywzMS40MjYyNzU4IDIyLjk2NjM3OTEsMzEuNjk2NjM0NCAyMi43NTAxMTc2LDMxLjkxOTU2MTYgQzIyLjUzMzg1NjIsMzIuMTQyNDg4OSAyMi4yNzExNjM0LDMyLjI1NDE2ODEgMjEuOTYyMDM5MiwzMi4yNTQxNjgxIEw5LjM1Njk2NzMyLDMyLjI1NDE2ODEgQzkuMDQ3ODQzMTQsMzIuMjU0MTY4MSA4Ljc4NTE1MDMzLDMyLjE0MjQ4ODkgOC41Njg4ODg4OSwzMS45MTk1NjE2IEM4LjM1MjYyNzQ1LDMxLjY5NjYzNDQgOC4yNDQ3MDU4OCwzMS40MjYyNzU4IDguMjQ0NzA1ODgsMzEuMTA3NjIzNSBMOC4yNDQ3MDU4OCwxOS42NDIxNzY5IEM4LjI0NDcwNTg4LDE5LjMyMzk1NTggOC4zNTI2Mjc0NSwxOS4wNTMxNjYgOC41Njg4ODg4OSwxOC44MzAyMzg4IEM4Ljc4NTE1MDMzLDE4LjYwNzMxMTUgOS4wNDc4NDMxNCwxOC40OTYwNjM1IDkuMzU2OTY3MzIsMTguNDk2MDYzNSBMOS43Mjc1ODE3LDE4LjQ5NjA2MzUgTDkuNzI3NTgxNywxMy45MDk4ODQ5IEM5LjcyNzU4MTcsMTIuNjUxNjYxIDEwLjE2Mzg2OTMsMTEuNTcyODEzOCAxMS4wMzY4NjI3LDEwLjY3MzM0MzMgQzExLjkwOTQzNzksOS43NzM0NDE1NSAxMi45NTYwMjYxLDkuMzIzNzA2MjggMTQuMTc2NjI3NSw5LjMyMzcwNjI4IEwxNy4xNDIzNzkxLDkuMzIzNzA2MjggQzE4LjM2Mjk4MDQsOS4zMjM3MDYyOCAxOS40MDk1Njg2LDkuNzczNDQxNTUgMjAuMjgyMTQzOCwxMC42NzMzNDMzIEMyMS4xNTUxMzczLDExLjU3MjgxMzggMjEuNTkxNDI0OCwxMi42NTE2NjEgMjEuNTkxNDI0OCwxMy45MDk4ODQ5IEwyMS41OTE0MjQ4LDE4LjQ5NjA2MzUgTDIxLjk2MjAzOTIsMTguNDk2MDYzNSBMMjEuOTYyMDM5MiwxOC40OTYwNjM1IFogTTEyLjY5MzMzMzMsMTMuOTA5ODg0OSBMMTIuNjkzMzMzMywxOC40OTYwNjM1IEwxOC42MjUyNTQ5LDE4LjQ5NjA2MzUgTDE4LjYyNTI1NDksMTMuOTA5ODg0OSBDMTguNjI1MjU0OSwxMy40OTU5Mzg3IDE4LjQ3ODg0OTcsMTMuMTM3NjE2NiAxOC4xODUyMDI2LDEyLjgzNDkxODQgQzE3Ljg5MTU1NTYsMTIuNTMyMjIwMyAxNy41NDM5NDc3LDEyLjM4MDg3MTIgMTcuMTQyMzc5MSwxMi4zODA4NzEyIEwxNC4xNzY2Mjc1LDEyLjM4MDg3MTIgQzEzLjc3NDY0MDUsMTIuMzgwODcxMiAxMy40MjcwMzI3LDEyLjUzMjIyMDMgMTMuMTMzODAzOSwxMi44MzQ5MTg0IEMxMi44NDAxNTY5LDEzLjEzNzYxNjYgMTIuNjkzMzMzMywxMy40OTU5Mzg3IDEyLjY5MzMzMzMsMTMuOTA5ODg0OSBMMTIuNjkzMzMzMywxMy45MDk4ODQ5IFoiIGlkPSJGaWxsLTMiIGZpbGw9IiNGRkZGRkYiIHNrZXRjaDp0eXBlPSJNU1NoYXBlR3JvdXAiPjwvcGF0aD4KICAgICAgICAgICAgPC9nPgogICAgICAgIDwvZz4KICAgIDwvZz4KPC9zdmc+Cg=="
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", {
+    className: "trust-safety-text-1"
+  }, "Trust & Safety Guarantee: "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "trust-safety-text-2"
+  }, "\xA0$1MM guarantee on every task.")));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (TaskFormHeader);
+
+/***/ }),
+
+/***/ "./frontend/components/task_form/task_form_page.jsx":
+/*!**********************************************************!*\
+  !*** ./frontend/components/task_form/task_form_page.jsx ***!
+  \**********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _nav_bar_navBar_container__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../nav_bar/navBar_container */ "./frontend/components/nav_bar/navBar_container.js");
+/* harmony import */ var _task_form_header__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./task_form_header */ "./frontend/components/task_form/task_form_header.jsx");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/es/index.js");
+/* harmony import */ var _task_description_container__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./task_description_container */ "./frontend/components/task_form/task_description_container.js");
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+
+
+
+
+var TaskFormPage =
+/*#__PURE__*/
+function (_React$Component) {
+  _inherits(TaskFormPage, _React$Component);
+
+  function TaskFormPage(props) {
+    _classCallCheck(this, TaskFormPage);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(TaskFormPage).call(this, props));
+  }
+
+  _createClass(TaskFormPage, [{
+    key: "render",
+    value: function render() {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_nav_bar_navBar_container__WEBPACK_IMPORTED_MODULE_1__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_task_form_header__WEBPACK_IMPORTED_MODULE_2__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["Switch"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["Route"], {
+        path: "/task-form/new",
+        component: _task_description_container__WEBPACK_IMPORTED_MODULE_4__["default"]
+      })));
+    }
+  }]);
+
+  return TaskFormPage;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+/* harmony default export */ __webpack_exports__["default"] = (TaskFormPage);
 
 /***/ }),
 

@@ -48,8 +48,8 @@ export const signup = formUser => dispatch => {
     // AJAX request; communicate w/ the backend to create new user 
         .then(user => dispatch(receiveCurrentUser(user)) 
         // dispatch action to store; update the frontend redux-store
-        ), err => (dispatch(receiveErrors(err.responseJSON))
-        );
+        , err => (dispatch(receiveErrors(err.responseJSON))
+        ));
 }
 
 // thunk is middleware that allows us to curry actions

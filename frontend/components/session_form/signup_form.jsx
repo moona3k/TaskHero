@@ -41,7 +41,7 @@ class SignupForm extends React.Component {
         const user = Object.assign({}, this.state);
         // Object.assign creates a copy of an object
         this.props.processForm(user) // alternatively, you can simply write processForm(this.state)
-            .then(() => this.props.history.push('/dashboard'));
+            // .then(() => this.props.history.push('/dashboard'));
     }
 
     render() {
