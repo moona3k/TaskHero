@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  task_categories: MyString
+  location: MyString
+  description: MyText
+  user_id: 1
+  tasker_id: 1
+  estimated_time: MyString
+  time: MyString
+  date: 2019-02-21
+
+two:
+  task_categories: MyString
+  location: MyString
+  description: MyText
+  user_id: 1
+  tasker_id: 1
+  estimated_time: MyString
+  time: MyString
+  date: 2019-02-21
