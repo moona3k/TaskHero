@@ -9,6 +9,7 @@
     "lodash": "^4.17.11",
     "react": "^16.8.2",
     "react-dom": "^16.8.2",
+    "react-places-autocomplete": "^7.2.1",
     "react-redux": "^6.0.0",
     "react-router-dom": "^4.3.1",
     "redux": "^4.0.1",
@@ -26,7 +27,7 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack --mode=development --watch"    
+    "start": "webpack --mode=development --watch"
   },
   "keywords": [],
   "author": "",

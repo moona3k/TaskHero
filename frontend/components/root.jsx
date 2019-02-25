@@ -14,6 +14,7 @@ const Root = ({ store }) => {
     )
 };
 
+
 export default Root;
 
 // <Provider /> is what makes redux store available to any nested components 

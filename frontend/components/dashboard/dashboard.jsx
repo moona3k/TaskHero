@@ -1,7 +1,7 @@
 import React from 'react';
 
 import NavBarContainer from '../nav_bar/navBar_container';
-import TaskBookingMain from './task_booking_main';
+import TaskBookingMainContainer from './task_booking_main_container';
 // import TaskBookingSub from './task_booking_sub';
 import FooterNav from '../footer_nav';
 
@@ -15,7 +15,7 @@ class Dashboard extends React.Component {
         return (
             <div className="dashboard-container">
                 <NavBarContainer />
-                <TaskBookingMain />
+                <TaskBookingMainContainer />
                 {/* <TaskBookingSub /> */}
                 {/* <MyTaskList /> */}
                 <FooterNav />

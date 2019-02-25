@@ -10,13 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_22_033329) do
+ActiveRecord::Schema.define(version: 2019_02_25_174819) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "tasks", force: :cascade do |t|
-    t.string "task_categories"
+    t.string "task_category"
     t.string "location"
     t.text "description"
     t.integer "user_id"
@@ -27,6 +27,8 @@ ActiveRecord::Schema.define(version: 2019_02_22_033329) do
     t.boolean "is_complete", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "specific_location"
+    t.string "vehicle_type"
     t.index ["tasker_id"], name: "index_tasks_on_tasker_id"
     t.index ["user_id"], name: "index_tasks_on_user_id"
   end
