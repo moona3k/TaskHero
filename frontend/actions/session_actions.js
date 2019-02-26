@@ -60,8 +60,8 @@ export const signup = formUser => dispatch => {
 export const login = formUser => dispatch => {
     return APIUtil.postSession(formUser)
         .then(user => dispatch(receiveCurrentUser(user)) // do this if success
-        ), err => (dispatch(receiveErrors(err.responseJSON)) // do this if failure
-        );
+        , err => (dispatch(receiveErrors(err.responseJSON)) // do this if failure
+        ));
 }
 
 // logout user

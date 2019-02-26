@@ -7,6 +7,7 @@ class TaskDescription extends React.Component {
     constructor(props){
         super(props);
         this.state = {
+            task_category: this.props.task_category,
             location: '',
             specific_location: '',
             estimated_time_req: '',

@@ -10,6 +10,7 @@ const tasksReducer = (state = {}, action) => {
 
         case RECEIVE_TASK_DESCRIPTION:
             return Object.assign({}, state, {
+                task_category: action.task_description.task_category,
                 location: action.task_description.location,
                 specific_location: action.task_description.specific_location,
                 estimated_time_req: action.task_description.estimated_time_req,

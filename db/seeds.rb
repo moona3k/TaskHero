@@ -6,6 +6,9 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+
+# Make sure to run 'rails db:seed'!
+
 User.destroy_all
 
 task_categories_arr = [

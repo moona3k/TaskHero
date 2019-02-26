@@ -161,10 +161,10 @@ var login = function login(formUser) {
     return _util_session_api_util__WEBPACK_IMPORTED_MODULE_0__["postSession"](formUser).then(function (user) {
       return dispatch(receiveCurrentUser(user));
     } // do this if success
-    ), function (err) {
+    , function (err) {
       return dispatch(receiveErrors(err.responseJSON)) // do this if failure
       ;
-    };
+    });
   };
 }; // logout user
 
@@ -1734,6 +1734,7 @@ function (_React$Component) {
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(TaskDescription).call(this, props));
     _this.state = {
+      task_category: _this.props.task_category,
       location: '',
       specific_location: '',
       estimated_time_req: '',
@@ -2223,6 +2224,7 @@ var tasksReducer = function tasksReducer() {
 
     case _actions_task_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_TASK_DESCRIPTION"]:
       return Object.assign({}, state, {
+        task_category: action.task_description.task_category,
         location: action.task_description.location,
         specific_location: action.task_description.specific_location,
         estimated_time_req: action.task_description.estimated_time_req,
