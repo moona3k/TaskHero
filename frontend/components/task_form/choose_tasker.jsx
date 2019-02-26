@@ -12,11 +12,12 @@ class ChooseTasker extends React.Component {
 
         // Fetch all taskers where 'tasks.task_category === users.tasker_skill_type'
 
-        
+        // this.props.fetchAllTaskers();
 
     }
 
     render() {
+        console.log(this.props);
         return (
             <div>
                 <div className="root-container">

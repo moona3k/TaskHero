@@ -208,6 +208,39 @@ var receiveTaskDescription = function receiveTaskDescription(taskDescription) {
 
 /***/ }),
 
+/***/ "./frontend/actions/tasker_actions.js":
+/*!********************************************!*\
+  !*** ./frontend/actions/tasker_actions.js ***!
+  \********************************************/
+/*! exports provided: RECEIVE_ALL_TASKERS, fetchAllTaskers */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_ALL_TASKERS", function() { return RECEIVE_ALL_TASKERS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchAllTaskers", function() { return fetchAllTaskers; });
+/* harmony import */ var _util_taskers_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/taskers_api_util */ "./frontend/util/taskers_api_util.jsx");
+
+var RECEIVE_ALL_TASKERS = 'RECEIVE_ALL_TASKERS';
+
+var receiveAllTaskers = function receiveAllTaskers(taskers) {
+  return {
+    type: RECEIVE_ALL_TASKERS,
+    taskers: taskers
+  };
+};
+
+var fetchAllTaskers = function fetchAllTaskers(taskCategory) {
+  return function (dispatch) {
+    return _util_taskers_api_util__WEBPACK_IMPORTED_MODULE_0__["getAllTaskers"](taskCategory) // SELECT * FROM users WHERE tasks.task_category === users.tasker_skill_type
+    .then(function (taskers) {
+      return dispatch(receiveAllTaskers(taskers));
+    });
+  };
+};
+
+/***/ }),
+
 /***/ "./frontend/components/app.jsx":
 /*!*************************************!*\
   !*** ./frontend/components/app.jsx ***!
@@ -1588,10 +1621,12 @@ function (_React$Component) {
       // General rule of thumb: Use WillMount when you need to fetch initial state
       // Use DidMount if you need to regularly update state
       // Fetch all taskers where 'tasks.task_category === users.tasker_skill_type'
+      // this.props.fetchAllTaskers();
     }
   }, {
     key: "render",
     value: function render() {
+      console.log(this.props);
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "root-container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -1624,16 +1659,27 @@ function (_React$Component) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _choose_tasker__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./choose_tasker */ "./frontend/components/task_form/choose_tasker.jsx");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _actions_tasker_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/tasker_actions */ "./frontend/actions/tasker_actions.js");
+
 
 
 
 var mapStateToProps = function mapStateToProps(state) {
   return {
-    tasker: state.entities.users
+    currentTask: state.entities.tasks,
+    taskers: state.entities.users
   };
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps, null)(_choose_tasker__WEBPACK_IMPORTED_MODULE_0__["default"]));
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    fetchAllTaskers: function fetchAllTaskers(taskCategory) {
+      return dispatch(Object(_actions_tasker_actions__WEBPACK_IMPORTED_MODULE_2__["fetchAllTaskers"])(taskCategory));
+    }
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps, mapDispatchToProps)(_choose_tasker__WEBPACK_IMPORTED_MODULE_0__["default"]));
 
 /***/ }),
 
@@ -2408,6 +2454,28 @@ var deleteSession = function deleteSession() {
   return $.ajax({
     url: '/api/session',
     method: 'DELETE'
+  });
+};
+
+/***/ }),
+
+/***/ "./frontend/util/taskers_api_util.jsx":
+/*!********************************************!*\
+  !*** ./frontend/util/taskers_api_util.jsx ***!
+  \********************************************/
+/*! exports provided: getAllTaskers */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getAllTaskers", function() { return getAllTaskers; });
+// GET req to fetch all taskers 
+// SELECT * FROM users WHERE tasks.task_category === users.tasker_skill_type
+var getAllTaskers = function getAllTaskers(taskCategory) {
+  return $.ajax({
+    url: 'api/users',
+    method: 'GET',
+    data: taskCategory
   });
 };
 
