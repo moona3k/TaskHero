@@ -15,9 +15,10 @@
 }
 
 .testimonial-header {
-    font-size: 2.5rem;
+    font-size: 2.2rem;
     text-align: center;
     margin-bottom: 1em;
+    padding-bottom: 1em;
     font-weight: 300;
     line-height: 1.25;
     margin-block-start: 0.83em;
@@ -26,9 +27,9 @@
     margin-inline-end: 0px;
 }
 
-.testimonial-main {
-    display: block;
-}
+// .testimonial-main {
+//     display: block;
+// }
 
 .test-content-row {
     width: 100%;
@@ -68,20 +69,21 @@
 }
 
 .test-client-quote {
-    font-size: 1.25rem;
+    font-size: 1.1rem;
     margin-bottom: 1.5rem;
+    line-height: 1.5;
     color: #242a30;
 
 }
 
 .test-client-name {
     font-weight: normal;
-    font-size: 1.125rem;
+    font-size: 1.1rem;
 
 }
 
 .test-client-location {
-    font-size: 1.125rem;
+    font-size: 1.1rem;
     margin-bottom: 1.5rem;
 
 }

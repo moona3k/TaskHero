@@ -1,9 +1,10 @@
 import ChooseTasker from './choose_tasker';
+import { connect } from 'react-redux';
 
-import { connect } from 'react-router-dom';
+const mapStateToProps = (state) => {
+    return {
+        tasker: state.entities.users
+    }
+}
 
-
-
-export default connect(null, null)(ChooseTasker);
-
-
+export default connect(mapStateToProps, null)(ChooseTasker);

@@ -1,23 +1,30 @@
 .task-description-container {
-    display: block;
+    background: $lightest-gray;
+    position: relative;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    padding: 25px 25px 40px 25px;
+    box-shadow: 1px 1px 6px $light-gray, -1px 1px 6px $light-gray;
 }
 
 .task-description-header {
-    border: 1px solid black;
     text-align: center;
     margin-left: auto;
     margin-right: auto;
-    width: 100%;
     margin-bottom: 1rem;
     position: relative;
+    padding: 10px 25px;
 
-    width: 80%
+
+    width: 80%;
 }
 
 .task-description-header-title {
     font-weight: normal;
     font-size: 2rem;
     margin-bottom: 0.8rem;
+    
     
 }
 
@@ -27,15 +34,141 @@
 }
 
 .task-description-box {
-    border: 1px solid black;
+    box-shadow: 1px 1px 6px $light-gray, -1px 1px 6px $light-gray;    
     text-align: center;
     margin-bottom: 1.5rem;
     width: 80%;
+    background: white;
 
+    padding: 25px 25px 40px 25px;
     margin-left: auto;
     margin-right: auto;
+
+    button {
+    font-size: 20px;
+  }
 }
 
-.task-description-radio-button-container {
+.task-description-mini-title {
+    text-align: left;
+    color: $dark-gray;
+    font-size: 1rem;
+    font-weight: normal;
+    padding-bottom: 1rem;
+}
+
+.task-options-title {
+    text-align: left;
+    color: $dark-gray;
+    font-size: 1rem;
+    font-weight: normal;
+    padding-bottom: 2rem;
+}
+
+#location-container {
+    display: flex;
+    padding-bottom: 1rem;
     
+    input:focus {
+        border-color: $green;
+  }
+}
+
+.task-options-headers {
+    font-size: large;
+    font-weight: 500;
+    text-align: left;
+    color: black;
+    padding-bottom: 0.2rem;
+}
+
+.general-line {
+    border: none;
+    height: 1px;
+    color: $gray; /* old IE */
+    background-color: $gray; /* Modern Browsers */
+}
+
+#location-general {
+    width: 85%;
+}
+
+#location-specific {
+    width: 15%;
+}
+
+::placeholder {
+    color: $gray;
+}
+
+.task-description-button {
+  color: white;
+  background-color: $green;
+}
+
+.task-description-button:hover {
+  background-color: $dark-green;
+}
+
+.task-size-radio-button-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.vehicle-radio-button-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.radio-button-label {
+    text-align: left;
+}
+
+.task-description-subtext-1 {
+    text-align: left;
+    font-size: 15px;
+    line-height: 1.5rem;
+    color: $dark-gray;
+}
+
+.task-description-subtext-2 {
+    text-align: left;
+    font-size: 15px;
+    line-height: 1.5rem;
+    color: $dark-gray;
+    padding-top: 7px;
+    padding-bottom: 1.5rem;
+}
+
+.task-description-textarea {
+    height: 120px;
+    border: 1px solid $gray;
+    padding: 6px 12px;
+    border-radius: 3px;
+    line-height: 1.5em;
+    margin-top: 20px;
+    text-align: left;
+    width: 97.5%;
+}
+
+.task-description-box-edit {
+    box-shadow: 1px 1px 6px $light-gray, -1px 1px 6px $light-gray;    
+    margin-bottom: 1.5rem;
+    width: 80%;
+    background: white;
+    text-align: center;
+
+    padding: 25px 25px 40px 25px;
+    margin-left: auto;
+    margin-right: auto;
+
+    button {
+        font-size: 20px;
+  }
+
+  textarea:focus {
+        border-color: $green;
+  }
 }

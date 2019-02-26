@@ -18,7 +18,7 @@
 }
 
 .get-inspired-header {
-    font-size: 2.5rem;
+    font-size: 2.2rem;
     text-align: center;
     margin-bottom: 1em;
     font-weight: 300;
@@ -26,10 +26,10 @@
 }
 
 .get-inspired-top {
+    display: flex;
     align-items: stretch;
     justify-content: center;
     margin: 0 2.5rem 2.5rem;
-    display: flex;
 }
 
 .get-inspired-image-big {
@@ -58,6 +58,8 @@
   justify-content: center;
   align-items: center;
   margin-left: 12px;
+  line-height: 1.5;
+  padding-bottom: 1rem;
 }
 
 .get-inspired-bottom {
@@ -76,7 +78,6 @@
     padding: 2rem 0.5rem;
     background: #f9fafb;
     text-align: center;
-
 }
 
 

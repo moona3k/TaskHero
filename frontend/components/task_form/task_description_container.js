@@ -2,6 +2,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
 import TaskDescription from './task_description';
+import { receiveTaskDescription } from '../../actions/task_actions';
 
 const mapStateToProps = (state) => {
     return {
