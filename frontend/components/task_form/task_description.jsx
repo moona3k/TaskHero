@@ -1,5 +1,7 @@
 import React from 'react';
-import PlacesAutocomplete from 'react-places-autocomplete';
+import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
+import Autocomplete from 'react-google-autocomplete';
+
 
 class TaskDescription extends React.Component {
     constructor(props){
@@ -52,6 +54,15 @@ class TaskDescription extends React.Component {
                     <div className="task-description-box">
                         <h3 className="task-description-mini-title">YOUR TASK LOCATION</h3>
                         <div id="location-container">
+                            <Autocomplete
+                                style={{ width: '90%' }}
+                                onPlaceSelected={(place) => {
+                                    console.log(place);
+                                }}
+                                types={['(regions)']}
+                                componentRestrictions={{ country: "US" }}
+                            />
+                            
                             <input id="location-general" type="text" value={this.state.location} onChange={this.handleInput('location')} placeholder="Add autocomplete address feature"/>
                             &nbsp;&nbsp;&nbsp;&nbsp;
                             <input id="location-specific" type="text" value={this.state.specific_location} onChange={this.handleInput('specific_location')} placeholder="Unit or Apt #"/>
@@ -93,3 +104,5 @@ class TaskDescription extends React.Component {
 }
 
 export default TaskDescription;
+
+

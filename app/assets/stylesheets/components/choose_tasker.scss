@@ -1,0 +1,23 @@
+.root-container {
+    background: $lightest-gray;
+}
+
+.choose-tasker-header-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 2rem;
+}
+
+.choose-tasker-header-title {
+    padding-bottom: 1rem;
+}
+
+.choose-tasker-header {
+
+}
+
+.sorted-by-text {
+    padding-top: 1rem;
+    text-align: right;
+}

@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   namespace :api, defaults: {format: :json} do
   # HTTP response format: render JSON formatted responses by default
-    resources :users, only: [:create]
+    resources :users, only: [:create, :index]
     resource :session, only: [:create, :destroy]
     resources :tasks, only: [:create, :index, :update, :destroy]
     # Create: bundle up all task-related information to the backend route & save into DB
