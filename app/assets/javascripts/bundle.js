@@ -226,16 +226,20 @@ var RECEIVE_ALL_TASKERS = 'RECEIVE_ALL_TASKERS';
 var receiveAllTaskers = function receiveAllTaskers(taskers) {
   return {
     type: RECEIVE_ALL_TASKERS,
-    taskers: taskers
+    taskers: taskers // 'taskers' data will be fetched via ajax call to backend
+
   };
 };
 
-var fetchAllTaskers = function fetchAllTaskers(taskCategory) {
+var fetchAllTaskers = function fetchAllTaskers(taskRequirement) {
   return function (dispatch) {
-    return _util_taskers_api_util__WEBPACK_IMPORTED_MODULE_0__["getAllTaskers"](taskCategory) // SELECT * FROM users WHERE tasks.task_category === users.tasker_skill_type
+    return _util_taskers_api_util__WEBPACK_IMPORTED_MODULE_0__["getAllTaskers"](taskRequirement) // Make GET request via ajax call to fetch all taskers who meet the requirement 
+    // The rails controller is responsible for the SQL query into the DB to fetch the taskers
     .then(function (taskers) {
       return dispatch(receiveAllTaskers(taskers));
-    });
+    }); // 'taskers' is the return object from the ajax call
+    // receiveAllTaskers(taskers) will generate an action that contain information to update the redux-store
+    // this action POJO is sent to redux-store via the 'dispatch' method
   };
 };
 
@@ -1610,23 +1614,60 @@ function (_React$Component) {
   _inherits(ChooseTasker, _React$Component);
 
   function ChooseTasker(props) {
+    var _this;
+
     _classCallCheck(this, ChooseTasker);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(ChooseTasker).call(this, props));
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(ChooseTasker).call(this, props));
+    _this.state = {
+      first_name: '',
+      last_name: '',
+      tasker_aboutme: '',
+      profile_img: '',
+      hourly_rate: '',
+      tasker_rank: '',
+      tasker_skill_type: '',
+      vehicle_type: '',
+      num_completed_tasks: '',
+      reviews_rating: '',
+      reviews_num: ''
+    };
+    return _this;
   }
 
   _createClass(ChooseTasker, [{
     key: "componentWillMount",
-    value: function componentWillMount() {// componentWillMount vs. componentDidMount
+    value: function componentWillMount() {
+      var _this2 = this;
+
+      // componentWillMount vs. componentDidMount
       // General rule of thumb: Use WillMount when you need to fetch initial state
       // Use DidMount if you need to regularly update state
       // Fetch all taskers where 'tasks.task_category === users.tasker_skill_type'
-      // this.props.fetchAllTaskers();
+      var taskRequirement = {
+        taskCategory: this.props.currentTask.task_category,
+        vehicleType: this.props.currentTask.vehicle_type
+      };
+      this.props.fetchAllTaskers(taskRequirement).then(function (taskers) {
+        _this2.setState({
+          taskers: taskers.taskers
+        }); // console.log(this.state);
+
+      });
     }
   }, {
     key: "render",
     value: function render() {
+      var _this3 = this;
+
+      // console.log(this.state);
       console.log(this.props);
+      var allTaskers = this.state.taskers ? this.state.taskers : [];
+      var renderAllTaskers = allTaskers.map(function (tasker) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "tasker-info-container"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, tasker.first_name, " ", tasker.last_name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, tasker.num_completed_tasks, " ", _this3.props.currentTask.task_category, " Tasks"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, tasker.reviews_rating, " Positive Reviews"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, tasker.reviews_num, " Reviews"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Vehicle: ", tasker.vehicle_type), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "How I can help:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, tasker.tasker_aboutme));
+      });
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "root-container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -1637,7 +1678,7 @@ function (_React$Component) {
         className: "choose-tasker-header-sub"
       }, "After booking, you can chat with your Tasker, agree on an exact time, or go over any requirements or questions, if necessary.")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "sorted-by-text"
-      }, "SORTED BY: (insert sort feature)"))));
+      }, "SORTED BY: (insert sort feature)")), renderAllTaskers));
     }
   }]);
 
@@ -1666,8 +1707,8 @@ __webpack_require__.r(__webpack_exports__);
 
 var mapStateToProps = function mapStateToProps(state) {
   return {
-    currentTask: state.entities.tasks,
-    taskers: state.entities.users
+    currentTask: state.entities.tasks // taskers: state.entities.users
+
   };
 };
 
@@ -1741,7 +1782,7 @@ function (_React$Component) {
       vehicle_type: '',
       task_description: ''
     };
-    _this.handleButtonClick = _this.handleButtonClick.bind(_assertThisInitialized(_this));
+    _this.handleRadioButtonClick = _this.handleRadioButtonClick.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -1760,8 +1801,8 @@ function (_React$Component) {
       };
     }
   }, {
-    key: "handleButtonClick",
-    value: function handleButtonClick(type) {
+    key: "handleRadioButtonClick",
+    value: function handleRadioButtonClick(type) {
       var _this3 = this;
 
       return function (e) {
@@ -1838,21 +1879,21 @@ function (_React$Component) {
         type: "radio",
         name: "task_size",
         value: "small",
-        onClick: this.handleButtonClick('estimated_time_req')
+        onClick: this.handleRadioButtonClick('estimated_time_req')
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         className: "radio-button-label"
       }, "Small - Est. 1 hr"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "radio",
         name: "task_size",
         value: "medium",
-        onClick: this.handleButtonClick('estimated_time_req')
+        onClick: this.handleRadioButtonClick('estimated_time_req')
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         className: "radio-button-label"
       }, "Medium - Est. 2-3 hrs"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "radio",
         name: "task_size",
         value: "large",
-        onClick: this.handleButtonClick('estimated_time_req')
+        onClick: this.handleRadioButtonClick('estimated_time_req')
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         className: "radio-button-label"
       }, "Large - Est. 4+ hrs")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
@@ -1865,17 +1906,17 @@ function (_React$Component) {
         type: "radio",
         name: "vehicle_type",
         value: "none",
-        onClick: this.handleButtonClick('vehicle_type')
+        onClick: this.handleRadioButtonClick('vehicle_type')
       }), "Not needed for task"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "radio",
         name: "vehicle_type",
         value: "car",
-        onClick: this.handleButtonClick('vehicle_type')
+        onClick: this.handleRadioButtonClick('vehicle_type')
       }), "Task requires a car"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "radio",
         name: "vehicle_type",
         value: "truck",
-        onClick: this.handleButtonClick('vehicle_type')
+        onClick: this.handleRadioButtonClick('vehicle_type')
       }), "Task requires a truck")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         className: "task-description-button"
       }, "Continue")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -2069,12 +2110,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
 /* harmony import */ var _users_reducer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./users_reducer */ "./frontend/reducers/users_reducer.js");
 /* harmony import */ var _tasks_reducer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./tasks_reducer */ "./frontend/reducers/tasks_reducer.js");
+/* harmony import */ var _taskers_reducer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./taskers_reducer */ "./frontend/reducers/taskers_reducer.js");
+
 
 
 
 var entitiesReducer = Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"])({
   users: _users_reducer__WEBPACK_IMPORTED_MODULE_1__["default"],
-  tasks: _tasks_reducer__WEBPACK_IMPORTED_MODULE_2__["default"]
+  tasks: _tasks_reducer__WEBPACK_IMPORTED_MODULE_2__["default"],
+  taskers: _taskers_reducer__WEBPACK_IMPORTED_MODULE_3__["default"]
 });
 /* harmony default export */ __webpack_exports__["default"] = (entitiesReducer);
 
@@ -2195,6 +2239,48 @@ var _nullSession = {
       return state;
   }
 });
+
+/***/ }),
+
+/***/ "./frontend/reducers/taskers_reducer.js":
+/*!**********************************************!*\
+  !*** ./frontend/reducers/taskers_reducer.js ***!
+  \**********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _actions_tasker_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/tasker_actions */ "./frontend/actions/tasker_actions.js");
+ // Reducers take in 2 parameters: current state & action POJO
+
+var taskersReducer = function taskersReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+  Object.freeze(state); // Never mutate the state in redux; Explain why?
+
+  switch (action.type) {
+    case _actions_tasker_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_ALL_TASKER"]:
+      return Object.assign({}, state, {
+        first_name: action.taskers.first_name,
+        last_name: action.taskers.last_name,
+        profile_img: action.taskers.profile_img,
+        hourly_rate: action.taskers.hourly_rate,
+        tasker_aboutme: action.taskers.tasker_aboutme,
+        tasker_rank: action.taskers.tasker_rank,
+        tasker_skill_type: action.taskers.tasker_skill_type,
+        vehicle_type: action.taskers.vehicle_type,
+        num_completed_tasks: action.taskers.num_completed_tasks,
+        reviews_rating: action.taskers.reviews_rating,
+        reviews_num: action.taskers.reviews_num
+      });
+
+    default:
+      return state;
+  }
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (taskersReducer);
 
 /***/ }),
 
@@ -2473,11 +2559,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getAllTaskers", function() { return getAllTaskers; });
 // GET req to fetch all taskers 
 // SELECT * FROM users WHERE tasks.task_category === users.tasker_skill_type
-var getAllTaskers = function getAllTaskers(taskCategory) {
+// && tasks.vehicle_type === users.vehicle_type
+var getAllTaskers = function getAllTaskers(taskRequirement) {
   return $.ajax({
     url: 'api/users',
     method: 'GET',
-    data: taskCategory
+    data: {
+      taskRequirement: taskRequirement
+    }
   });
 };
 

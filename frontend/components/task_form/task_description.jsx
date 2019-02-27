@@ -15,7 +15,7 @@ class TaskDescription extends React.Component {
             task_description: ''
         }
 
-        this.handleButtonClick = this.handleButtonClick.bind(this);
+        this.handleRadioButtonClick = this.handleRadioButtonClick.bind(this);
     }
 
 
@@ -29,7 +29,7 @@ class TaskDescription extends React.Component {
         }
     }
 
-    handleButtonClick(type) {
+    handleRadioButtonClick(type) {
         return (e) => {
             this.setState({ [type]: e.target.value })
         }
@@ -76,17 +76,17 @@ class TaskDescription extends React.Component {
                         <h3 className="task-options-headers">How big is your task?</h3>
                         <hr className="general-line" />
                         <div className="task-size-radio-button-container">
-                            <input type="radio" name="task_size" value="small" onClick={this.handleButtonClick('estimated_time_req')} /><label className="radio-button-label">Small - Est. 1 hr</label>
-                            <input type="radio" name="task_size" value="medium" onClick={this.handleButtonClick('estimated_time_req')} /><label className="radio-button-label">Medium - Est. 2-3 hrs</label>
-                            <input type="radio" name="task_size" value="large" onClick={this.handleButtonClick('estimated_time_req')} /><label className="radio-button-label">Large - Est. 4+ hrs</label>
+                            <input type="radio" name="task_size" value="small" onClick={this.handleRadioButtonClick('estimated_time_req')} /><label className="radio-button-label">Small - Est. 1 hr</label>
+                            <input type="radio" name="task_size" value="medium" onClick={this.handleRadioButtonClick('estimated_time_req')} /><label className="radio-button-label">Medium - Est. 2-3 hrs</label>
+                            <input type="radio" name="task_size" value="large" onClick={this.handleRadioButtonClick('estimated_time_req')} /><label className="radio-button-label">Large - Est. 4+ hrs</label>
                         </div>
                         <br />
                         <h3 className="task-options-headers">Vehicle Requirements</h3>
                         <hr className="general-line" />
                         <div className="vehicle-radio-button-container">
-                            <label><input type="radio" name="vehicle_type" value="none" onClick={this.handleButtonClick('vehicle_type')} />Not needed for task</label>
-                            <label><input type="radio" name="vehicle_type" value="car" onClick={this.handleButtonClick('vehicle_type')} />Task requires a car</label>
-                            <label><input type="radio" name="vehicle_type" value="truck" onClick={this.handleButtonClick('vehicle_type')} />Task requires a truck</label>
+                            <label><input type="radio" name="vehicle_type" value="none" onClick={this.handleRadioButtonClick('vehicle_type')} />Not needed for task</label>
+                            <label><input type="radio" name="vehicle_type" value="car" onClick={this.handleRadioButtonClick('vehicle_type')} />Task requires a car</label>
+                            <label><input type="radio" name="vehicle_type" value="truck" onClick={this.handleRadioButtonClick('vehicle_type')} />Task requires a truck</label>
                         </div>
                         <br />
                         <button className="task-description-button">Continue</button>

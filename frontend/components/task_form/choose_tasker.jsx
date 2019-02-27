@@ -3,6 +3,19 @@ import React from 'react';
 class ChooseTasker extends React.Component {
     constructor(props) {
         super(props);
+        this.state = {
+            first_name: '',
+            last_name: '',
+            tasker_aboutme: '',
+            profile_img: '',
+            hourly_rate: '',
+            tasker_rank: '',
+            tasker_skill_type: '',
+            vehicle_type: '',
+            num_completed_tasks: '',
+            reviews_rating: '',
+            reviews_num: ''
+        }
     }
 
     componentWillMount() {
@@ -12,12 +25,40 @@ class ChooseTasker extends React.Component {
 
         // Fetch all taskers where 'tasks.task_category === users.tasker_skill_type'
 
-        // this.props.fetchAllTaskers();
-
+        let taskRequirement = { 
+            taskCategory: this.props.currentTask.task_category,
+            vehicleType: this.props.currentTask.vehicle_type
+        }
+        
+        this.props.fetchAllTaskers(taskRequirement)
+            .then( taskers => {
+                this.setState({ taskers: taskers.taskers })
+                // console.log(this.state);
+            })
     }
 
     render() {
+        // console.log(this.state);
         console.log(this.props);
+        
+        let allTaskers = this.state.taskers ? this.state.taskers : [];
+
+        const renderAllTaskers = 
+            allTaskers.map( tasker => {
+                return (
+                    <div className="tasker-info-container">
+                        <h2>{tasker.first_name} {tasker.last_name}</h2>
+                            <div>{tasker.num_completed_tasks} {this.props.currentTask.task_category} Tasks</div>
+                            <div>{tasker.reviews_rating} Positive Reviews</div>
+                            <div>{tasker.reviews_num} Reviews</div>
+                            <div>Vehicle: {tasker.vehicle_type}</div>
+                        <h3>How I can help:</h3>
+                            <div>{tasker.tasker_aboutme}</div>
+                    </div>
+                )
+            })
+        
+
         return (
             <div>
                 <div className="root-container">
@@ -28,6 +69,7 @@ class ChooseTasker extends React.Component {
                     <div>
                         <div className="sorted-by-text">SORTED BY: (insert sort feature)</div>
                     </div>
+                    {renderAllTaskers}
                 </div>
                 
             </div>
