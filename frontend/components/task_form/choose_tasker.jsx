@@ -46,14 +46,16 @@ class ChooseTasker extends React.Component {
         const renderAllTaskers = 
             allTaskers.map( tasker => {
                 return (
-                    <div className="tasker-info-container">
-                        <h2>{tasker.first_name} {tasker.last_name}</h2>
-                            <div>{tasker.num_completed_tasks} {this.props.currentTask.task_category} Tasks</div>
-                            <div>{tasker.reviews_rating} Positive Reviews</div>
-                            <div>{tasker.reviews_num} Reviews</div>
-                            <div>Vehicle: {tasker.vehicle_type}</div>
+                    <div className="tasker-profile-container">
+                        <h2 className="tasker-profile-name">{tasker.first_name} {tasker.last_name}</h2>
+                        <h3>${tasker.hourly_rate}/hr</h3>
+                            <div className="tasker-profile-stats"><i class="fas fa-tasks"></i>{tasker.num_completed_tasks} {this.props.currentTask.task_category} Tasks</div>
+                            <div className="tasker-profile-stats"><i class="far fa-star"></i>{tasker.reviews_rating} Positive Reviews</div>
+                            <div className="tasker-profile-stats"><i class="far fa-check-circle"></i>{tasker.reviews_num} Reviews</div>
+                            <div className="tasker-profile-stats"><i class="fas fa-car"></i>Vehicle: {tasker.vehicle_type}</div>
                         <h3>How I can help:</h3>
                             <div>{tasker.tasker_aboutme}</div>
+                        <br />
                     </div>
                 )
             })

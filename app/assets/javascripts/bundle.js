@@ -1665,8 +1665,26 @@ function (_React$Component) {
       var allTaskers = this.state.taskers ? this.state.taskers : [];
       var renderAllTaskers = allTaskers.map(function (tasker) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "tasker-info-container"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, tasker.first_name, " ", tasker.last_name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, tasker.num_completed_tasks, " ", _this3.props.currentTask.task_category, " Tasks"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, tasker.reviews_rating, " Positive Reviews"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, tasker.reviews_num, " Reviews"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Vehicle: ", tasker.vehicle_type), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "How I can help:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, tasker.tasker_aboutme));
+          className: "tasker-profile-container"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
+          className: "tasker-profile-name"
+        }, tasker.first_name, " ", tasker.last_name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "$", tasker.hourly_rate, "/hr"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "tasker-profile-stats"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+          class: "fas fa-tasks"
+        }), tasker.num_completed_tasks, " ", _this3.props.currentTask.task_category, " Tasks"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "tasker-profile-stats"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+          class: "far fa-star"
+        }), tasker.reviews_rating, " Positive Reviews"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "tasker-profile-stats"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+          class: "far fa-check-circle"
+        }), tasker.reviews_num, " Reviews"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "tasker-profile-stats"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+          class: "fas fa-car"
+        }), "Vehicle: ", tasker.vehicle_type), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "How I can help:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, tasker.tasker_aboutme), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null));
       });
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "root-container"

@@ -9,4 +9,3 @@ export const getAllTaskers = taskRequirement => {
         data: { taskRequirement }
     })
 }
-

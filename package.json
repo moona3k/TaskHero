@@ -8,6 +8,7 @@
     "babel-loader": "^8.0.5",
     "lodash": "^4.17.11",
     "react": "^16.8.2",
+    "react-calendar": "^2.18.1",
     "react-dom": "^16.8.2",
     "react-geocode": "^0.1.2",
     "react-google-autocomplete": "^1.0.18",
