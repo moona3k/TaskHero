@@ -1,4 +1,6 @@
 import React from 'react';
+import TaskCalendar from './task_calendar';
+
 
 class ChooseTasker extends React.Component {
     constructor(props) {
@@ -14,8 +16,12 @@ class ChooseTasker extends React.Component {
             vehicle_type: '',
             num_completed_tasks: '',
             reviews_rating: '',
-            reviews_num: ''
+            reviews_num: '',
+            scheduled_date: '',
+            scheduled_time: ''
         }
+
+        this.receiveDateTime = this.receiveDateTime.bind(this);
     }
 
     componentWillMount() {
@@ -37,9 +43,21 @@ class ChooseTasker extends React.Component {
             })
     }
 
+    receiveDateTime(dateTime) {
+        
+        let taskDate = dateTime.taskDate || this.state.scheduled_date;
+        let taskTime = dateTime.taskTime || this.state.scheduled_time;
+        
+        this.setState({
+            scheduled_date: taskDate,
+            scheduled_time: taskTime
+        })
+    }
+    
+
     render() {
-        // console.log(this.state);
-        console.log(this.props);
+        console.log(this.state);
+        // console.log(this.props);
         
         let allTaskers = this.state.taskers ? this.state.taskers : [];
 
@@ -73,7 +91,7 @@ class ChooseTasker extends React.Component {
                     </div>
                     {renderAllTaskers}
                 </div>
-                
+                <TaskCalendar setDateTime={this.receiveDateTime} />
             </div>
         )
     }

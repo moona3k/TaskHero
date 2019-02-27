@@ -1588,6 +1588,7 @@ var SplashTestimonial = function SplashTestimonial() {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _task_calendar__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./task_calendar */ "./frontend/components/task_form/task_calendar.jsx");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -1598,13 +1599,14 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
 
 
 
@@ -1630,8 +1632,11 @@ function (_React$Component) {
       vehicle_type: '',
       num_completed_tasks: '',
       reviews_rating: '',
-      reviews_num: ''
+      reviews_num: '',
+      scheduled_date: '',
+      scheduled_time: ''
     };
+    _this.receiveDateTime = _this.receiveDateTime.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -1656,12 +1661,22 @@ function (_React$Component) {
       });
     }
   }, {
+    key: "receiveDateTime",
+    value: function receiveDateTime(dateTime) {
+      var taskDate = dateTime.taskDate || this.state.scheduled_date;
+      var taskTime = dateTime.taskTime || this.state.scheduled_time;
+      this.setState({
+        scheduled_date: taskDate,
+        scheduled_time: taskTime
+      });
+    }
+  }, {
     key: "render",
     value: function render() {
       var _this3 = this;
 
-      // console.log(this.state);
-      console.log(this.props);
+      console.log(this.state); // console.log(this.props);
+
       var allTaskers = this.state.taskers ? this.state.taskers : [];
       var renderAllTaskers = allTaskers.map(function (tasker) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -1696,7 +1711,9 @@ function (_React$Component) {
         className: "choose-tasker-header-sub"
       }, "After booking, you can chat with your Tasker, agree on an exact time, or go over any requirements or questions, if necessary.")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "sorted-by-text"
-      }, "SORTED BY: (insert sort feature)")), renderAllTaskers));
+      }, "SORTED BY: (insert sort feature)")), renderAllTaskers), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_task_calendar__WEBPACK_IMPORTED_MODULE_1__["default"], {
+        setDateTime: this.receiveDateTime
+      }));
     }
   }]);
 
@@ -1739,6 +1756,97 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps, mapDispatchToProps)(_choose_tasker__WEBPACK_IMPORTED_MODULE_0__["default"]));
+
+/***/ }),
+
+/***/ "./frontend/components/task_form/task_calendar.jsx":
+/*!*********************************************************!*\
+  !*** ./frontend/components/task_form/task_calendar.jsx ***!
+  \*********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+var TaskCalendar =
+/*#__PURE__*/
+function (_React$Component) {
+  _inherits(TaskCalendar, _React$Component);
+
+  function TaskCalendar(props) {
+    _classCallCheck(this, TaskCalendar);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(TaskCalendar).call(this, props)); // this.state = {
+    //     taskDate: '',
+    //     taskTime: ''
+    // }
+  }
+
+  _createClass(TaskCalendar, [{
+    key: "handleDateInput",
+    value: function handleDateInput(type) {
+      var _this = this;
+
+      return function (e) {
+        // this.setState({ [type]: e.target.value });
+        // this.props.setDateTime({this.state})
+        _this.props.setDateTime(_defineProperty({}, type, e.target.value));
+      };
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      // console.log(this.state);
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+        className: "fa fa-calendar"
+      }), " TASK DATE & TIME"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "date",
+        name: "taskDate",
+        onChange: this.handleDateInput('taskDate'),
+        min: new Date() // this doesn't work...
+
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
+        onChange: this.handleDateInput('taskTime')
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+        value: "I'm Flexible"
+      }, "I'm Flexible"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+        value: "Morning (8AM - 12PM)"
+      }, "Morning (8AM - 12PM)"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+        value: "Afternoon (12PM - 4PM)"
+      }, "Afternoon (12PM - 4PM)"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+        value: "Evening (4PM - 8PM)"
+      }, "Evening (4PM - 8PM)")));
+    }
+  }]);
+
+  return TaskCalendar;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+/* harmony default export */ __webpack_exports__["default"] = (TaskCalendar);
 
 /***/ }),
 
