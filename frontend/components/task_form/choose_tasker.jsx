@@ -21,7 +21,7 @@ class ChooseTasker extends React.Component {
             scheduled_time: ''
         }
 
-        this.receiveDateTime = this.receiveDateTime.bind(this);
+        // this.receiveDateTime = this.receiveDateTime.bind(this);
     }
 
     componentWillMount() {
