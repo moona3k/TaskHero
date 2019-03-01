@@ -1,6 +1,7 @@
 import * as TaskerUtil from '../util/taskers_api_util';
 
 export const RECEIVE_ALL_TASKERS = 'RECEIVE_ALL_TASKERS';
+export const RECEIVE_TASKER = 'RECEIVE_TASKER';
 
 const receiveAllTaskers = taskers => {
     return ({
@@ -19,3 +20,10 @@ export const fetchAllTaskers = taskRequirement => dispatch => {
         // receiveAllTaskers(taskers) will generate an action that contain information to update the redux-store
         // this action POJO is sent to redux-store via the 'dispatch' method
 }
+
+export const receiveTasker = selectedTasker => {
+    return ({
+        type: RECEIVE_TASKER,
+        selectedTasker: selectedTasker
+    })
+};

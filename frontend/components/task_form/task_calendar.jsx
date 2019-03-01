@@ -3,18 +3,19 @@ import React from 'react';
 class TaskCalendar extends React.Component {
     constructor(props){
         super(props);
-        // this.state = {
-        //     taskDate: '',
-        //     taskTime: ''
-        // }
+        this.state = {
+            taskDate: '',
+            taskTime: ''
+        }
 
     }
 
     handleDateInput(type) {
         return (e) => {
-            // this.setState({ [type]: e.target.value });
-            // this.props.setDateTime({this.state})
-            this.props.setDateTime({[type]: e.target.value})
+            this.setState({ [type]: e.target.value });
+            this.props.receiveDateTime(this.state);
+            
+            // this.props.setDateTime({[type]: e.target.value})
         }
     }
 

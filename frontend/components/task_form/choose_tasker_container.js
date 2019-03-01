@@ -1,7 +1,7 @@
 import ChooseTasker from './choose_tasker';
 import { connect } from 'react-redux';
 
-import { fetchAllTaskers } from '../../actions/tasker_actions';
+import { fetchAllTaskers, receiveTasker } from '../../actions/tasker_actions';
 
 const mapStateToProps = (state) => {
     return {
@@ -13,7 +13,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        fetchAllTaskers: (taskCategory) => dispatch(fetchAllTaskers(taskCategory))
+        fetchAllTaskers: (taskCategory) => dispatch(fetchAllTaskers(taskCategory)),
+        receiveTasker: (selectedTasker) => dispatch(receiveTasker(selectedTasker))
     }
 }
 
