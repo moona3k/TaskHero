@@ -41,38 +41,13 @@ class ChooseTasker extends React.Component {
                 // console.log(this.state);
             })
     };
-
-    // receiveDateTime(dateTime) {
-        
-    //     let taskDate = dateTime.taskDate || this.state.scheduled_date;
-    //     let taskTime = dateTime.taskTime || this.state.scheduled_time;
-        
-    //     this.setState({
-    //         scheduled_date: taskDate,
-    //         scheduled_time: taskTime
-    //     })
-
-    //     Callback: < TaskCalendar setDateTime = { this.receiveDateTime } />
-    // }
     
     handleClick(id) {
-        // e.preventDefault();
         console.log(id)
-        // console.log('testing for event: ccc', e.currentTarget.querySelector('input.first_name').value);;
 
-        // let selectedTasker = {
-        //     first_name: e.currentTarget.querySelector('input.hidden_first_name').value,
-        //     last_name: e.currentTarget.querySelector('input.hidden_last_name').value,
-        //     tasker_aboutme: e.currentTarget.querySelector('input.hidden_tasker_aboutme').value,
-        //     profile_img: e.currentTarget.querySelector('input.hidden_profile_img').value,
-        //     hourly_rate: e.currentTarget.querySelector('input.hidden_hourly_rate').value,
-        //     tasker_rank: e.currentTarget.querySelector('input.hidden_tasker_rank').value,
-        //     tasker_skill_type: e.currentTarget.querySelector('input.hidden_tasker_skill_type').value,
-        //     vehicle_type: e.currentTarget.querySelector('input.hidden_vehicle_type').value,
-        //     num_completed_tasks: e.currentTarget.querySelector('input.hidden_num_completed_tasks').value,
-        //     reviews_rating: e.currentTarget.querySelector('input.hidden_reviews_rating').value,
-        //     reviews_num: e.currentTarget.querySelector('input.hidden_reviews_num').value
-        // }
+        let selectedTasker = {
+            tasker_id: id
+        }
 
         this.props.receiveTasker(selectedTasker);
 
@@ -98,19 +73,7 @@ class ChooseTasker extends React.Component {
                         <h3>How I can help:</h3>
                             <div>{tasker.tasker_aboutme}</div>
                         <br />
-                            <button onClick={ () => this.handleClick(tasker.id) }>Select & Continue
-                                <input className="hidden_first_name" type="hidden" value={tasker.first_name}/>
-                                <input className="hidden_last_name" type="hidden" value={tasker.last_name}/>
-                                <input className="hidden_tasker_aboutme" type="hidden" value={tasker.tasker_aboutme}/>
-                                <input className="hidden_profile_img" type="hidden" value={tasker.profile_img}/>
-                                <input className="hidden_hourly_rate" type="hidden" value={tasker.hourly_rate}/>
-                                <input className="hidden_tasker_rank" type="hidden" value={tasker.tasker_rank}/>
-                                <input className="hidden_tasker_skill_type" type="hidden" value={tasker.tasker_skill_type}/>
-                                <input className="hidden_vehicle_type" type="hidden" value={tasker.vehicle_type}/>
-                                <input className="hidden_num_completed_tasks" type="hidden" value={tasker.num_completed_tasks}/>
-                                <input className="hidden_reviews_rating" type="hidden" value={tasker.reviews_rating}/>
-                                <input className="hidden_reviews_num" type="hidden" value={tasker.reviews_num}/>
-                            </button>
+                            <button onClick={ () => this.handleClick(tasker.id) }>Select & Continue</button>
                     </div>
                 )
             })

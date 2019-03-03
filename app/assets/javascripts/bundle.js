@@ -1679,32 +1679,11 @@ function (_React$Component) {
     }
   }, {
     key: "handleClick",
-    // receiveDateTime(dateTime) {
-    //     let taskDate = dateTime.taskDate || this.state.scheduled_date;
-    //     let taskTime = dateTime.taskTime || this.state.scheduled_time;
-    //     this.setState({
-    //         scheduled_date: taskDate,
-    //         scheduled_time: taskTime
-    //     })
-    //     Callback: < TaskCalendar setDateTime = { this.receiveDateTime } />
-    // }
     value: function handleClick(id) {
-      // e.preventDefault();
-      console.log(id); // console.log('testing for event: ccc', e.currentTarget.querySelector('input.first_name').value);;
-      // let selectedTasker = {
-      //     first_name: e.currentTarget.querySelector('input.hidden_first_name').value,
-      //     last_name: e.currentTarget.querySelector('input.hidden_last_name').value,
-      //     tasker_aboutme: e.currentTarget.querySelector('input.hidden_tasker_aboutme').value,
-      //     profile_img: e.currentTarget.querySelector('input.hidden_profile_img').value,
-      //     hourly_rate: e.currentTarget.querySelector('input.hidden_hourly_rate').value,
-      //     tasker_rank: e.currentTarget.querySelector('input.hidden_tasker_rank').value,
-      //     tasker_skill_type: e.currentTarget.querySelector('input.hidden_tasker_skill_type').value,
-      //     vehicle_type: e.currentTarget.querySelector('input.hidden_vehicle_type').value,
-      //     num_completed_tasks: e.currentTarget.querySelector('input.hidden_num_completed_tasks').value,
-      //     reviews_rating: e.currentTarget.querySelector('input.hidden_reviews_rating').value,
-      //     reviews_num: e.currentTarget.querySelector('input.hidden_reviews_num').value
-      // }
-
+      console.log(id);
+      var selectedTasker = {
+        tasker_id: id
+      };
       this.props.receiveTasker(selectedTasker);
     }
   }, {
@@ -1741,51 +1720,7 @@ function (_React$Component) {
           onClick: function onClick() {
             return _this3.handleClick(tasker.id);
           }
-        }, "Select & Continue", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-          className: "hidden_first_name",
-          type: "hidden",
-          value: tasker.first_name
-        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-          className: "hidden_last_name",
-          type: "hidden",
-          value: tasker.last_name
-        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-          className: "hidden_tasker_aboutme",
-          type: "hidden",
-          value: tasker.tasker_aboutme
-        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-          className: "hidden_profile_img",
-          type: "hidden",
-          value: tasker.profile_img
-        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-          className: "hidden_hourly_rate",
-          type: "hidden",
-          value: tasker.hourly_rate
-        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-          className: "hidden_tasker_rank",
-          type: "hidden",
-          value: tasker.tasker_rank
-        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-          className: "hidden_tasker_skill_type",
-          type: "hidden",
-          value: tasker.tasker_skill_type
-        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-          className: "hidden_vehicle_type",
-          type: "hidden",
-          value: tasker.vehicle_type
-        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-          className: "hidden_num_completed_tasks",
-          type: "hidden",
-          value: tasker.num_completed_tasks
-        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-          className: "hidden_reviews_rating",
-          type: "hidden",
-          value: tasker.reviews_rating
-        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-          className: "hidden_reviews_num",
-          type: "hidden",
-          value: tasker.reviews_num
-        })));
+        }, "Select & Continue"));
       });
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "root-container"
