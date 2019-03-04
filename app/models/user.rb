@@ -8,7 +8,10 @@ class User < ApplicationRecord
 
     after_initialize :ensure_session_token
 
-    has_many: 
+    has_many :tasks,
+        primary_key: :id,
+        foreign_key: :tasker_id,
+        class_name: 'Task'
 
     def self.find_by_credentials(email, password)
         user = User.find_by(email: email)
