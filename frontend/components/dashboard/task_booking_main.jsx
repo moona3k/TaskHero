@@ -15,6 +15,8 @@ class TaskBookingMain extends React.Component {
     // 2) re-direct to /task-form/new
     
     handleClick(taskCategory){
+        
+
         this.props.receiveTaskCategory(taskCategory);
         this.props.history.push('/task-form/new');
         // 'history' can be passed down to props via 'withRouter';

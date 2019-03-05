@@ -13,6 +13,11 @@ class User < ApplicationRecord
         foreign_key: :tasker_id,
         class_name: 'Task'
 
+
+    # 'user.tasks' - return all tasks requested by user
+    # 'task.tasker_id' - return the user/tasker assigned to task
+    # 'task.user_id' - return the user who requested the task
+
     def self.find_by_credentials(email, password)
         user = User.find_by(email: email)
 

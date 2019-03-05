@@ -182,7 +182,7 @@ var logout = function logout() {
 /*!******************************************!*\
   !*** ./frontend/actions/task_actions.js ***!
   \******************************************/
-/*! exports provided: RECEIVE_TASK_CATEGORY, RECEIVE_TASK_DESCRIPTION, RECEIVE_TASK_DATETIME, receiveTaskCategory, receiveTaskDescription, receiveTaskDateTime */
+/*! exports provided: RECEIVE_TASK_CATEGORY, RECEIVE_TASK_DESCRIPTION, RECEIVE_TASK_DATETIME, receiveTaskDescription, receiveTaskDateTime */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -190,18 +190,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_TASK_CATEGORY", function() { return RECEIVE_TASK_CATEGORY; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_TASK_DESCRIPTION", function() { return RECEIVE_TASK_DESCRIPTION; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_TASK_DATETIME", function() { return RECEIVE_TASK_DATETIME; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveTaskCategory", function() { return receiveTaskCategory; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveTaskDescription", function() { return receiveTaskDescription; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveTaskDateTime", function() { return receiveTaskDateTime; });
+/* harmony import */ var _util_task_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/task_api_util */ "./frontend/util/task_api_util.jsx");
+
 var RECEIVE_TASK_CATEGORY = 'RECEIVE_TASK_CATEGORY';
 var RECEIVE_TASK_DESCRIPTION = 'RECEIVE_TASK_DESCRIPTION';
 var RECEIVE_TASK_DATETIME = 'RECEIVE_TASK_DATETIME';
+
 var receiveTaskCategory = function receiveTaskCategory(taskCategory) {
   return {
     type: RECEIVE_TASK_CATEGORY,
     task_category: taskCategory
   };
 };
+
 var receiveTaskDescription = function receiveTaskDescription(taskDescription) {
   return {
     type: RECEIVE_TASK_DESCRIPTION,
@@ -214,6 +217,7 @@ var receiveTaskDateTime = function receiveTaskDateTime(taskDateTime) {
     taskDateTime: taskDateTime
   };
 };
+_util_task_api_util__WEBPACK_IMPORTED_MODULE_0__["initializeTask"](taskCategory);
 
 /***/ }),
 
@@ -2743,6 +2747,26 @@ var deleteSession = function deleteSession() {
   return $.ajax({
     url: '/api/session',
     method: 'DELETE'
+  });
+};
+
+/***/ }),
+
+/***/ "./frontend/util/task_api_util.jsx":
+/*!*****************************************!*\
+  !*** ./frontend/util/task_api_util.jsx ***!
+  \*****************************************/
+/*! exports provided: initializeTask */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "initializeTask", function() { return initializeTask; });
+var initializeTask = function initializeTask(taskCategory) {
+  return $.ajax({
+    url: 'api/tasks',
+    method: 'POST',
+    data: taskCategory
   });
 };
 
