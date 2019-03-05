@@ -26,4 +26,8 @@ export const receiveTaskDateTime = taskDateTime => {
 }
 
 
-TaskUtil.initializeTask(taskCategory)
+export const initializeTask = taskCategory => dispatch => {
+    return TaskUtil.postNewTask(taskCategory)
+        .then(taskCategory => dispatch(receiveTaskCategory(taskCategory))
+        )
+};

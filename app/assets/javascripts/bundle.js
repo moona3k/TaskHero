@@ -182,7 +182,7 @@ var logout = function logout() {
 /*!******************************************!*\
   !*** ./frontend/actions/task_actions.js ***!
   \******************************************/
-/*! exports provided: RECEIVE_TASK_CATEGORY, RECEIVE_TASK_DESCRIPTION, RECEIVE_TASK_DATETIME, receiveTaskDescription, receiveTaskDateTime */
+/*! exports provided: RECEIVE_TASK_CATEGORY, RECEIVE_TASK_DESCRIPTION, RECEIVE_TASK_DATETIME, receiveTaskDescription, receiveTaskDateTime, initializeTask */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -192,6 +192,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_TASK_DATETIME", function() { return RECEIVE_TASK_DATETIME; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveTaskDescription", function() { return receiveTaskDescription; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveTaskDateTime", function() { return receiveTaskDateTime; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "initializeTask", function() { return initializeTask; });
 /* harmony import */ var _util_task_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/task_api_util */ "./frontend/util/task_api_util.jsx");
 
 var RECEIVE_TASK_CATEGORY = 'RECEIVE_TASK_CATEGORY';
@@ -217,7 +218,13 @@ var receiveTaskDateTime = function receiveTaskDateTime(taskDateTime) {
     taskDateTime: taskDateTime
   };
 };
-_util_task_api_util__WEBPACK_IMPORTED_MODULE_0__["initializeTask"](taskCategory);
+var initializeTask = function initializeTask(taskCategory) {
+  return function (dispatch) {
+    return _util_task_api_util__WEBPACK_IMPORTED_MODULE_0__["postNewTask"](taskCategory).then(function (taskCategory) {
+      return dispatch(receiveTaskCategory(taskCategory));
+    });
+  };
+};
 
 /***/ }),
 
@@ -2756,13 +2763,13 @@ var deleteSession = function deleteSession() {
 /*!*****************************************!*\
   !*** ./frontend/util/task_api_util.jsx ***!
   \*****************************************/
-/*! exports provided: initializeTask */
+/*! exports provided: postNewTask */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "initializeTask", function() { return initializeTask; });
-var initializeTask = function initializeTask(taskCategory) {
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "postNewTask", function() { return postNewTask; });
+var postNewTask = function postNewTask(taskCategory) {
   return $.ajax({
     url: 'api/tasks',
     method: 'POST',

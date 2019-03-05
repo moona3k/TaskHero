@@ -1,4 +1,4 @@
-export const initializeTask = taskCategory => {
+export const postNewTask = taskCategory => {
     return $.ajax({
         url: 'api/tasks',
         method: 'POST',
