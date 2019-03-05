@@ -2766,7 +2766,9 @@ var initializeTask = function initializeTask(taskCategory) {
   return $.ajax({
     url: 'api/tasks',
     method: 'POST',
-    data: taskCategory
+    data: {
+      taskCategory: taskCategory
+    }
   });
 };
 
