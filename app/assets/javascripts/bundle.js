@@ -182,7 +182,7 @@ var logout = function logout() {
 /*!******************************************!*\
   !*** ./frontend/actions/task_actions.js ***!
   \******************************************/
-/*! exports provided: RECEIVE_TASK_CATEGORY, RECEIVE_TASK_DESCRIPTION, RECEIVE_TASK_DATETIME, receiveTaskDescription, receiveTaskDateTime, initializeTask */
+/*! exports provided: RECEIVE_TASK_CATEGORY, RECEIVE_TASK_DESCRIPTION, RECEIVE_TASK_DATETIME, RECEIVE_LATEST_TASK, receiveTaskDateTime, initializeTask, fetchLatestTask, updateTaskDescription */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -190,19 +190,29 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_TASK_CATEGORY", function() { return RECEIVE_TASK_CATEGORY; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_TASK_DESCRIPTION", function() { return RECEIVE_TASK_DESCRIPTION; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_TASK_DATETIME", function() { return RECEIVE_TASK_DATETIME; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveTaskDescription", function() { return receiveTaskDescription; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_LATEST_TASK", function() { return RECEIVE_LATEST_TASK; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveTaskDateTime", function() { return receiveTaskDateTime; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "initializeTask", function() { return initializeTask; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchLatestTask", function() { return fetchLatestTask; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateTaskDescription", function() { return updateTaskDescription; });
 /* harmony import */ var _util_task_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/task_api_util */ "./frontend/util/task_api_util.jsx");
 
 var RECEIVE_TASK_CATEGORY = 'RECEIVE_TASK_CATEGORY';
 var RECEIVE_TASK_DESCRIPTION = 'RECEIVE_TASK_DESCRIPTION';
 var RECEIVE_TASK_DATETIME = 'RECEIVE_TASK_DATETIME';
+var RECEIVE_LATEST_TASK = 'RECEIVE_LATEST_TASK';
 
 var receiveTaskCategory = function receiveTaskCategory(taskCategory) {
   return {
     type: RECEIVE_TASK_CATEGORY,
     task_category: taskCategory
+  };
+};
+
+var receiveLatestTask = function receiveLatestTask(task) {
+  return {
+    type: RECEIVE_LATEST_TASK,
+    task: task
   };
 };
 
@@ -212,6 +222,7 @@ var receiveTaskDescription = function receiveTaskDescription(taskDescription) {
     task_description: taskDescription
   };
 };
+
 var receiveTaskDateTime = function receiveTaskDateTime(taskDateTime) {
   return {
     type: RECEIVE_TASK_DATETIME,
@@ -222,6 +233,20 @@ var initializeTask = function initializeTask(taskCategory) {
   return function (dispatch) {
     return _util_task_api_util__WEBPACK_IMPORTED_MODULE_0__["postNewTask"](taskCategory).then(function (taskCategory) {
       return dispatch(receiveTaskCategory(taskCategory));
+    });
+  };
+};
+var fetchLatestTask = function fetchLatestTask() {
+  return function (dispatch) {
+    return _util_task_api_util__WEBPACK_IMPORTED_MODULE_0__["getLatestTask"]().then(function (task) {
+      return dispatch(receiveLatestTask(task));
+    });
+  };
+};
+var updateTaskDescription = function updateTaskDescription(taskDescription) {
+  return function (dispatch) {
+    return _util_task_api_util__WEBPACK_IMPORTED_MODULE_0__["patchTaskDescription"](taskDescription).then(function (taskDescription) {
+      return dispatch(receiveTaskDescription(taskDescription));
     });
   };
 };
@@ -477,7 +502,7 @@ function (_React$Component) {
   _createClass(TaskBookingMain, [{
     key: "handleClick",
     value: function handleClick(taskCategory) {
-      this.props.receiveTaskCategory(taskCategory);
+      this.props.initializeTask(taskCategory);
       this.props.history.push('/task-form/new'); // 'history' can be passed down to props via 'withRouter';
       // 'withRouter' gives access to 'match', 'location', and 'history' properties of the browser's native API
     }
@@ -588,8 +613,8 @@ __webpack_require__.r(__webpack_exports__);
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
-    receiveTaskCategory: function receiveTaskCategory(taskCategory) {
-      return dispatch(Object(_actions_task_actions__WEBPACK_IMPORTED_MODULE_1__["receiveTaskCategory"])(taskCategory));
+    initializeTask: function initializeTask(taskCategory) {
+      return dispatch(Object(_actions_task_actions__WEBPACK_IMPORTED_MODULE_1__["initializeTask"])(taskCategory));
     }
   };
 };
@@ -1684,7 +1709,7 @@ function (_React$Component) {
       this.props.fetchAllTaskers(taskRequirement).then(function (taskers) {
         _this2.setState({
           taskers: taskers.taskers
-        }); // console.log(this.state);
+        }); // .then( res => { console.log('this is returned result', res);
 
       });
     }
@@ -1702,8 +1727,8 @@ function (_React$Component) {
     value: function render() {
       var _this3 = this;
 
-      console.log(this.state); // console.log(this.props);
-
+      // console.log(this.state);
+      // console.log(this.props);
       var allTaskers = this.state.taskers ? this.state.taskers : [];
       var renderAllTaskers = allTaskers.map(function (tasker, idx) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -1733,6 +1758,8 @@ function (_React$Component) {
           }
         }, "Select & Continue"));
       });
+      console.log('this is allTaskers', allTaskers);
+      console.log('this is props', this.props.currentTask);
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "root-container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -1967,18 +1994,36 @@ function (_React$Component) {
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(TaskDescription).call(this, props));
     _this.state = {
-      task_category: _this.props.task_category,
+      // id: '',
+      task_category: '',
       location: '',
       specific_location: '',
       estimated_time_req: '',
       vehicle_type: '',
-      task_description: ''
+      description: ''
     };
     _this.handleRadioButtonClick = _this.handleRadioButtonClick.bind(_assertThisInitialized(_this));
     return _this;
   }
 
   _createClass(TaskDescription, [{
+    key: "componentWillMount",
+    value: function componentWillMount() {
+      var _this2 = this;
+
+      // debugger;
+      this.props.fetchLatestTask().then(function (res) {
+        return _this2.setState({
+          task_category: res.task.task_category,
+          location: res.task.location,
+          specific_location: res.task.specific_location,
+          estimated_time_req: res.task.estimated_time_req,
+          vehicle_type: res.task.vehicle_type,
+          description: res.task.description
+        });
+      });
+    }
+  }, {
     key: "backToDashboard",
     value: function backToDashboard() {
       this.props.history.push('/dashboard');
@@ -1986,45 +2031,47 @@ function (_React$Component) {
   }, {
     key: "handleInput",
     value: function handleInput(type) {
-      var _this2 = this;
+      var _this3 = this;
 
       return function (e) {
-        _this2.setState(_defineProperty({}, type, e.target.value));
+        _this3.setState(_defineProperty({}, type, e.target.value));
       };
     }
   }, {
     key: "handleRadioButtonClick",
     value: function handleRadioButtonClick(type) {
-      var _this3 = this;
+      var _this4 = this;
 
       return function (e) {
-        _this3.setState(_defineProperty({}, type, e.target.value));
+        _this4.setState(_defineProperty({}, type, e.target.value));
       }; // console.log('event');
     }
   }, {
     key: "handleSubmit",
     value: function handleSubmit() {
       // console.log(this.state);
-      this.props.receiveTaskDescription(this.state);
+      this.props.updateTaskDescription(this.state);
       this.props.history.push('taskers');
     }
   }, {
     key: "render",
     value: function render() {
-      var _this4 = this;
+      var _this5 = this;
 
-      console.log(this.state);
+      // debugger;
+      console.log('This is props', this.props.currentTask);
+      console.log('This is local state ', this.state);
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "task-description-container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "task-description-header"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
         className: "task-description-header-title"
-      }, "Describe Your Task: ", this.props.task_category), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
+      }, "Describe Your Task: ", this.props.currentTask.task_category), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
         className: "task-description-header-sub"
-      }, "Is ", this.props.task_category, " not the right task? ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+      }, "Is ", this.props.currentTask.task_category, " not the right task? ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
         onClick: function onClick() {
-          return _this4.backToDashboard();
+          return _this5.backToDashboard();
         }
       }, "Pick another task"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "task-description-box"
@@ -2037,7 +2084,9 @@ function (_React$Component) {
           width: '90%'
         },
         onPlaceSelected: function onPlaceSelected(place) {
-          console.log(place);
+          {
+            /* console.log(place); */
+          }
         },
         types: ['(regions)'],
         componentRestrictions: {
@@ -2071,6 +2120,7 @@ function (_React$Component) {
         type: "radio",
         name: "task_size",
         value: "small",
+        checked: this.state.estimated_time_req === "small",
         onClick: this.handleRadioButtonClick('estimated_time_req')
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         className: "radio-button-label"
@@ -2078,6 +2128,7 @@ function (_React$Component) {
         type: "radio",
         name: "task_size",
         value: "medium",
+        checked: this.state.estimated_time_req === "medium",
         onClick: this.handleRadioButtonClick('estimated_time_req')
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         className: "radio-button-label"
@@ -2085,6 +2136,7 @@ function (_React$Component) {
         type: "radio",
         name: "task_size",
         value: "large",
+        checked: this.state.estimated_time_req === "large",
         onClick: this.handleRadioButtonClick('estimated_time_req')
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         className: "radio-button-label"
@@ -2098,16 +2150,19 @@ function (_React$Component) {
         type: "radio",
         name: "vehicle_type",
         value: "none",
+        checked: this.state.vehicle_type === "none",
         onClick: this.handleRadioButtonClick('vehicle_type')
       }), "Not needed for task"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "radio",
         name: "vehicle_type",
         value: "car",
+        checked: this.state.vehicle_type === "car",
         onClick: this.handleRadioButtonClick('vehicle_type')
       }), "Task requires a car"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "radio",
         name: "vehicle_type",
         value: "truck",
+        checked: this.state.vehicle_type === "truck",
         onClick: this.handleRadioButtonClick('vehicle_type')
       }), "Task requires a truck")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         className: "task-description-button"
@@ -2119,8 +2174,8 @@ function (_React$Component) {
         className: "task-description-subtext-1"
       }, "Start the conversation and tell your Tasker what you need done. This helps us show you only qualified and available Taskers for the job. ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), "Don't worry, you can edit this later."), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
         className: "task-description-textarea",
-        value: this.state.task_description,
-        onChange: this.handleInput('task_description'),
+        value: this.state.description,
+        onChange: this.handleInput('description'),
         cols: "30",
         rows: "10",
         placeholder: "Provide a summary of what you need done for your Tasker. Be sure to include details like the size of your space, any equipment/tools needed, and how to get in."
@@ -2129,7 +2184,7 @@ function (_React$Component) {
       }, "If you need two or more Taskers, please post additional tasks for each Tasker needed."), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         className: "task-description-button",
         onClick: function onClick() {
-          return _this4.handleSubmit();
+          return _this5.handleSubmit();
         }
       }, "See Taskers & Prices"))));
     }
@@ -2160,16 +2215,19 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var mapStateToProps = function mapStateToProps(state) {
+var mapStateToProps = function mapStateToProps(state, ownProps) {
   return {
-    task_category: state.entities.tasks.task_category
+    currentTask: state.entities.tasks
   };
 };
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
-    receiveTaskDescription: function receiveTaskDescription(taskDescription) {
-      return dispatch(Object(_actions_task_actions__WEBPACK_IMPORTED_MODULE_3__["receiveTaskDescription"])(taskDescription));
+    fetchLatestTask: function fetchLatestTask() {
+      return dispatch(Object(_actions_task_actions__WEBPACK_IMPORTED_MODULE_3__["fetchLatestTask"])());
+    },
+    updateTaskDescription: function updateTaskDescription(taskDescription) {
+      return dispatch(Object(_actions_task_actions__WEBPACK_IMPORTED_MODULE_3__["updateTaskDescription"])(taskDescription));
     }
   };
 };
@@ -2509,19 +2567,29 @@ var tasksReducer = function tasksReducer() {
   Object.freeze(state);
 
   switch (action.type) {
-    case _actions_task_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_TASK_CATEGORY"]:
+    // case RECEIVE_TASK_CATEGORY:
+    //     return Object.assign({}, state, { task_category: action.task_category });
+    case _actions_task_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_LATEST_TASK"]:
       return Object.assign({}, state, {
-        task_category: action.task_category
+        task_category: action.task.task_category,
+        location: action.task.location,
+        specific_location: action.task.specific_location,
+        description: action.task.description,
+        estimated_time_req: action.task.estimated_time_req,
+        vehicle_type: action.task.vehicle_type,
+        user_id: action.task.user_id,
+        tasker_id: action.task.tasker_id
       });
 
     case _actions_task_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_TASK_DESCRIPTION"]:
       return Object.assign({}, state, {
+        // id: action.task_description.id,
         task_category: action.task_description.task_category,
         location: action.task_description.location,
         specific_location: action.task_description.specific_location,
         estimated_time_req: action.task_description.estimated_time_req,
         vehicle_type: action.task_description.vehicle_type,
-        description: action.task_description.task_description
+        description: action.task_description.description
       });
 
     case _actions_task_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_TASK_DATETIME"]:
@@ -2763,18 +2831,35 @@ var deleteSession = function deleteSession() {
 /*!*****************************************!*\
   !*** ./frontend/util/task_api_util.jsx ***!
   \*****************************************/
-/*! exports provided: postNewTask */
+/*! exports provided: postNewTask, getLatestTask, patchTaskDescription */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "postNewTask", function() { return postNewTask; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getLatestTask", function() { return getLatestTask; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "patchTaskDescription", function() { return patchTaskDescription; });
 var postNewTask = function postNewTask(taskCategory) {
   return $.ajax({
     url: 'api/tasks',
     method: 'POST',
     data: {
       taskCategory: taskCategory
+    }
+  });
+};
+var getLatestTask = function getLatestTask() {
+  return $.ajax({
+    url: 'api/tasks/:id',
+    method: 'GET'
+  });
+};
+var patchTaskDescription = function patchTaskDescription(taskDescription) {
+  return $.ajax({
+    url: "api/tasks/".concat(taskDescription.id),
+    method: 'PATCH',
+    data: {
+      taskDescription: taskDescription
     }
   });
 };

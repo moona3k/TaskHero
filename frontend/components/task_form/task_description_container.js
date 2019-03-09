@@ -2,19 +2,20 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
 import TaskDescription from './task_description';
-import { receiveTaskDescription } from '../../actions/task_actions';
+import { updateTaskDescription, fetchLatestTask } from '../../actions/task_actions';
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state, ownProps) => {
+    
     return {
-        task_category: state.entities.tasks.task_category
+        currentTask: state.entities.tasks
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        receiveTaskDescription: (taskDescription) => dispatch(receiveTaskDescription(taskDescription))
+        fetchLatestTask: () => dispatch(fetchLatestTask()),
+        updateTaskDescription: (taskDescription) => dispatch(updateTaskDescription(taskDescription))
     }
 }
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(TaskDescription));
-

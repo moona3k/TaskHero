@@ -5,7 +5,7 @@ import { fetchAllTaskers, receiveTasker } from '../../actions/tasker_actions';
 
 const mapStateToProps = (state) => {
     return {
-        currentTask: state.entities.tasks,
+        currentTask: state.entities.tasks
         // taskers: state.entities.users
     }
 }

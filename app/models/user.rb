@@ -14,6 +14,7 @@ class User < ApplicationRecord
         class_name: 'Task'
 
 
+
     # 'user.tasks' - return all tasks requested by user
     # 'task.tasker_id' - return the user/tasker assigned to task
     # 'task.user_id' - return the user who requested the task
