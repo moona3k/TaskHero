@@ -12,6 +12,7 @@ export const getAllTaskers = taskRequirement => {
 
 export const getAssignedTaskers = taskerId => {
     return $.ajax({
-        url: ''
+        url: `/api/users/${taskerId}`,
+        method: 'GET'
     })
 }
