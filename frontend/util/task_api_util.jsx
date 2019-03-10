@@ -28,3 +28,19 @@ export const patchTaskerId = taskerId => {
         data: { taskerId }
     })
 };
+
+export const patchTaskDate = taskDate => {
+    return $.ajax({
+        url: `api/tasks/${taskDate.id}`,
+        method: 'PATCH',
+        data: { taskDate }
+    })
+};
+
+export const patchTaskTime = taskTime => {
+    return $.ajax({
+        url: `api/tasks/${taskTime.id}`,
+        method: 'PATCH',
+        data: { taskTime }
+    })
+};

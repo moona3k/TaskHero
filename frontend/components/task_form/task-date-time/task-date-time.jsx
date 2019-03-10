@@ -3,19 +3,21 @@ import React from 'react';
 class TaskCalendar extends React.Component {
     constructor(props){
         super(props);
-        this.state = {
-            taskDate: '',
-            taskTime: ''
-        }
-
     }
 
-    handleDateInput(type) {
+    handleInput(type) {
         return (e) => {
-            this.setState({ [type]: e.target.value });
-            this.props.receiveDateTime(this.state);
             
-            // this.props.setDateTime({[type]: e.target.value})
+            switch (type){
+
+                case 'taskDate':
+                    let taskDate = e.target.value;
+                    this.props.updateTaskDate(taskDate);
+
+                case 'taskTime':
+                    let taskTime = e.target.value;
+                    this.props.updateTaskTime(taskTime);
+            }
         }
     }
 
@@ -27,11 +29,11 @@ class TaskCalendar extends React.Component {
                 <input 
                     type="date"
                     name="taskDate" 
-                    onChange={ this.handleDateInput('taskDate')}
+                    onChange={ this.handleInput('taskDate')}
                     min={new Date()} // this doesn't work...
                 />
                 <br />
-                <select onChange={ this.handleDateInput('taskTime')}>
+                <select onChange={this.handleInput('taskTime')}>
                     <option value="I'm Flexible">I'm Flexible</option>
                     <option value="Morning (8AM - 12PM)">Morning (8AM - 12PM)</option>
                     <option value="Afternoon (12PM - 4PM)">Afternoon (12PM - 4PM)</option>

@@ -2,9 +2,11 @@ import * as TaskUtil from '../util/task_api_util';
 
 export const RECEIVE_TASK_CATEGORY = 'RECEIVE_TASK_CATEGORY';
 export const RECEIVE_TASK_DESCRIPTION = 'RECEIVE_TASK_DESCRIPTION';
-export const RECEIVE_TASK_DATETIME = 'RECEIVE_TASK_DATETIME';
 export const RECEIVE_LATEST_TASK = 'RECEIVE_LATEST_TASK';
 export const RECEIVE_TASKER_ID = 'RECEIEVE_TASKER_ID';
+export const RECEIVE_TASK_DATE = 'RECEIVE_TASK_DATE';
+export const RECEIVE_TASK_TIME = 'RECEIVE_TASK_TIME';
+
 
 const receiveTaskCategory = taskCategory => {
     return ({
@@ -32,12 +34,19 @@ const receiveTaskerId = id => {
         type: RECEIVE_TASKER_ID,
         id: id
     })
+};
+
+const receiveTaskDate = taskDate => {
+    return ({
+        type: RECEIVE_TASK_DATE,
+        taskDate
+    })
 }
 
-export const receiveTaskDateTime = taskDateTime => {
+const receiveTaskTime = taskTime => {
     return ({
-        type: RECEIVE_TASK_DATETIME,
-        taskDateTime: taskDateTime
+        type: RECEIVE_TASK_TIME,
+        taskTime
     })
 };
 
@@ -65,3 +74,14 @@ export const updateTaskerId = taskId => dispatch => {
         )
 };
 
+export const updateTaskDate = taskDate => dispatch => {
+    return TaskUtil.patchTaskDate(taskDate)
+        .then(taskDate => dispatch(receiveTaskDate(taskDate))
+        )
+};
+
+export const updateTaskTime = taskTime => dispatch => {
+    return TaskUtil.patchTaskTime(taskTime)
+        .then(taskTime => dispatch(receiveTaskTime(taskTime))
+        )
+};

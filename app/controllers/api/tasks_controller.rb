@@ -49,7 +49,15 @@ class Api::TasksController < ApplicationController
             @task.update(tasker_id: taskerId)
         end
 
+        if params[:taskDate]
+            taskDate = params[:taskDate]
+            @task.update(scheduled_date: taskDate)
+        end
 
+        if params[:taskTime]
+            taskTime = params[:taskTime]
+            @task.update(scheduled_time: taskTime)
+        end
 
         render json: @task
     end

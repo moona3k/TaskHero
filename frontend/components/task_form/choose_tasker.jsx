@@ -1,5 +1,5 @@
 import React from 'react';
-import TaskCalendarContainer from './task_calendar_container';
+import TaskDateTimeRedux from './task-date-time/task-date-time-redux';
 import TaskerProfileRedux from './tasker-profile/tasker-profile-redux';
 
 
@@ -92,7 +92,7 @@ class ChooseTasker extends React.Component {
                     </div>
                     {renderAllTaskers}
                 </div>
-                <TaskCalendarContainer />
+                <TaskDateTimeRedux />
             </div>
         )
     }

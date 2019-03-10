@@ -9,3 +9,9 @@ export const getAllTaskers = taskRequirement => {
         data: { taskRequirement }
     })
 }
+
+export const getAssignedTaskers = taskerId => {
+    return $.ajax({
+        
+    })
+}

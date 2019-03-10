@@ -182,28 +182,31 @@ var logout = function logout() {
 /*!******************************************!*\
   !*** ./frontend/actions/task_actions.js ***!
   \******************************************/
-/*! exports provided: RECEIVE_TASK_CATEGORY, RECEIVE_TASK_DESCRIPTION, RECEIVE_TASK_DATETIME, RECEIVE_LATEST_TASK, RECEIVE_TASKER_ID, receiveTaskDateTime, initializeTask, fetchLatestTask, updateTaskDescription, updateTaskerId */
+/*! exports provided: RECEIVE_TASK_CATEGORY, RECEIVE_TASK_DESCRIPTION, RECEIVE_LATEST_TASK, RECEIVE_TASKER_ID, RECEIVE_TASK_DATE, RECEIVE_TASK_TIME, initializeTask, fetchLatestTask, updateTaskDescription, updateTaskerId, updateTaskDate, updateTaskTime */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_TASK_CATEGORY", function() { return RECEIVE_TASK_CATEGORY; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_TASK_DESCRIPTION", function() { return RECEIVE_TASK_DESCRIPTION; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_TASK_DATETIME", function() { return RECEIVE_TASK_DATETIME; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_LATEST_TASK", function() { return RECEIVE_LATEST_TASK; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_TASKER_ID", function() { return RECEIVE_TASKER_ID; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveTaskDateTime", function() { return receiveTaskDateTime; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_TASK_DATE", function() { return RECEIVE_TASK_DATE; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_TASK_TIME", function() { return RECEIVE_TASK_TIME; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "initializeTask", function() { return initializeTask; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchLatestTask", function() { return fetchLatestTask; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateTaskDescription", function() { return updateTaskDescription; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateTaskerId", function() { return updateTaskerId; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateTaskDate", function() { return updateTaskDate; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateTaskTime", function() { return updateTaskTime; });
 /* harmony import */ var _util_task_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/task_api_util */ "./frontend/util/task_api_util.jsx");
 
 var RECEIVE_TASK_CATEGORY = 'RECEIVE_TASK_CATEGORY';
 var RECEIVE_TASK_DESCRIPTION = 'RECEIVE_TASK_DESCRIPTION';
-var RECEIVE_TASK_DATETIME = 'RECEIVE_TASK_DATETIME';
 var RECEIVE_LATEST_TASK = 'RECEIVE_LATEST_TASK';
 var RECEIVE_TASKER_ID = 'RECEIEVE_TASKER_ID';
+var RECEIVE_TASK_DATE = 'RECEIVE_TASK_DATE';
+var RECEIVE_TASK_TIME = 'RECEIVE_TASK_TIME';
 
 var receiveTaskCategory = function receiveTaskCategory(taskCategory) {
   return {
@@ -233,12 +236,20 @@ var receiveTaskerId = function receiveTaskerId(id) {
   };
 };
 
-var receiveTaskDateTime = function receiveTaskDateTime(taskDateTime) {
+var receiveTaskDate = function receiveTaskDate(taskDate) {
   return {
-    type: RECEIVE_TASK_DATETIME,
-    taskDateTime: taskDateTime
+    type: RECEIVE_TASK_DATE,
+    taskDate: taskDate
   };
 };
+
+var receiveTaskTime = function receiveTaskTime(taskTime) {
+  return {
+    type: RECEIVE_TASK_TIME,
+    taskTime: taskTime
+  };
+};
+
 var initializeTask = function initializeTask(taskCategory) {
   return function (dispatch) {
     return _util_task_api_util__WEBPACK_IMPORTED_MODULE_0__["postNewTask"](taskCategory).then(function (taskCategory) {
@@ -264,6 +275,20 @@ var updateTaskerId = function updateTaskerId(taskId) {
   return function (dispatch) {
     return _util_task_api_util__WEBPACK_IMPORTED_MODULE_0__["patchTaskerId"](taskId).then(function (taskId) {
       return dispatch(receiveTaskerId(taskId));
+    });
+  };
+};
+var updateTaskDate = function updateTaskDate(taskDate) {
+  return function (dispatch) {
+    return _util_task_api_util__WEBPACK_IMPORTED_MODULE_0__["patchTaskDate"](taskDate).then(function (taskDate) {
+      return dispatch(receiveTaskDate(taskDate));
+    });
+  };
+};
+var updateTaskTime = function updateTaskTime(taskTime) {
+  return function (dispatch) {
+    return _util_task_api_util__WEBPACK_IMPORTED_MODULE_0__["patchTaskTime"](taskTime).then(function (taskTime) {
+      return dispatch(receiveTaskTime(taskTime));
     });
   };
 };
@@ -1659,7 +1684,7 @@ var SplashTestimonial = function SplashTestimonial() {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _task_calendar_container__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./task_calendar_container */ "./frontend/components/task_form/task_calendar_container.js");
+/* harmony import */ var _task_date_time_task_date_time_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./task-date-time/task-date-time-redux */ "./frontend/components/task_form/task-date-time/task-date-time-redux.js");
 /* harmony import */ var _tasker_profile_tasker_profile_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./tasker-profile/tasker-profile-redux */ "./frontend/components/task_form/tasker-profile/tasker-profile-redux.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
@@ -1772,7 +1797,7 @@ function (_React$Component) {
         className: "choose-tasker-header-sub"
       }, "After booking, you can chat with your Tasker, agree on an exact time, or go over any requirements or questions, if necessary.")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "sorted-by-text"
-      }, "SORTED BY: (insert sort feature)")), renderAllTaskers), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_task_calendar_container__WEBPACK_IMPORTED_MODULE_1__["default"], null));
+      }, "SORTED BY: (insert sort feature)")), renderAllTaskers), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_task_date_time_task_date_time_redux__WEBPACK_IMPORTED_MODULE_1__["default"], null));
     }
   }]);
 
@@ -1826,10 +1851,179 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 
 /***/ }),
 
-/***/ "./frontend/components/task_form/task_calendar.jsx":
-/*!*********************************************************!*\
-  !*** ./frontend/components/task_form/task_calendar.jsx ***!
-  \*********************************************************/
+/***/ "./frontend/components/task_form/task-confirm-container.js":
+/*!*****************************************************************!*\
+  !*** ./frontend/components/task_form/task-confirm-container.js ***!
+  \*****************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _task_confirm_page__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./task-confirm-page */ "./frontend/components/task_form/task-confirm-page.jsx");
+/* harmony import */ var _actions_task_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/task_actions */ "./frontend/actions/task_actions.js");
+
+
+
+
+var mapStateToProps = function mapStateToProps(state) {
+  return {
+    currentTask: state.entities.tasks,
+    currentTasker: state.entities.users
+  };
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    fetchLatestTask: function fetchLatestTask() {
+      return dispatch(Object(_actions_task_actions__WEBPACK_IMPORTED_MODULE_2__["fetchLatestTask"])());
+    }
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mapStateToProps, mapDispatchToProps)(_task_confirm_page__WEBPACK_IMPORTED_MODULE_1__["default"]));
+
+/***/ }),
+
+/***/ "./frontend/components/task_form/task-confirm-page.jsx":
+/*!*************************************************************!*\
+  !*** ./frontend/components/task_form/task-confirm-page.jsx ***!
+  \*************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/es/index.js");
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+
+var TaskConfirmPage =
+/*#__PURE__*/
+function (_React$Component) {
+  _inherits(TaskConfirmPage, _React$Component);
+
+  function TaskConfirmPage(props) {
+    var _this;
+
+    _classCallCheck(this, TaskConfirmPage);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(TaskConfirmPage).call(this, props));
+    _this.state = {
+      description: 'RENDER taskDescription'
+    };
+    _this.handleChange = _this.handleChange.bind(_assertThisInitialized(_this));
+    _this.handleClick = _this.handleClick.bind(_assertThisInitialized(_this));
+    return _this;
+  }
+
+  _createClass(TaskConfirmPage, [{
+    key: "componentWillMount",
+    value: function componentWillMount() {
+      this.props.fetchLatestTask().then( // fetchLatestTask: ajax call to retrieve current task
+      // upon receival, redux-store is updated so mSTP will receive the new state and we now have access to tasker_id!
+      // task_id = this.props.currentTask.tasker_id
+      this.props.fetchAssignedTasker(this.props.currentTask.tasker_id));
+    }
+  }, {
+    key: "handleChange",
+    value: function handleChange(e) {
+      this.setState({
+        description: e.currentTarget.value
+      });
+    }
+  }, {
+    key: "handleClick",
+    value: function handleClick() {}
+  }, {
+    key: "render",
+    value: function render() {
+      console.log(this.props.currentTask);
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.props.currentTask.task_category), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "RENDER hourlyRate")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Date & Time"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "RENDER Date (RENDER Time)"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Task Location"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "RENDER taskLocation"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Vehicle Requirements"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "RENDER vehicleType")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Tasker"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "RENDER taskerImageURL"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "RENDER taskerName")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Task Description"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
+        onChange: this.handleChange,
+        value: this.state.description,
+        name: "",
+        id: "",
+        cols: "30",
+        rows: "10"
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "You are charged only after your task is completed."), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        onClick: this.handleClick
+      }, "Confirm & Book"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+        to: "/task-form/new"
+      }, "Edit Task")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Tasks have a one-hour minimum. A ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, "13.5% Trust and Support fee"), " is added to the Tasker\u2019s total rate."), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Pursuant to the Terms of Service, if you cancel your task within 24 hours of the scheduled start time, you may be charged a one-hour cancellation fee at the Tasker's hourly rate. If you selected a recurring cleaning, this is a task with repeat appointments. If you cancel the task (all appointments) or skip any individual appointment within 24 hours of the scheduled start time, you may be charged a one-hour cancellation fee at the Tasker's hourly rate."), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "For more details see ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, "Terms of Service"))));
+    }
+  }]);
+
+  return TaskConfirmPage;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+/* harmony default export */ __webpack_exports__["default"] = (TaskConfirmPage);
+
+/***/ }),
+
+/***/ "./frontend/components/task_form/task-date-time/task-date-time-redux.js":
+/*!******************************************************************************!*\
+  !*** ./frontend/components/task_form/task-date-time/task-date-time-redux.js ***!
+  \******************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _task_date_time__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./task-date-time */ "./frontend/components/task_form/task-date-time/task-date-time.jsx");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _actions_task_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../actions/task_actions */ "./frontend/actions/task_actions.js");
+
+
+
+
+var mapStateToProps = function mapStateToProps(state) {
+  return {
+    taskDate: state.entities.tasks.scheduled_date,
+    taskTime: state.entities.tasks.scheduled_time
+  };
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    updateTaskDate: function updateTaskDate(taskDate) {
+      return dispatch(Object(_actions_task_actions__WEBPACK_IMPORTED_MODULE_2__["updateTaskDate"])(taskDate));
+    },
+    updateTaskTime: function updateTaskTime(taskTime) {
+      return dispatch(Object(_actions_task_actions__WEBPACK_IMPORTED_MODULE_2__["updateTaskTime"])(taskTime));
+    }
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps, mapDispatchToProps)(_task_date_time__WEBPACK_IMPORTED_MODULE_0__["default"]));
+
+/***/ }),
+
+/***/ "./frontend/components/task_form/task-date-time/task-date-time.jsx":
+/*!*************************************************************************!*\
+  !*** ./frontend/components/task_form/task-date-time/task-date-time.jsx ***!
+  \*************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -1838,8 +2032,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -1865,28 +2057,29 @@ function (_React$Component) {
   _inherits(TaskCalendar, _React$Component);
 
   function TaskCalendar(props) {
-    var _this;
-
     _classCallCheck(this, TaskCalendar);
 
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(TaskCalendar).call(this, props));
-    _this.state = {
-      taskDate: '',
-      taskTime: ''
-    };
-    return _this;
+    return _possibleConstructorReturn(this, _getPrototypeOf(TaskCalendar).call(this, props));
   }
 
   _createClass(TaskCalendar, [{
-    key: "handleDateInput",
-    value: function handleDateInput(type) {
-      var _this2 = this;
+    key: "handleInput",
+    value: function handleInput(type) {
+      var _this = this;
 
       return function (e) {
-        _this2.setState(_defineProperty({}, type, e.target.value));
+        switch (type) {
+          case 'taskDate':
+            var taskDate = e.target.value;
 
-        _this2.props.receiveDateTime(_this2.state); // this.props.setDateTime({[type]: e.target.value})
+            _this.props.updateTaskDate(taskDate);
 
+          case 'taskTime':
+            var taskTime = e.target.value;
+
+            _this.props.updateTaskTime(taskTime);
+
+        }
       };
     }
   }, {
@@ -1898,11 +2091,11 @@ function (_React$Component) {
       }), " TASK DATE & TIME"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "date",
         name: "taskDate",
-        onChange: this.handleDateInput('taskDate'),
+        onChange: this.handleInput('taskDate'),
         min: new Date() // this doesn't work...
 
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
-        onChange: this.handleDateInput('taskTime')
+        onChange: this.handleInput('taskTime')
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
         value: "I'm Flexible"
       }, "I'm Flexible"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
@@ -1919,34 +2112,6 @@ function (_React$Component) {
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
 /* harmony default export */ __webpack_exports__["default"] = (TaskCalendar);
-
-/***/ }),
-
-/***/ "./frontend/components/task_form/task_calendar_container.js":
-/*!******************************************************************!*\
-  !*** ./frontend/components/task_form/task_calendar_container.js ***!
-  \******************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _task_calendar__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./task_calendar */ "./frontend/components/task_form/task_calendar.jsx");
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var _actions_task_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/task_actions */ "./frontend/actions/task_actions.js");
-
-
-
-
-var mapDispatchToProps = function mapDispatchToProps(dispatch) {
-  return {
-    receiveDateTime: function receiveDateTime(taskDateTime) {
-      return dispatch(Object(_actions_task_actions__WEBPACK_IMPORTED_MODULE_2__["receiveTaskDateTime"])(taskDateTime));
-    }
-  };
-};
-
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(null, mapDispatchToProps)(_task_calendar__WEBPACK_IMPORTED_MODULE_0__["default"]));
 
 /***/ }),
 
@@ -2299,6 +2464,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _task_form_choose_tasker_container__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../task_form/choose_tasker_container */ "./frontend/components/task_form/choose_tasker_container.js");
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/es/index.js");
 /* harmony import */ var _task_description_container__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./task_description_container */ "./frontend/components/task_form/task_description_container.js");
+/* harmony import */ var _task_confirm_container__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./task-confirm-container */ "./frontend/components/task_form/task-confirm-container.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -2316,6 +2482,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
 
 
 
@@ -2344,6 +2511,9 @@ function (_React$Component) {
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["Route"], {
         path: "/task-form/taskers",
         component: _task_form_choose_tasker_container__WEBPACK_IMPORTED_MODULE_3__["default"]
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["Route"], {
+        path: "/task-form/confirm",
+        component: _task_confirm_container__WEBPACK_IMPORTED_MODULE_6__["default"]
       })));
     }
   }]);
@@ -2717,15 +2887,19 @@ var tasksReducer = function tasksReducer() {
         description: action.task_description.description
       });
 
-    case _actions_task_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_TASK_DATETIME"]:
-      return Object.assign({}, state, {
-        scheduled_date: action.taskDateTime.taskDate,
-        scheduled_time: action.taskDateTime.taskTime
-      });
-
     case _actions_task_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_TASKER_ID"]:
       return Object.assign({}, state, {
         tasker_id: action.taskerId
+      });
+
+    case _actions_task_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_TASK_DATE"]:
+      return Object.assign({}, state, {
+        scheduled_date: action.taskDate
+      });
+
+    case _actions_task_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_TASK_TIME"]:
+      return Object.assign({}, state, {
+        scheduled_time: action.taskTime
       });
 
     default:
@@ -2961,7 +3135,7 @@ var deleteSession = function deleteSession() {
 /*!*****************************************!*\
   !*** ./frontend/util/task_api_util.jsx ***!
   \*****************************************/
-/*! exports provided: postNewTask, getLatestTask, patchTaskDescription, patchTaskerId */
+/*! exports provided: postNewTask, getLatestTask, patchTaskDescription, patchTaskerId, patchTaskDate, patchTaskTime */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2970,6 +3144,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getLatestTask", function() { return getLatestTask; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "patchTaskDescription", function() { return patchTaskDescription; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "patchTaskerId", function() { return patchTaskerId; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "patchTaskDate", function() { return patchTaskDate; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "patchTaskTime", function() { return patchTaskTime; });
 var postNewTask = function postNewTask(taskCategory) {
   return $.ajax({
     url: 'api/tasks',
@@ -3003,6 +3179,24 @@ var patchTaskerId = function patchTaskerId(taskerId) {
     }
   });
 };
+var patchTaskDate = function patchTaskDate(taskDate) {
+  return $.ajax({
+    url: "api/tasks/".concat(taskDate.id),
+    method: 'PATCH',
+    data: {
+      taskDate: taskDate
+    }
+  });
+};
+var patchTaskTime = function patchTaskTime(taskTime) {
+  return $.ajax({
+    url: "api/tasks/".concat(taskTime.id),
+    method: 'PATCH',
+    data: {
+      taskTime: taskTime
+    }
+  });
+};
 
 /***/ }),
 
@@ -3010,12 +3204,13 @@ var patchTaskerId = function patchTaskerId(taskerId) {
 /*!********************************************!*\
   !*** ./frontend/util/taskers_api_util.jsx ***!
   \********************************************/
-/*! exports provided: getAllTaskers */
+/*! exports provided: getAllTaskers, getAssignedTaskers */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getAllTaskers", function() { return getAllTaskers; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getAssignedTaskers", function() { return getAssignedTaskers; });
 // GET req to fetch all taskers 
 // SELECT * FROM users WHERE tasks.task_category === users.tasker_skill_type
 // && tasks.vehicle_type === users.vehicle_type
@@ -3027,6 +3222,9 @@ var getAllTaskers = function getAllTaskers(taskRequirement) {
       taskRequirement: taskRequirement
     }
   });
+};
+var getAssignedTaskers = function getAssignedTaskers(taskerId) {
+  return $.ajax({});
 };
 
 /***/ }),
