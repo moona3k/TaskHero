@@ -2,12 +2,20 @@ import * as TaskerUtil from '../util/taskers_api_util';
 
 export const RECEIVE_ALL_TASKERS = 'RECEIVE_ALL_TASKERS';
 export const RECEIVE_TASKER = 'RECEIVE_TASKER';
+export const RECEIVE_ASSIGNED_TASKER = 'RECEIVE_ASSIGNED_TASKER'
 
 const receiveAllTaskers = taskers => {
     return ({
         type: RECEIVE_ALL_TASKERS,
         taskers: taskers
         // 'taskers' data will be fetched via ajax call to backend
+    })
+}
+
+const receiveAssignedTasker = tasker => {
+    return ({
+        type: RECEIVE_ASSIGNED_TASKER,
+        tasker: tasker
     })
 }
 
@@ -28,3 +36,8 @@ export const receiveTasker = selectedTasker => {
         selectedTasker: selectedTasker
     })
 };
+
+export const fetchAssignedTasker = taskerId => dispatch => {
+    return TaskerUtil.getAssignedTasker(taskerId)
+        .then( tasker => dispatch(receiveAssignedTasker(tasker)));
+}

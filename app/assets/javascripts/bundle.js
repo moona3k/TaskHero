@@ -299,25 +299,35 @@ var updateTaskTime = function updateTaskTime(taskTime) {
 /*!********************************************!*\
   !*** ./frontend/actions/tasker_actions.js ***!
   \********************************************/
-/*! exports provided: RECEIVE_ALL_TASKERS, RECEIVE_TASKER, fetchAllTaskers, receiveTasker */
+/*! exports provided: RECEIVE_ALL_TASKERS, RECEIVE_TASKER, RECEIVE_ASSIGNED_TASKER, fetchAllTaskers, receiveTasker, fetchAssignedTasker */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_ALL_TASKERS", function() { return RECEIVE_ALL_TASKERS; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_TASKER", function() { return RECEIVE_TASKER; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_ASSIGNED_TASKER", function() { return RECEIVE_ASSIGNED_TASKER; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchAllTaskers", function() { return fetchAllTaskers; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveTasker", function() { return receiveTasker; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchAssignedTasker", function() { return fetchAssignedTasker; });
 /* harmony import */ var _util_taskers_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/taskers_api_util */ "./frontend/util/taskers_api_util.jsx");
 
 var RECEIVE_ALL_TASKERS = 'RECEIVE_ALL_TASKERS';
 var RECEIVE_TASKER = 'RECEIVE_TASKER';
+var RECEIVE_ASSIGNED_TASKER = 'RECEIVE_ASSIGNED_TASKER';
 
 var receiveAllTaskers = function receiveAllTaskers(taskers) {
   return {
     type: RECEIVE_ALL_TASKERS,
     taskers: taskers // 'taskers' data will be fetched via ajax call to backend
 
+  };
+};
+
+var receiveAssignedTasker = function receiveAssignedTasker(tasker) {
+  return {
+    type: RECEIVE_ASSIGNED_TASKER,
+    tasker: tasker
   };
 };
 
@@ -336,6 +346,13 @@ var receiveTasker = function receiveTasker(selectedTasker) {
   return {
     type: RECEIVE_TASKER,
     selectedTasker: selectedTasker
+  };
+};
+var fetchAssignedTasker = function fetchAssignedTasker(taskerId) {
+  return function (dispatch) {
+    return _util_taskers_api_util__WEBPACK_IMPORTED_MODULE_0__["getAssignedTasker"](taskerId).then(function (tasker) {
+      return dispatch(receiveAssignedTasker(tasker));
+    });
   };
 };
 
@@ -3204,13 +3221,13 @@ var patchTaskTime = function patchTaskTime(taskTime) {
 /*!********************************************!*\
   !*** ./frontend/util/taskers_api_util.jsx ***!
   \********************************************/
-/*! exports provided: getAllTaskers, getAssignedTaskers */
+/*! exports provided: getAllTaskers, getAssignedTasker */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getAllTaskers", function() { return getAllTaskers; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getAssignedTaskers", function() { return getAssignedTaskers; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getAssignedTasker", function() { return getAssignedTasker; });
 // GET req to fetch all taskers 
 // SELECT * FROM users WHERE tasks.task_category === users.tasker_skill_type
 // && tasks.vehicle_type === users.vehicle_type
@@ -3223,7 +3240,7 @@ var getAllTaskers = function getAllTaskers(taskRequirement) {
     }
   });
 };
-var getAssignedTaskers = function getAssignedTaskers(taskerId) {
+var getAssignedTasker = function getAssignedTasker(taskerId) {
   return $.ajax({
     url: "/api/users/".concat(taskerId),
     method: 'GET'
