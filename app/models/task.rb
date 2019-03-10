@@ -13,5 +13,10 @@ class Task < ApplicationRecord
         class_name: 'User',
         optional: true
 
+    before_create :set_current_datetime
 
+    def set_current_datetime
+        self.scheduled_time = "I'm Flexible"
+        self.scheduled_date = Date.new
+    end
 end
