@@ -12,6 +12,6 @@ export const getAllTaskers = taskRequirement => {
 
 export const getAssignedTaskers = taskerId => {
     return $.ajax({
-        
+        url: ''
     })
 }

@@ -3224,7 +3224,9 @@ var getAllTaskers = function getAllTaskers(taskRequirement) {
   });
 };
 var getAssignedTaskers = function getAssignedTaskers(taskerId) {
-  return $.ajax({});
+  return $.ajax({
+    url: ''
+  });
 };
 
 /***/ }),
