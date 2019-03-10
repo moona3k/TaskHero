@@ -1,6 +1,6 @@
 import React from 'react';
 import TaskCalendarContainer from './task_calendar_container';
-import TaskerProfile from './tasker-profile/tasker-profile';
+import TaskerProfileRedux from './tasker-profile/tasker-profile-redux';
 
 
 class ChooseTasker extends React.Component {
@@ -20,7 +20,6 @@ class ChooseTasker extends React.Component {
             reviews_num: ''
         }
 
-        this.handleClick = this.handleClick.bind(this);
         // this.receiveDateTime = this.receiveDateTime.bind(this);
     }
 
@@ -31,31 +30,25 @@ class ChooseTasker extends React.Component {
 
         // Fetch all taskers where 'tasks.task_category === users.tasker_skill_type'
         
-        let taskRequirement = { 
-            taskCategory: this.props.currentTask.task_category,
-            vehicleType: this.props.currentTask.vehicle_type
-        }
-
-        this.props.fetchAllTaskers(taskRequirement)
+        let taskRequirement = {
+            taskCategory: '',
+            vehicleType: ''
+        };
+        
+        this.props.fetchLatestTask()
+            .then( res => {
+                taskRequirement.taskCategory = res.task.task_category;
+                taskRequirement.vehicleType = res.task.vehicle_type;
+                console.log(taskRequirement)
+            })
+            .then( () => this.props.fetchAllTaskers(taskRequirement)
             .then( taskers => {
                 this.setState({ taskers: taskers.taskers })
                 
             // .then( res => { console.log('this is returned result', res);
 
-            })
+            }))
     };
-    
-    handleClick(id) {
-        console.log(id)
-
-        let selectedTasker = {
-            tasker_id: id
-        }
-
-        this.props.receiveTasker(selectedTasker);
-
-        
-    }   
 
     render() {
         // console.log(this.state);
@@ -66,17 +59,19 @@ class ChooseTasker extends React.Component {
         const renderAllTaskers = 
             allTaskers.map( (tasker, idx) => {
                 return (
-                    <TaskerProfile
+                    <TaskerProfileRedux
                         key={`tasker-profile-${idx}`}
                         id={tasker.id}
                         first_name={tasker.first_name}
                         last_name={tasker.last_name}
                         task_category={tasker.tasker_skill_type}
+                        profile_img={tasker.profile_img}
                         hourly_rate={tasker.hourly_rate}
                         num_completed_tasks={tasker.num_completed_tasks}
                         reviews_rating={tasker.reviews_rating}
                         reviews_num={tasker.reviews_num}
                         vehicle_type={tasker.vehicle_type}
+                        tasker_rank={tasker.tasker_rank}
                         aboutme={tasker.tasker_aboutme}
                     />
                 )

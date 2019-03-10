@@ -5,6 +5,19 @@ class TaskerProfile extends React.Component {
         super(props);
     }
 
+
+    handleClick() {
+
+        let selectedTasker = {
+            tasker_id: this.props.id
+        }
+
+        console.log(selectedTasker)
+
+
+        this.props.receiveTasker(selectedTasker);
+    }   
+
     render() {
         return(
             <div className="tasker-profile-container">
@@ -17,7 +30,7 @@ class TaskerProfile extends React.Component {
                 <h3>How I can help:</h3>
                 <div>{this.props.tasker_aboutme}</div>
                 <br />
-                <button >Select & Continue</button>
+                <button onClick={() => this.handleClick()}>Select & Continue</button>
             </div>
         )
     }

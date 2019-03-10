@@ -1643,7 +1643,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _task_calendar_container__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./task_calendar_container */ "./frontend/components/task_form/task_calendar_container.js");
-/* harmony import */ var _tasker_profile_tasker_profile__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./tasker-profile/tasker-profile */ "./frontend/components/task_form/tasker-profile/tasker-profile.jsx");
+/* harmony import */ var _tasker_profile_tasker_profile_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./tasker-profile/tasker-profile-redux */ "./frontend/components/task_form/tasker-profile/tasker-profile-redux.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -1654,9 +1654,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
 function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
@@ -1688,10 +1688,9 @@ function (_React$Component) {
       vehicle_type: '',
       num_completed_tasks: '',
       reviews_rating: '',
-      reviews_num: ''
-    };
-    _this.handleClick = _this.handleClick.bind(_assertThisInitialized(_this)); // this.receiveDateTime = this.receiveDateTime.bind(this);
+      reviews_num: '' // this.receiveDateTime = this.receiveDateTime.bind(this);
 
+    };
     return _this;
   }
 
@@ -1705,24 +1704,21 @@ function (_React$Component) {
       // Use DidMount if you need to regularly update state
       // Fetch all taskers where 'tasks.task_category === users.tasker_skill_type'
       var taskRequirement = {
-        taskCategory: this.props.currentTask.task_category,
-        vehicleType: this.props.currentTask.vehicle_type
+        taskCategory: '',
+        vehicleType: ''
       };
-      this.props.fetchAllTaskers(taskRequirement).then(function (taskers) {
-        _this2.setState({
-          taskers: taskers.taskers
-        }); // .then( res => { console.log('this is returned result', res);
+      this.props.fetchLatestTask().then(function (res) {
+        taskRequirement.taskCategory = res.task.task_category;
+        taskRequirement.vehicleType = res.task.vehicle_type;
+        console.log(taskRequirement);
+      }).then(function () {
+        return _this2.props.fetchAllTaskers(taskRequirement).then(function (taskers) {
+          _this2.setState({
+            taskers: taskers.taskers
+          }); // .then( res => { console.log('this is returned result', res);
 
+        });
       });
-    }
-  }, {
-    key: "handleClick",
-    value: function handleClick(id) {
-      console.log(id);
-      var selectedTasker = {
-        tasker_id: id
-      };
-      this.props.receiveTasker(selectedTasker);
     }
   }, {
     key: "render",
@@ -1731,17 +1727,19 @@ function (_React$Component) {
       // console.log(this.props);
       var allTaskers = this.state.taskers ? this.state.taskers : [];
       var renderAllTaskers = allTaskers.map(function (tasker, idx) {
-        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_tasker_profile_tasker_profile__WEBPACK_IMPORTED_MODULE_2__["default"], {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_tasker_profile_tasker_profile_redux__WEBPACK_IMPORTED_MODULE_2__["default"], {
           key: "tasker-profile-".concat(idx),
           id: tasker.id,
           first_name: tasker.first_name,
           last_name: tasker.last_name,
           task_category: tasker.tasker_skill_type,
+          profile_img: tasker.profile_img,
           hourly_rate: tasker.hourly_rate,
           num_completed_tasks: tasker.num_completed_tasks,
           reviews_rating: tasker.reviews_rating,
           reviews_num: tasker.reviews_num,
           vehicle_type: tasker.vehicle_type,
+          tasker_rank: tasker.tasker_rank,
           aboutme: tasker.tasker_aboutme
         });
       });
@@ -1780,6 +1778,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _choose_tasker__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./choose_tasker */ "./frontend/components/task_form/choose_tasker.jsx");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _actions_tasker_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/tasker_actions */ "./frontend/actions/tasker_actions.js");
+/* harmony import */ var _actions_task_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/task_actions */ "./frontend/actions/task_actions.js");
+
 
 
 
@@ -1793,6 +1793,9 @@ var mapStateToProps = function mapStateToProps(state) {
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
+    fetchLatestTask: function fetchLatestTask() {
+      return dispatch(Object(_actions_task_actions__WEBPACK_IMPORTED_MODULE_3__["fetchLatestTask"])());
+    },
     fetchAllTaskers: function fetchAllTaskers(taskRequirement) {
       return dispatch(Object(_actions_tasker_actions__WEBPACK_IMPORTED_MODULE_2__["fetchAllTaskers"])(taskRequirement));
     },
@@ -2335,6 +2338,37 @@ function (_React$Component) {
 
 /***/ }),
 
+/***/ "./frontend/components/task_form/tasker-profile/tasker-profile-redux.js":
+/*!******************************************************************************!*\
+  !*** ./frontend/components/task_form/tasker-profile/tasker-profile-redux.js ***!
+  \******************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _tasker_profile__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./tasker-profile */ "./frontend/components/task_form/tasker-profile/tasker-profile.jsx");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _actions_tasker_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../actions/tasker_actions */ "./frontend/actions/tasker_actions.js");
+
+
+ // const mapStateToProps = (state) => {
+//     return {
+//     }
+// }
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    receiveTasker: function receiveTasker(selectedTasker) {
+      return dispatch(Object(_actions_tasker_actions__WEBPACK_IMPORTED_MODULE_2__["receiveTasker"])(selectedTasker));
+    }
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(null, mapDispatchToProps)(_tasker_profile__WEBPACK_IMPORTED_MODULE_0__["default"]));
+
+/***/ }),
+
 /***/ "./frontend/components/task_form/tasker-profile/tasker-profile.jsx":
 /*!*************************************************************************!*\
   !*** ./frontend/components/task_form/tasker-profile/tasker-profile.jsx ***!
@@ -2378,8 +2412,19 @@ function (_React$Component) {
   }
 
   _createClass(TaskerProfile, [{
+    key: "handleClick",
+    value: function handleClick() {
+      var selectedTasker = {
+        tasker_id: this.props.id
+      };
+      console.log(selectedTasker);
+      this.props.receiveTasker(selectedTasker);
+    }
+  }, {
     key: "render",
     value: function render() {
+      var _this = this;
+
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "tasker-profile-container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
@@ -2400,7 +2445,11 @@ function (_React$Component) {
         className: "tasker-stats"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
         className: "fas fa-car"
-      }), "Vehicle: ", this.props.vehicle_type), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "How I can help:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.props.tasker_aboutme), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", null, "Select & Continue"));
+      }), "Vehicle: ", this.props.vehicle_type), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "How I can help:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.props.tasker_aboutme), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        onClick: function onClick() {
+          return _this.handleClick();
+        }
+      }, "Select & Continue"));
     }
   }]);
 
