@@ -4,6 +4,7 @@ export const RECEIVE_TASK_CATEGORY = 'RECEIVE_TASK_CATEGORY';
 export const RECEIVE_TASK_DESCRIPTION = 'RECEIVE_TASK_DESCRIPTION';
 export const RECEIVE_TASK_DATETIME = 'RECEIVE_TASK_DATETIME';
 export const RECEIVE_LATEST_TASK = 'RECEIVE_LATEST_TASK';
+export const RECEIVE_TASKER_ID = 'RECEIEVE_TASKER_ID';
 
 const receiveTaskCategory = taskCategory => {
     return ({
@@ -25,6 +26,13 @@ const receiveTaskDescription = taskDescription => {
         task_description: taskDescription
     })
 };
+
+const receiveTaskerId = id => {
+    return ({
+        type: RECEIVE_TASKER_ID,
+        id: id
+    })
+}
 
 export const receiveTaskDateTime = taskDateTime => {
     return ({
@@ -50,3 +58,10 @@ export const updateTaskDescription = taskDescription => dispatch => {
         .then(taskDescription => dispatch(receiveTaskDescription(taskDescription))
         )
 };
+
+export const updateTaskerId = taskId => dispatch => {
+    return TaskUtil.patchTaskerId(taskId)
+        .then(taskId => dispatch(receiveTaskerId(taskId))
+        )
+};
+

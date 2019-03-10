@@ -16,7 +16,7 @@ class Api::UsersController < ApplicationController
         # SELECT * FROM Users WHERE tasks.task_category == users.tasker_skill_type AND tasks.vehicle_type == users.vehicle_type
 
         p "pls render all @taskers" 
-        p @taskers.first.first_name
+        # p @taskers.first.first_name
 
         # Question: How can I pass information from redux-store to rails controller? I need currentTask.task_category
         # What information does rails controller have access to?

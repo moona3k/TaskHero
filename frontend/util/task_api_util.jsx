@@ -20,3 +20,11 @@ export const patchTaskDescription = taskDescription => {
         data: { taskDescription }
     })
 };
+
+export const patchTaskerId = taskerId => {
+    return $.ajax({
+        url: `api/tasks/${taskerId.id}`,
+        method: 'PATCH',
+        data: { taskerId }
+    })
+};

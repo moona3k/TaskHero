@@ -182,7 +182,7 @@ var logout = function logout() {
 /*!******************************************!*\
   !*** ./frontend/actions/task_actions.js ***!
   \******************************************/
-/*! exports provided: RECEIVE_TASK_CATEGORY, RECEIVE_TASK_DESCRIPTION, RECEIVE_TASK_DATETIME, RECEIVE_LATEST_TASK, receiveTaskDateTime, initializeTask, fetchLatestTask, updateTaskDescription */
+/*! exports provided: RECEIVE_TASK_CATEGORY, RECEIVE_TASK_DESCRIPTION, RECEIVE_TASK_DATETIME, RECEIVE_LATEST_TASK, RECEIVE_TASKER_ID, receiveTaskDateTime, initializeTask, fetchLatestTask, updateTaskDescription, updateTaskerId */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -191,16 +191,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_TASK_DESCRIPTION", function() { return RECEIVE_TASK_DESCRIPTION; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_TASK_DATETIME", function() { return RECEIVE_TASK_DATETIME; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_LATEST_TASK", function() { return RECEIVE_LATEST_TASK; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_TASKER_ID", function() { return RECEIVE_TASKER_ID; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveTaskDateTime", function() { return receiveTaskDateTime; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "initializeTask", function() { return initializeTask; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchLatestTask", function() { return fetchLatestTask; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateTaskDescription", function() { return updateTaskDescription; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateTaskerId", function() { return updateTaskerId; });
 /* harmony import */ var _util_task_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/task_api_util */ "./frontend/util/task_api_util.jsx");
 
 var RECEIVE_TASK_CATEGORY = 'RECEIVE_TASK_CATEGORY';
 var RECEIVE_TASK_DESCRIPTION = 'RECEIVE_TASK_DESCRIPTION';
 var RECEIVE_TASK_DATETIME = 'RECEIVE_TASK_DATETIME';
 var RECEIVE_LATEST_TASK = 'RECEIVE_LATEST_TASK';
+var RECEIVE_TASKER_ID = 'RECEIEVE_TASKER_ID';
 
 var receiveTaskCategory = function receiveTaskCategory(taskCategory) {
   return {
@@ -220,6 +223,13 @@ var receiveTaskDescription = function receiveTaskDescription(taskDescription) {
   return {
     type: RECEIVE_TASK_DESCRIPTION,
     task_description: taskDescription
+  };
+};
+
+var receiveTaskerId = function receiveTaskerId(id) {
+  return {
+    type: RECEIVE_TASKER_ID,
+    id: id
   };
 };
 
@@ -247,6 +257,13 @@ var updateTaskDescription = function updateTaskDescription(taskDescription) {
   return function (dispatch) {
     return _util_task_api_util__WEBPACK_IMPORTED_MODULE_0__["patchTaskDescription"](taskDescription).then(function (taskDescription) {
       return dispatch(receiveTaskDescription(taskDescription));
+    });
+  };
+};
+var updateTaskerId = function updateTaskerId(taskId) {
+  return function (dispatch) {
+    return _util_task_api_util__WEBPACK_IMPORTED_MODULE_0__["patchTaskerId"](taskId).then(function (taskId) {
+      return dispatch(receiveTaskerId(taskId));
     });
   };
 };
@@ -2349,7 +2366,11 @@ function (_React$Component) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _tasker_profile__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./tasker-profile */ "./frontend/components/task_form/tasker-profile/tasker-profile.jsx");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var _actions_tasker_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../actions/tasker_actions */ "./frontend/actions/tasker_actions.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/es/index.js");
+/* harmony import */ var _actions_tasker_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../actions/tasker_actions */ "./frontend/actions/tasker_actions.js");
+/* harmony import */ var _actions_task_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../actions/task_actions */ "./frontend/actions/task_actions.js");
+
+
 
 
  // const mapStateToProps = (state) => {
@@ -2360,12 +2381,15 @@ __webpack_require__.r(__webpack_exports__);
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
     receiveTasker: function receiveTasker(selectedTasker) {
-      return dispatch(Object(_actions_tasker_actions__WEBPACK_IMPORTED_MODULE_2__["receiveTasker"])(selectedTasker));
+      return dispatch(Object(_actions_tasker_actions__WEBPACK_IMPORTED_MODULE_3__["receiveTasker"])(selectedTasker));
+    },
+    updateTaskerId: function updateTaskerId(taskerId) {
+      return dispatch(Object(_actions_task_actions__WEBPACK_IMPORTED_MODULE_4__["updateTaskerId"])(taskerId));
     }
   };
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(null, mapDispatchToProps)(_tasker_profile__WEBPACK_IMPORTED_MODULE_0__["default"]));
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["withRouter"])(Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(null, mapDispatchToProps)(_tasker_profile__WEBPACK_IMPORTED_MODULE_0__["default"])));
 
 /***/ }),
 
@@ -2412,13 +2436,12 @@ function (_React$Component) {
   }
 
   _createClass(TaskerProfile, [{
-    key: "handleClick",
-    value: function handleClick() {
-      var selectedTasker = {
-        tasker_id: this.props.id
-      };
-      console.log(selectedTasker);
-      this.props.receiveTasker(selectedTasker);
+    key: "chooseTasker",
+    value: function chooseTasker() {
+      var taskerId = this.props.id; // console.log(selectedTasker)
+
+      this.props.updateTaskerId(taskerId);
+      this.props.history.push('confirm');
     }
   }, {
     key: "render",
@@ -2447,7 +2470,7 @@ function (_React$Component) {
         className: "fas fa-car"
       }), "Vehicle: ", this.props.vehicle_type), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "How I can help:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.props.tasker_aboutme), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         onClick: function onClick() {
-          return _this.handleClick();
+          return _this.chooseTasker();
         }
       }, "Select & Continue"));
     }
@@ -2639,17 +2662,7 @@ var taskersReducer = function taskersReducer() {
 
     case _actions_tasker_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_TASKER"]:
       return Object.assign({}, state, {
-        first_name: action.selectedTasker.first_name,
-        last_name: action.selectedTasker.last_name,
-        profile_img: action.selectedTasker.profile_img,
-        hourly_rate: action.selectedTasker.hourly_rate,
-        tasker_aboutme: action.selectedTasker.tasker_aboutme,
-        tasker_rank: action.selectedTasker.tasker_rank,
-        tasker_skill_type: action.selectedTasker.tasker_skill_type,
-        vehicle_type: action.selectedTasker.vehicle_type,
-        num_completed_tasks: action.selectedTasker.num_completed_tasks,
-        reviews_rating: action.selectedTasker.reviews_rating,
-        reviews_num: action.selectedTasker.reviews_num
+        id: action.selectedTasker.id
       });
 
     default:
@@ -2708,6 +2721,11 @@ var tasksReducer = function tasksReducer() {
       return Object.assign({}, state, {
         scheduled_date: action.taskDateTime.taskDate,
         scheduled_time: action.taskDateTime.taskTime
+      });
+
+    case _actions_task_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_TASKER_ID"]:
+      return Object.assign({}, state, {
+        tasker_id: action.taskerId
       });
 
     default:
@@ -2943,7 +2961,7 @@ var deleteSession = function deleteSession() {
 /*!*****************************************!*\
   !*** ./frontend/util/task_api_util.jsx ***!
   \*****************************************/
-/*! exports provided: postNewTask, getLatestTask, patchTaskDescription */
+/*! exports provided: postNewTask, getLatestTask, patchTaskDescription, patchTaskerId */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2951,6 +2969,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "postNewTask", function() { return postNewTask; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getLatestTask", function() { return getLatestTask; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "patchTaskDescription", function() { return patchTaskDescription; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "patchTaskerId", function() { return patchTaskerId; });
 var postNewTask = function postNewTask(taskCategory) {
   return $.ajax({
     url: 'api/tasks',
@@ -2972,6 +2991,15 @@ var patchTaskDescription = function patchTaskDescription(taskDescription) {
     method: 'PATCH',
     data: {
       taskDescription: taskDescription
+    }
+  });
+};
+var patchTaskerId = function patchTaskerId(taskerId) {
+  return $.ajax({
+    url: "api/tasks/".concat(taskerId.id),
+    method: 'PATCH',
+    data: {
+      taskerId: taskerId
     }
   });
 };

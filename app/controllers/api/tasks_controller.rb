@@ -32,30 +32,41 @@ class Api::TasksController < ApplicationController
 
     def update
         @task = Task.order("created_at").last
+        
+        if params[:taskDescription]
+            @task.update(
+                    task_category: params[:taskDescription][:task_category],
+                    location: params[:taskDescription][:location],
+                    specific_location: params[:taskDescription][:specific_location],
+                    description: params[:taskDescription][:description],
+                    estimated_time_req: params[:taskDescription][:estimated_time_req],
+                    vehicle_type: params[:taskDescription][:vehicle_type],
+                )
+        end
 
-        @task.update(
-            task_category: params[:taskDescription][:task_category],
-            location: params[:taskDescription][:location],
-            specific_location: params[:taskDescription][:specific_location],
-            description: params[:taskDescription][:description],
-            estimated_time_req: params[:taskDescription][:estimated_time_req],
-            scheduled_time: params[:taskDescription][:scheduled_time],
-            scheduled_date: params[:taskDescription][:scheduled_date],
-            vehicle_type: params[:taskDescription][:vehicle_type],
-            user_id: params[:taskDescription][:user_id],
-            tasker_id: params[:taskDescription][:tasker_id],
-        )
+        if params[:taskerId]
+            taskerId = params[:taskerId].to_i
+            @task.update(tasker_id: taskerId)
+        end
 
-        p "wait a sec...???"
-        p @task
+
 
         render json: @task
     end
 
     private
 
-    def task_params
-        params.require(:task).permit(:task_category, :location, :description, :user_id, :tasker_id, :estimated_time_req, :scheduled_time, :scheduled_date, :is_complete, :specific_location, :vehicle_type)
-    end
+    # def task_description_params
+    #     params
+    #         .require(:taskDescription)
+    #         .permit(
+    #             :task_category, 
+    #             :location, 
+    #             :description, 
+    #             :estimated_time_req, 
+    #             :specific_location, 
+    #             :vehicle_type
+    #         )
+    # end
 
 end

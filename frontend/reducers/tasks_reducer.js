@@ -1,7 +1,8 @@
 import { RECEIVE_TASK_CATEGORY,
         RECEIVE_LATEST_TASK,
         RECEIVE_TASK_DESCRIPTION, 
-        RECEIVE_TASK_DATETIME } from '../actions/task_actions';
+        RECEIVE_TASK_DATETIME,
+        RECEIVE_TASKER_ID } from '../actions/task_actions';
 
 const tasksReducer = (state = {}, action) => {
     Object.freeze(state);
@@ -39,6 +40,10 @@ const tasksReducer = (state = {}, action) => {
                 scheduled_time: action.taskDateTime.taskTime
             })
         
+        case RECEIVE_TASKER_ID:
+            return Object.assign({}, state, {
+                tasker_id: action.taskerId
+            })    
 
         default:
             return state;
