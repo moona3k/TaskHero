@@ -1,4 +1,7 @@
-import { RECEIVE_ALL_TASKER, RECEIVE_TASKER } from '../actions/tasker_actions';
+import { RECEIVE_ALL_TASKER, 
+    RECEIVE_TASKER,
+    RECEIVE_ASSIGNED_TASKER
+    } from '../actions/tasker_actions';
 
 // Reducers take in 2 parameters: current state & action POJO
 const taskersReducer = (state = {}, action) => {
@@ -24,6 +27,14 @@ const taskersReducer = (state = {}, action) => {
         case RECEIVE_TASKER:
             return Object.assign({}, state, {
                 id: action.selectedTasker.id,
+            })
+
+        case RECEIVE_ASSIGNED_TASKER:
+            return Object.assigne({}, state, {
+                first_name: action.tasker.first_name,
+                last_name: action.tasker.last_name,
+                profile_img: action.tasker.profile_img,
+                hourly_rate: action.tasker.hourly_rate
             })
 
         default:

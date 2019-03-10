@@ -2852,6 +2852,14 @@ var taskersReducer = function taskersReducer() {
         id: action.selectedTasker.id
       });
 
+    case _actions_tasker_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_ASSIGNED_TASKER"]:
+      return Object.assigne({}, state, {
+        first_name: action.tasker.first_name,
+        last_name: action.tasker.last_name,
+        profile_img: action.tasker.profile_img,
+        hourly_rate: action.tasker.hourly_rate
+      });
+
     default:
       return state;
   }
