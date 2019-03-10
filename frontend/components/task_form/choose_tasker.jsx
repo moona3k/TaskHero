@@ -1,5 +1,6 @@
 import React from 'react';
 import TaskCalendarContainer from './task_calendar_container';
+import TaskerProfile from './tasker-profile/tasker-profile';
 
 
 class ChooseTasker extends React.Component {
@@ -29,16 +30,16 @@ class ChooseTasker extends React.Component {
         // Use DidMount if you need to regularly update state
 
         // Fetch all taskers where 'tasks.task_category === users.tasker_skill_type'
-
+        
         let taskRequirement = { 
             taskCategory: this.props.currentTask.task_category,
             vehicleType: this.props.currentTask.vehicle_type
         }
-        
+
         this.props.fetchAllTaskers(taskRequirement)
             .then( taskers => {
                 this.setState({ taskers: taskers.taskers })
-            
+                
             // .then( res => { console.log('this is returned result', res);
 
             })
@@ -65,18 +66,19 @@ class ChooseTasker extends React.Component {
         const renderAllTaskers = 
             allTaskers.map( (tasker, idx) => {
                 return (
-                    <div key={`tasker-profile-${idx}`} className="tasker-profile-container">
-                        <h2 className="tasker-profile-name">{tasker.first_name} {tasker.last_name}</h2>
-                        <h3>${tasker.hourly_rate}/hr</h3>
-                            <div className="tasker-profile-stats"><i className="fas fa-tasks"></i>{tasker.num_completed_tasks} {this.props.currentTask.task_category} Tasks</div>
-                            <div className="tasker-profile-stats"><i className="far fa-star"></i>{tasker.reviews_rating} Positive Reviews</div>
-                            <div className="tasker-profile-stats"><i className="far fa-check-circle"></i>{tasker.reviews_num} Reviews</div>
-                            <div className="tasker-profile-stats"><i className="fas fa-car"></i>Vehicle: {tasker.vehicle_type}</div>
-                        <h3>How I can help:</h3>
-                            <div>{tasker.tasker_aboutme}</div>
-                        <br />
-                            <button onClick={ () => this.handleClick(tasker.id) }>Select & Continue</button>
-                    </div>
+                    <TaskerProfile
+                        key={`tasker-profile-${idx}`}
+                        id={tasker.id}
+                        first_name={tasker.first_name}
+                        last_name={tasker.last_name}
+                        task_category={tasker.tasker_skill_type}
+                        hourly_rate={tasker.hourly_rate}
+                        num_completed_tasks={tasker.num_completed_tasks}
+                        reviews_rating={tasker.reviews_rating}
+                        reviews_num={tasker.reviews_num}
+                        vehicle_type={tasker.vehicle_type}
+                        aboutme={tasker.tasker_aboutme}
+                    />
                 )
             })
         

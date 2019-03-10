@@ -1,19 +1,22 @@
 class Api::UsersController < ApplicationController
 
     def index
-        p "this is a hit!" 
+
+        p "confirm that ajax hits user index"
         p params
-        
+
         task_category = params[:taskRequirement][:taskCategory]
         vehicle_type = params[:taskRequirement][:vehicleType]
-        # p task_category
-        # p vehicle_type
+        p "This is the task cateogry!"
+        p task_category
+        p "This is the vehicle type!"
+        p vehicle_type
         
         @taskers = User.where(is_tasker: true, tasker_skill_type: task_category, vehicle_type: vehicle_type)
         # SELECT * FROM Users WHERE tasks.task_category == users.tasker_skill_type AND tasks.vehicle_type == users.vehicle_type
 
-        p "these are selected taskers!" 
-        p @taskers
+        p "pls render all @taskers" 
+        p @taskers.first.first_name
 
         # Question: How can I pass information from redux-store to rails controller? I need currentTask.task_category
         # What information does rails controller have access to?

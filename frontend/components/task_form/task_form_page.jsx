@@ -21,7 +21,7 @@ class TaskFormPage extends React.Component {
                 <Switch>
                     <Route path="/task-form/new" component={ TaskDescriptionContainer } />
                     <Route path="/task-form/taskers" component={ChooseTaskerContainer} />
-                    {/* <Route path="/task-form/booking" component={ TaskFormBooking } /> */}
+                    {/* <Route path="/task-form/confirm" component={ TaskFormBooking } /> */}
                 </Switch>
             </div>
         )

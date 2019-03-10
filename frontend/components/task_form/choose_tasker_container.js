@@ -13,7 +13,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        fetchAllTaskers: (taskCategory) => dispatch(fetchAllTaskers(taskCategory)),
+        fetchAllTaskers: (taskRequirement) => dispatch(fetchAllTaskers(taskRequirement)),
         receiveTasker: (selectedTasker) => dispatch(receiveTasker(selectedTasker))
     }
 }

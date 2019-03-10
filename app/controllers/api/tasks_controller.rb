@@ -46,7 +46,7 @@ class Api::TasksController < ApplicationController
             tasker_id: params[:taskDescription][:tasker_id],
         )
 
-        p "after update why is this hit???"
+        p "wait a sec...???"
         p @task
 
         render json: @task

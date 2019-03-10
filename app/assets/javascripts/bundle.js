@@ -1643,6 +1643,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _task_calendar_container__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./task_calendar_container */ "./frontend/components/task_form/task_calendar_container.js");
+/* harmony import */ var _tasker_profile_tasker_profile__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./tasker-profile/tasker-profile */ "./frontend/components/task_form/tasker-profile/tasker-profile.jsx");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -1660,6 +1661,7 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
 
 
 
@@ -1725,38 +1727,23 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var _this3 = this;
-
       // console.log(this.state);
       // console.log(this.props);
       var allTaskers = this.state.taskers ? this.state.taskers : [];
       var renderAllTaskers = allTaskers.map(function (tasker, idx) {
-        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_tasker_profile_tasker_profile__WEBPACK_IMPORTED_MODULE_2__["default"], {
           key: "tasker-profile-".concat(idx),
-          className: "tasker-profile-container"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
-          className: "tasker-profile-name"
-        }, tasker.first_name, " ", tasker.last_name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "$", tasker.hourly_rate, "/hr"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "tasker-profile-stats"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-          className: "fas fa-tasks"
-        }), tasker.num_completed_tasks, " ", _this3.props.currentTask.task_category, " Tasks"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "tasker-profile-stats"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-          className: "far fa-star"
-        }), tasker.reviews_rating, " Positive Reviews"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "tasker-profile-stats"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-          className: "far fa-check-circle"
-        }), tasker.reviews_num, " Reviews"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "tasker-profile-stats"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-          className: "fas fa-car"
-        }), "Vehicle: ", tasker.vehicle_type), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "How I can help:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, tasker.tasker_aboutme), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-          onClick: function onClick() {
-            return _this3.handleClick(tasker.id);
-          }
-        }, "Select & Continue"));
+          id: tasker.id,
+          first_name: tasker.first_name,
+          last_name: tasker.last_name,
+          task_category: tasker.tasker_skill_type,
+          hourly_rate: tasker.hourly_rate,
+          num_completed_tasks: tasker.num_completed_tasks,
+          reviews_rating: tasker.reviews_rating,
+          reviews_num: tasker.reviews_num,
+          vehicle_type: tasker.vehicle_type,
+          aboutme: tasker.tasker_aboutme
+        });
       });
       console.log('this is allTaskers', allTaskers);
       console.log('this is props', this.props.currentTask);
@@ -1806,8 +1793,8 @@ var mapStateToProps = function mapStateToProps(state) {
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
-    fetchAllTaskers: function fetchAllTaskers(taskCategory) {
-      return dispatch(Object(_actions_tasker_actions__WEBPACK_IMPORTED_MODULE_2__["fetchAllTaskers"])(taskCategory));
+    fetchAllTaskers: function fetchAllTaskers(taskRequirement) {
+      return dispatch(Object(_actions_tasker_actions__WEBPACK_IMPORTED_MODULE_2__["fetchAllTaskers"])(taskRequirement));
     },
     receiveTasker: function receiveTasker(selectedTasker) {
       return dispatch(Object(_actions_tasker_actions__WEBPACK_IMPORTED_MODULE_2__["receiveTasker"])(selectedTasker));
@@ -2149,20 +2136,20 @@ function (_React$Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "radio",
         name: "vehicle_type",
-        value: "none",
-        checked: this.state.vehicle_type === "none",
+        value: "None",
+        checked: this.state.vehicle_type === "None",
         onClick: this.handleRadioButtonClick('vehicle_type')
       }), "Not needed for task"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "radio",
         name: "vehicle_type",
-        value: "car",
-        checked: this.state.vehicle_type === "car",
+        value: "Car",
+        checked: this.state.vehicle_type === "Car",
         onClick: this.handleRadioButtonClick('vehicle_type')
       }), "Task requires a car"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "radio",
         name: "vehicle_type",
-        value: "truck",
-        checked: this.state.vehicle_type === "truck",
+        value: "Truck",
+        checked: this.state.vehicle_type === "Truck",
         onClick: this.handleRadioButtonClick('vehicle_type')
       }), "Task requires a truck")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         className: "task-description-button"
@@ -2345,6 +2332,82 @@ function (_React$Component) {
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
 /* harmony default export */ __webpack_exports__["default"] = (TaskFormPage);
+
+/***/ }),
+
+/***/ "./frontend/components/task_form/tasker-profile/tasker-profile.jsx":
+/*!*************************************************************************!*\
+  !*** ./frontend/components/task_form/tasker-profile/tasker-profile.jsx ***!
+  \*************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+var TaskerProfile =
+/*#__PURE__*/
+function (_React$Component) {
+  _inherits(TaskerProfile, _React$Component);
+
+  function TaskerProfile(props) {
+    _classCallCheck(this, TaskerProfile);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(TaskerProfile).call(this, props));
+  }
+
+  _createClass(TaskerProfile, [{
+    key: "render",
+    value: function render() {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "tasker-profile-container"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
+        className: "tasker-name"
+      }, this.props.first_name, " ", this.props.last_name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "$", this.props.hourly_rate, "/hr"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "tasker-stats"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+        className: "fas fa-tasks"
+      }), this.props.num_completed_tasks, " ", this.props.task_category, " Tasks"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "tasker-stats"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+        className: "far fa-star"
+      }), this.props.reviews_rating, " Positive Reviews"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "tasker-stats"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+        className: "far fa-check-circle"
+      }), this.props.reviews_num, " Reviews"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "tasker-stats"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+        className: "fas fa-car"
+      }), "Vehicle: ", this.props.vehicle_type), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "How I can help:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.props.tasker_aboutme), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", null, "Select & Continue"));
+    }
+  }]);
+
+  return TaskerProfile;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+/* harmony default export */ __webpack_exports__["default"] = (TaskerProfile);
 
 /***/ }),
 

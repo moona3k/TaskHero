@@ -99,9 +99,9 @@ class TaskDescription extends React.Component {
                         <h3 className="task-options-headers">Vehicle Requirements</h3>
                         <hr className="general-line" />
                         <div className="vehicle-radio-button-container">
-                            <label><input type="radio" name="vehicle_type" value="none" checked={this.state.vehicle_type === "none"} onClick={this.handleRadioButtonClick('vehicle_type')} />Not needed for task</label>
-                            <label><input type="radio" name="vehicle_type" value="car" checked={this.state.vehicle_type === "car"} onClick={this.handleRadioButtonClick('vehicle_type')} />Task requires a car</label>
-                            <label><input type="radio" name="vehicle_type" value="truck" checked={this.state.vehicle_type === "truck"} onClick={this.handleRadioButtonClick('vehicle_type')} />Task requires a truck</label>
+                            <label><input type="radio" name="vehicle_type" value="None" checked={this.state.vehicle_type === "None"} onClick={this.handleRadioButtonClick('vehicle_type')} />Not needed for task</label>
+                            <label><input type="radio" name="vehicle_type" value="Car" checked={this.state.vehicle_type === "Car"} onClick={this.handleRadioButtonClick('vehicle_type')} />Task requires a car</label>
+                            <label><input type="radio" name="vehicle_type" value="Truck" checked={this.state.vehicle_type === "Truck"} onClick={this.handleRadioButtonClick('vehicle_type')} />Task requires a truck</label>
                         </div>
                         <br />
                         <button className="task-description-button">Continue</button>
