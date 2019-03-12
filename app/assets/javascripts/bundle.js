@@ -512,7 +512,16 @@ function (_React$Component) {
     _classCallCheck(this, Dashboard);
 
     return _possibleConstructorReturn(this, _getPrototypeOf(Dashboard).call(this, props));
-  }
+  } // componentDidMount(){
+  //     const deleteEmptyTasks = () => {
+  //         return $.ajax({
+  //         url: '/api/tasks/empty',
+  //         method: 'DELETE',
+  //         })
+  //     };
+  //     deleteEmptyTasks();
+  // }
+
 
   _createClass(Dashboard, [{
     key: "render",
@@ -642,15 +651,15 @@ function (_React$Component) {
     _this = _possibleConstructorReturn(this, _getPrototypeOf(MyTasks).call(this, props));
     _this.deleteTask = _this.deleteTask.bind(_assertThisInitialized(_this));
     return _this;
-  } // componentWillMount() {
+  } // componentDidMount() {
   //     user_id = 
   //     this.props.fetchAllTasks(user_id)
   // }
 
 
   _createClass(MyTasks, [{
-    key: "componentWillMount",
-    value: function componentWillMount() {
+    key: "componentDidMount",
+    value: function componentDidMount() {
       var userId = this.props.currentUser.id;
       this.props.fetchAllTasks(userId);
     }
@@ -680,17 +689,34 @@ function (_React$Component) {
       console.log(arrayOfTasks);
       var myTask = arrayOfTasks.map(function (task, idx) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          key: "my-task-".concat(idx)
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, task.task_category), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+          key: "my-task-".concat(idx),
+          className: "dashboard-task-container"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "dashboard-task-box-1"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
+          className: "dashboard-task-h3"
+        }, task.task_category), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
           className: "tasker-profile-img",
           src: task.tasker.profile_img,
           alt: ""
         }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
           value: task.id,
           onClick: _this2.deleteTask
-        }, "Cancel Task")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Your task is booked with ", task.tasker.first_name, " ", task.tasker.last_name)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "RENDER ", task.scheduled_date, " & ", task.scheduled_time), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", null, "Location"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, task.location), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", null, "Tasker"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, task.tasker.first_name, " ", task.tasker.last_name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", null, "Price"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "$", task.tasker.hourly_rate, "/hr"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", null, "Description"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, task.description), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", null, "Vehicle Requirements"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, task.vehicle_type)));
+        }, "Cancel Task")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "dashboard-task-box-2"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Your task is booked with ", task.tasker.first_name, " ", task.tasker.last_name)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "dashboard-task-box-3"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "dashboard-scheduled-date"
+        }, task.scheduled_date), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "dashboard-scheduled-time"
+        }, task.scheduled_time)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", null, "Location"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, task.location), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", null, "Tasker"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, task.tasker.first_name, " ", task.tasker.last_name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", null, "Price"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "$", task.tasker.hourly_rate, "/hr"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", null, "Description"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, task.description), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", null, "Vehicle Requirements"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, task.vehicle_type)));
       });
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", null, "Tasks"), myTask);
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "dashboard-root-container"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
+        className: "dashboard-header"
+      }, "My Tasks"), myTask);
     }
   }]);
 
@@ -1949,8 +1975,8 @@ function (_React$Component) {
   }
 
   _createClass(ChooseTasker, [{
-    key: "componentWillMount",
-    value: function componentWillMount() {
+    key: "componentDidMount",
+    value: function componentDidMount() {
       var _this2 = this;
 
       // componentWillMount vs. componentDidMount
@@ -1967,6 +1993,8 @@ function (_React$Component) {
         console.log(taskRequirement);
       }).then(function () {
         return _this2.props.fetchAllTaskers(taskRequirement).then(function (taskers) {
+          console.log('about to set state');
+
           _this2.setState({
             taskers: taskers.taskers
           }); // .then( res => { console.log('this is returned result', res);
@@ -1976,6 +2004,9 @@ function (_React$Component) {
     }
   }, {
     key: "render",
+    // componentWillReceiveProps(nextProps)
+    // if nextProps.currentTask !== this.props.currentTask
+    // then this.setState(nextProps.currentTask)
     value: function render() {
       // console.log(this.state);
       // console.log(this.props);
@@ -2009,7 +2040,9 @@ function (_React$Component) {
         className: "choose-tasker-header-sub"
       }, "After booking, you can chat with your Tasker, agree on an exact time, or go over any requirements or questions, if necessary.")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "sorted-by-text"
-      }, "SORTED BY: (insert sort feature)")), renderAllTaskers), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_task_date_time_task_date_time_redux__WEBPACK_IMPORTED_MODULE_1__["default"], null));
+      }, "SORTED BY: (insert sort feature)")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "choose-tasker-body-container"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_task_date_time_task_date_time_redux__WEBPACK_IMPORTED_MODULE_1__["default"], null), renderAllTaskers)));
     }
   }]);
 
@@ -2163,8 +2196,8 @@ function (_React$Component) {
   }
 
   _createClass(TaskConfirmPage, [{
-    key: "componentWillMount",
-    value: function componentWillMount() {
+    key: "componentDidMount",
+    value: function componentDidMount() {
       var _this2 = this;
 
       this.props.fetchLatestTask().then(function (res) {
@@ -2196,22 +2229,49 @@ function (_React$Component) {
     value: function render() {
       console.log('current task', this.props.currentTask);
       console.log('current tasker', this.props.currentTasker);
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.props.currentTask.task_category), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "$", this.props.currentTasker.hourly_rate, "/hr")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "Date & Time"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.props.currentTask.scheduled_date, " / ", this.props.currentTask.scheduled_time), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "Task Location"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.props.currentTask.location), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "Vehicle Requirements"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.props.currentTask.vehicle_type)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "Tasker"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        className: "tasker-profile-img",
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: ""
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "confirm-task-root-container"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "confirm-task-header"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, this.props.currentTask.task_category), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "$", this.props.currentTasker.hourly_rate, "/hr")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "confirm-task-big-box"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "confirm-task-box-1"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
+        className: "confirm-task-title"
+      }, "Date & Time"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.props.currentTask.scheduled_date, " / ", this.props.currentTask.scheduled_time)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "confirm-tasker-profile-container"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        className: "confirm-tasker-profile-img",
         src: this.props.currentTasker.profile_img,
         alt: ""
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.props.currentTasker.first_name, " ", this.props.currentTasker.last_name)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "Task Description"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "confirm-tasker-profile-inner-box"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
+        className: "confirm-task-title"
+      }, "Tasker"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.props.currentTasker.first_name, " ", this.props.currentTasker.last_name)))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "confirm-task-box"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
+        className: "confirm-task-title"
+      }, "Task Location"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.props.currentTask.location)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "confirm-task-box"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
+        className: "confirm-task-title"
+      }, "Vehicle Requirements"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.props.currentTask.vehicle_type)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
+        className: "confirm-task-title"
+      }, "Task Description"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
         onChange: this.handleChange,
         value: this.state.description,
-        name: "",
-        id: "",
-        cols: "30",
-        rows: "10"
+        className: "confirm-task-textarea"
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "You are charged only after your task is completed."), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         onClick: this.handleClick
       }, "Confirm & Book"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
         to: "/task-form/new"
-      }, "Edit Task")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Tasks have a one-hour minimum. A ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, "13.5% Trust and Support fee"), " is added to the Tasker\u2019s total rate."), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Pursuant to the Terms of Service, if you cancel your task within 24 hours of the scheduled start time, you may be charged a one-hour cancellation fee at the Tasker's hourly rate. If you selected a recurring cleaning, this is a task with repeat appointments. If you cancel the task (all appointments) or skip any individual appointment within 24 hours of the scheduled start time, you may be charged a one-hour cancellation fee at the Tasker's hourly rate."), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "For more details see ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, "Terms of Service"))));
+      }, "Edit Task")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "confirm-task-footer"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Tasks have a one-hour minimum. A ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, "13.5% Trust and Support fee"), " is added to the Tasker\u2019s total rate."), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Pursuant to the Terms of Service, if you cancel your task within 24 hours of the scheduled start time, you may be charged a one-hour cancellation fee at the Tasker's hourly rate. If you selected a recurring cleaning, this is a task with repeat appointments. If you cancel the task (all appointments) or skip any individual appointment within 24 hours of the scheduled start time, you may be charged a one-hour cancellation fee at the Tasker's hourly rate."), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "For more details see ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, "Terms of Service"))));
     }
   }]);
 
@@ -2404,9 +2464,9 @@ function (_React$Component) {
 
     _classCallCheck(this, TaskDescription);
 
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(TaskDescription).call(this, props));
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(TaskDescription).call(this, props)); // debugger;
+
     _this.state = {
-      // id: '',
       task_category: '',
       location: '',
       specific_location: '',
@@ -2419,8 +2479,8 @@ function (_React$Component) {
   }
 
   _createClass(TaskDescription, [{
-    key: "componentWillMount",
-    value: function componentWillMount() {
+    key: "componentDidMount",
+    value: function componentDidMount() {
       var _this2 = this;
 
       // debugger;
@@ -2628,6 +2688,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
+  // debugger;
   return {
     currentTask: state.entities.tasks
   };
@@ -2859,8 +2920,17 @@ function (_React$Component) {
       var _this = this;
 
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "tasker-profile-container"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
+        className: "tasker-container"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "tasker-profile"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        className: "tasker-img",
+        src: this.props.profile_img
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        onClick: function onClick() {
+          return _this.chooseTasker();
+        }
+      }, "Select & Continue")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
         className: "tasker-name"
       }, this.props.first_name, " ", this.props.last_name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "$", this.props.hourly_rate, "/hr"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "tasker-stats"
@@ -2878,11 +2948,7 @@ function (_React$Component) {
         className: "tasker-stats"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
         className: "fas fa-car"
-      }), "Vehicle: ", this.props.vehicle_type), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "How I can help:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.props.tasker_aboutme), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        onClick: function onClick() {
-          return _this.chooseTasker();
-        }
-      }, "Select & Continue"));
+      }), "Vehicle: ", this.props.vehicle_type), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "How I can help:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.props.aboutme), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null)));
     }
   }]);
 

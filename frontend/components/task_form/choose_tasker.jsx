@@ -23,7 +23,7 @@ class ChooseTasker extends React.Component {
         // this.receiveDateTime = this.receiveDateTime.bind(this);
     }
 
-    componentWillMount() {
+    componentDidMount() {
         // componentWillMount vs. componentDidMount
         // General rule of thumb: Use WillMount when you need to fetch initial state
         // Use DidMount if you need to regularly update state
@@ -43,12 +43,17 @@ class ChooseTasker extends React.Component {
             })
             .then( () => this.props.fetchAllTaskers(taskRequirement)
             .then( taskers => {
+                console.log('about to set state')
                 this.setState({ taskers: taskers.taskers })
                 
             // .then( res => { console.log('this is returned result', res);
 
             }))
     };
+
+    // componentWillReceiveProps(nextProps)
+    // if nextProps.currentTask !== this.props.currentTask
+    // then this.setState(nextProps.currentTask)
 
     render() {
         // console.log(this.state);
@@ -90,9 +95,11 @@ class ChooseTasker extends React.Component {
                     <div>
                         <div className="sorted-by-text">SORTED BY: (insert sort feature)</div>
                     </div>
-                    {renderAllTaskers}
+                    <div className="choose-tasker-body-container">
+                        <TaskDateTimeRedux />
+                        {renderAllTaskers}
+                    </div>
                 </div>
-                <TaskDateTimeRedux />
             </div>
         )
     }

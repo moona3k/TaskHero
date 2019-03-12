@@ -6,8 +6,8 @@ import Autocomplete from 'react-google-autocomplete';
 class TaskDescription extends React.Component {
     constructor(props){
         super(props);
+        // debugger;
         this.state = {
-            // id: '',
             task_category: '',
             location: '',
             specific_location: '',
@@ -19,10 +19,10 @@ class TaskDescription extends React.Component {
         this.handleRadioButtonClick = this.handleRadioButtonClick.bind(this);
     }
 
-    componentWillMount() {
+    componentDidMount() {
         // debugger;
         this.props.fetchLatestTask()
-            .then((res) => this.setState( {
+            .then( res => this.setState( {
                 task_category: res.task.task_category,
                 location: res.task.location,
                 specific_location: res.task.specific_location,

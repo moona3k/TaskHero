@@ -12,6 +12,18 @@ class Dashboard extends React.Component {
         super(props);
     }
 
+    // componentDidMount(){
+        
+    //     const deleteEmptyTasks = () => {
+    //         return $.ajax({
+    //         url: '/api/tasks/empty',
+    //         method: 'DELETE',
+    //         })
+    //     };
+
+    //     deleteEmptyTasks();
+    // }
+
     render(){
         return (
             <div className="dashboard-container">

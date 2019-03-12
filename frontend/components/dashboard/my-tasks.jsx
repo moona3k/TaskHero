@@ -8,12 +8,12 @@ class MyTasks extends React.Component {
         this.deleteTask = this.deleteTask.bind(this);
     }
 
-    // componentWillMount() {
+    // componentDidMount() {
     //     user_id = 
     //     this.props.fetchAllTasks(user_id)
     // }
 
-    componentWillMount() {
+    componentDidMount() {
         let userId = this.props.currentUser.id;
         this.props.fetchAllTasks(userId);
     }
@@ -44,19 +44,20 @@ class MyTasks extends React.Component {
 
         let myTask = arrayOfTasks.map( (task, idx) => {
             return (
-                <div key={`my-task-${idx}`}>
-                    <div>
-                        <h3>{task.task_category}</h3>
+                <div key={`my-task-${idx}`} className="dashboard-task-container">
+                    <div className="dashboard-task-box-1">
+                        <h3 className="dashboard-task-h3">{task.task_category}</h3>
                         <img className="tasker-profile-img" src={task.tasker.profile_img} alt=""/>
                         <button value={task.id} onClick={this.deleteTask}>Cancel Task</button>
                     </div>
                     
-                    <div>
+                    <div className="dashboard-task-box-2">
                         <p>Your task is booked with {task.tasker.first_name} {task.tasker.last_name}</p>
                     </div>
 
-                    <div>
-                        RENDER {task.scheduled_date} & {task.scheduled_time}
+                    <div className="dashboard-task-box-3">
+                        <div className="dashboard-scheduled-date">{task.scheduled_date}</div>
+                        <div className="dashboard-scheduled-time">{task.scheduled_time}</div>
                     </div>
 
                     <div>
@@ -77,8 +78,8 @@ class MyTasks extends React.Component {
         })
 
         return (
-            <div>
-                <h5>Tasks</h5>
+            <div className="dashboard-root-container">
+                <h1 className="dashboard-header">My Tasks</h1>
                 {myTask}
             </div>    
         )

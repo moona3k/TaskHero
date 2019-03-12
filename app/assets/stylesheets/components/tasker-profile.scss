@@ -1,0 +1,24 @@
+.tasker-container {
+    
+    border: 1px solid darkgray;
+    padding: 40px;
+    margin: 10px;
+    width: 700px;
+    border-radius: 5px;
+
+    display: flex;
+}
+
+.tasker-profile {
+    display: flex;
+    flex-direction: column;
+}
+
+.tasker-img {
+    width: 160px;
+    height: 160px;
+}
+
+.tasker-name {
+    font-size: 32px;
+}

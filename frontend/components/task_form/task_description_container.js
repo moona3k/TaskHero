@@ -5,7 +5,7 @@ import TaskDescription from './task_description';
 import { updateTaskRequirement, fetchLatestTask } from '../../actions/task_actions';
 
 const mapStateToProps = (state, ownProps) => {
-    
+    // debugger;
     return {
         currentTask: state.entities.tasks
     }

@@ -84,19 +84,26 @@ class Api::TasksController < ApplicationController
 
         p @tasks
         render json: @tasks.as_json(include: :tasker)
+        # eager loading to avoid n+1 query
         # You need to include associations details in json object through 'include'!
     
     end
 
     def destroy
-        p 'RENDER ME! LETS DELETE SHIT'
+        
         p params
 
-        task_id = params[:taskId]
-        
-        Task.destroy(task_id)
+        if params[:id] == 'empty'
+            p 'RENDER ME! DELETE ALL EMPTY TASK OBJECTS'
+            @task = Task.where(user_id: nil)
+            Task.where(user_id: nil).destroy_all
+        end
 
-        render json: task_id
+        if task_id = params[:taskId]
+        
+            Task.destroy(task_id)
+            render json: task_id
+        end
     end
 
     private
