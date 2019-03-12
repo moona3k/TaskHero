@@ -52,7 +52,7 @@ class TaskDescription extends React.Component {
 
     handleSubmit() {
         // console.log(this.state);
-        this.props.updateTaskDescription(this.state);
+        this.props.updateTaskRequirement(this.state);
         this.props.history.push('taskers');
     };
 

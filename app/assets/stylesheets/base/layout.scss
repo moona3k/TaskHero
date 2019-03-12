@@ -19,6 +19,11 @@ main {
   height: 100%;
 }
 
+.tasker-profile-img {
+  max-height: 100px;
+  max-width: 100px;
+}
+
 button {
   color: #51af33;
   border: 1px solid #51af33;

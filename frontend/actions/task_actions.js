@@ -1,12 +1,14 @@
 import * as TaskUtil from '../util/task_api_util';
 
 export const RECEIVE_TASK_CATEGORY = 'RECEIVE_TASK_CATEGORY';
-export const RECEIVE_TASK_DESCRIPTION = 'RECEIVE_TASK_DESCRIPTION';
+export const RECEIVE_TASK_REQUIREMENT = 'RECEIVE_TASK_REQUIREMENT';
 export const RECEIVE_LATEST_TASK = 'RECEIVE_LATEST_TASK';
 export const RECEIVE_TASKER_ID = 'RECEIEVE_TASKER_ID';
 export const RECEIVE_TASK_DATE = 'RECEIVE_TASK_DATE';
 export const RECEIVE_TASK_TIME = 'RECEIVE_TASK_TIME';
-
+export const RECEIVE_TASK_DESCRIPTION = 'RECEIVE_TASK_DESCRIPTION';
+export const RECEIVE_ALL_TASKS = 'RECEIVE_ALL_TASKS';
+export const DELETE_SELECTED_TASK = 'DELETE_SELECTED_TASK';
 
 const receiveTaskCategory = taskCategory => {
     return ({
@@ -22,10 +24,10 @@ const receiveLatestTask = task => {
     })
 };
 
-const receiveTaskDescription = taskDescription => {
+const receiveTaskRequirement = taskRequirement => {
     return ({
-        type: RECEIVE_TASK_DESCRIPTION,
-        task_description: taskDescription
+        type: RECEIVE_TASK_REQUIREMENT,
+        taskRequirement: taskRequirement
     })
 };
 
@@ -41,7 +43,7 @@ const receiveTaskDate = taskDate => {
         type: RECEIVE_TASK_DATE,
         taskDate
     })
-}
+};
 
 const receiveTaskTime = taskTime => {
     return ({
@@ -49,6 +51,27 @@ const receiveTaskTime = taskTime => {
         taskTime
     })
 };
+
+const receiveTaskDescription = taskDescription => {
+    return ({
+        type: RECEIVE_TASK_DESCRIPTION,
+        taskDescription
+    })
+}
+
+const receiveAllTasks = tasks => {
+    return ({
+        type: RECEIVE_ALL_TASKS,
+        tasks
+    })
+}
+
+const removeSelectedTask = (taskId) => {
+    return ({
+        type: DELETE_SELECTED_TASK,
+        taskId
+    })
+}
 
 export const initializeTask = taskCategory => dispatch => {
     return TaskUtil.postNewTask(taskCategory)
@@ -62,9 +85,9 @@ export const fetchLatestTask = () => dispatch => {
         )
 };
 
-export const updateTaskDescription = taskDescription => dispatch => {
-    return TaskUtil.patchTaskDescription(taskDescription)
-        .then(taskDescription => dispatch(receiveTaskDescription(taskDescription))
+export const updateTaskRequirement = taskRequirement => dispatch => {
+    return TaskUtil.patchTaskRequirement(taskRequirement)
+        .then(taskRequirement => dispatch(receiveTaskRequirement(taskRequirement))
         )
 };
 
@@ -83,5 +106,23 @@ export const updateTaskDate = taskDate => dispatch => {
 export const updateTaskTime = taskTime => dispatch => {
     return TaskUtil.patchTaskTime(taskTime)
         .then(taskTime => dispatch(receiveTaskTime(taskTime))
+        )
+};
+
+export const updateTaskDescription = taskDescription => dispatch => {
+    return TaskUtil.patchTaskDescription(taskDescription)
+        .then(taskDescription => dispatch(receiveTaskDescription(taskDescription))
+        )
+};
+
+export const fetchAllTasks = userId => dispatch => {
+    return TaskUtil.getAllTasks(userId)
+        .then( tasks => dispatch(receiveAllTasks(tasks))
+        )
+};
+
+export const deleteSelectedTask = taskId => dispatch => {
+    return TaskUtil.deleteSelectedTask(taskId)
+        .then((taskId) => dispatch(removeSelectedTask(taskId))
         )
 };

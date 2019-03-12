@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
 import TaskDescription from './task_description';
-import { updateTaskDescription, fetchLatestTask } from '../../actions/task_actions';
+import { updateTaskRequirement, fetchLatestTask } from '../../actions/task_actions';
 
 const mapStateToProps = (state, ownProps) => {
     
@@ -14,7 +14,7 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         fetchLatestTask: () => dispatch(fetchLatestTask()),
-        updateTaskDescription: (taskDescription) => dispatch(updateTaskDescription(taskDescription))
+        updateTaskRequirement: (taskRequirement) => dispatch(updateTaskRequirement(taskRequirement))
     }
 }
 

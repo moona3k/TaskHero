@@ -30,7 +30,7 @@ const taskersReducer = (state = {}, action) => {
             })
 
         case RECEIVE_ASSIGNED_TASKER:
-            return Object.assigne({}, state, {
+            return Object.assign({}, state, {
                 first_name: action.tasker.first_name,
                 last_name: action.tasker.last_name,
                 profile_img: action.tasker.profile_img,

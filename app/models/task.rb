@@ -1,13 +1,13 @@
 class Task < ApplicationRecord
 
-    belongs_to :users,
+    belongs_to :user,
         primary_key: :id,
         foreign_key: :user_id,
         class_name: 'User',
         optional: true
 
 
-    belongs_to :taskers,
+    belongs_to :tasker,
         primary_key: :id,
         foreign_key: :tasker_id,
         class_name: 'User',

@@ -182,31 +182,40 @@ var logout = function logout() {
 /*!******************************************!*\
   !*** ./frontend/actions/task_actions.js ***!
   \******************************************/
-/*! exports provided: RECEIVE_TASK_CATEGORY, RECEIVE_TASK_DESCRIPTION, RECEIVE_LATEST_TASK, RECEIVE_TASKER_ID, RECEIVE_TASK_DATE, RECEIVE_TASK_TIME, initializeTask, fetchLatestTask, updateTaskDescription, updateTaskerId, updateTaskDate, updateTaskTime */
+/*! exports provided: RECEIVE_TASK_CATEGORY, RECEIVE_TASK_REQUIREMENT, RECEIVE_LATEST_TASK, RECEIVE_TASKER_ID, RECEIVE_TASK_DATE, RECEIVE_TASK_TIME, RECEIVE_TASK_DESCRIPTION, RECEIVE_ALL_TASKS, DELETE_SELECTED_TASK, initializeTask, fetchLatestTask, updateTaskRequirement, updateTaskerId, updateTaskDate, updateTaskTime, updateTaskDescription, fetchAllTasks, deleteSelectedTask */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_TASK_CATEGORY", function() { return RECEIVE_TASK_CATEGORY; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_TASK_DESCRIPTION", function() { return RECEIVE_TASK_DESCRIPTION; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_TASK_REQUIREMENT", function() { return RECEIVE_TASK_REQUIREMENT; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_LATEST_TASK", function() { return RECEIVE_LATEST_TASK; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_TASKER_ID", function() { return RECEIVE_TASKER_ID; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_TASK_DATE", function() { return RECEIVE_TASK_DATE; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_TASK_TIME", function() { return RECEIVE_TASK_TIME; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_TASK_DESCRIPTION", function() { return RECEIVE_TASK_DESCRIPTION; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_ALL_TASKS", function() { return RECEIVE_ALL_TASKS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DELETE_SELECTED_TASK", function() { return DELETE_SELECTED_TASK; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "initializeTask", function() { return initializeTask; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchLatestTask", function() { return fetchLatestTask; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateTaskDescription", function() { return updateTaskDescription; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateTaskRequirement", function() { return updateTaskRequirement; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateTaskerId", function() { return updateTaskerId; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateTaskDate", function() { return updateTaskDate; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateTaskTime", function() { return updateTaskTime; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateTaskDescription", function() { return updateTaskDescription; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchAllTasks", function() { return fetchAllTasks; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteSelectedTask", function() { return deleteSelectedTask; });
 /* harmony import */ var _util_task_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/task_api_util */ "./frontend/util/task_api_util.jsx");
 
 var RECEIVE_TASK_CATEGORY = 'RECEIVE_TASK_CATEGORY';
-var RECEIVE_TASK_DESCRIPTION = 'RECEIVE_TASK_DESCRIPTION';
+var RECEIVE_TASK_REQUIREMENT = 'RECEIVE_TASK_REQUIREMENT';
 var RECEIVE_LATEST_TASK = 'RECEIVE_LATEST_TASK';
 var RECEIVE_TASKER_ID = 'RECEIEVE_TASKER_ID';
 var RECEIVE_TASK_DATE = 'RECEIVE_TASK_DATE';
 var RECEIVE_TASK_TIME = 'RECEIVE_TASK_TIME';
+var RECEIVE_TASK_DESCRIPTION = 'RECEIVE_TASK_DESCRIPTION';
+var RECEIVE_ALL_TASKS = 'RECEIVE_ALL_TASKS';
+var DELETE_SELECTED_TASK = 'DELETE_SELECTED_TASK';
 
 var receiveTaskCategory = function receiveTaskCategory(taskCategory) {
   return {
@@ -222,10 +231,10 @@ var receiveLatestTask = function receiveLatestTask(task) {
   };
 };
 
-var receiveTaskDescription = function receiveTaskDescription(taskDescription) {
+var receiveTaskRequirement = function receiveTaskRequirement(taskRequirement) {
   return {
-    type: RECEIVE_TASK_DESCRIPTION,
-    task_description: taskDescription
+    type: RECEIVE_TASK_REQUIREMENT,
+    taskRequirement: taskRequirement
   };
 };
 
@@ -250,6 +259,27 @@ var receiveTaskTime = function receiveTaskTime(taskTime) {
   };
 };
 
+var receiveTaskDescription = function receiveTaskDescription(taskDescription) {
+  return {
+    type: RECEIVE_TASK_DESCRIPTION,
+    taskDescription: taskDescription
+  };
+};
+
+var receiveAllTasks = function receiveAllTasks(tasks) {
+  return {
+    type: RECEIVE_ALL_TASKS,
+    tasks: tasks
+  };
+};
+
+var removeSelectedTask = function removeSelectedTask(taskId) {
+  return {
+    type: DELETE_SELECTED_TASK,
+    taskId: taskId
+  };
+};
+
 var initializeTask = function initializeTask(taskCategory) {
   return function (dispatch) {
     return _util_task_api_util__WEBPACK_IMPORTED_MODULE_0__["postNewTask"](taskCategory).then(function (taskCategory) {
@@ -264,10 +294,10 @@ var fetchLatestTask = function fetchLatestTask() {
     });
   };
 };
-var updateTaskDescription = function updateTaskDescription(taskDescription) {
+var updateTaskRequirement = function updateTaskRequirement(taskRequirement) {
   return function (dispatch) {
-    return _util_task_api_util__WEBPACK_IMPORTED_MODULE_0__["patchTaskDescription"](taskDescription).then(function (taskDescription) {
-      return dispatch(receiveTaskDescription(taskDescription));
+    return _util_task_api_util__WEBPACK_IMPORTED_MODULE_0__["patchTaskRequirement"](taskRequirement).then(function (taskRequirement) {
+      return dispatch(receiveTaskRequirement(taskRequirement));
     });
   };
 };
@@ -289,6 +319,27 @@ var updateTaskTime = function updateTaskTime(taskTime) {
   return function (dispatch) {
     return _util_task_api_util__WEBPACK_IMPORTED_MODULE_0__["patchTaskTime"](taskTime).then(function (taskTime) {
       return dispatch(receiveTaskTime(taskTime));
+    });
+  };
+};
+var updateTaskDescription = function updateTaskDescription(taskDescription) {
+  return function (dispatch) {
+    return _util_task_api_util__WEBPACK_IMPORTED_MODULE_0__["patchTaskDescription"](taskDescription).then(function (taskDescription) {
+      return dispatch(receiveTaskDescription(taskDescription));
+    });
+  };
+};
+var fetchAllTasks = function fetchAllTasks(userId) {
+  return function (dispatch) {
+    return _util_task_api_util__WEBPACK_IMPORTED_MODULE_0__["getAllTasks"](userId).then(function (tasks) {
+      return dispatch(receiveAllTasks(tasks));
+    });
+  };
+};
+var deleteSelectedTask = function deleteSelectedTask(taskId) {
+  return function (dispatch) {
+    return _util_task_api_util__WEBPACK_IMPORTED_MODULE_0__["deleteSelectedTask"](taskId).then(function (taskId) {
+      return dispatch(removeSelectedTask(taskId));
     });
   };
 };
@@ -426,6 +477,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _nav_bar_navBar_container__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../nav_bar/navBar_container */ "./frontend/components/nav_bar/navBar_container.js");
 /* harmony import */ var _task_booking_main_container__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./task_booking_main_container */ "./frontend/components/dashboard/task_booking_main_container.js");
 /* harmony import */ var _footer_nav__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../footer_nav */ "./frontend/components/footer_nav.jsx");
+/* harmony import */ var _my_tasks_redux__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./my-tasks-redux */ "./frontend/components/dashboard/my-tasks-redux.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -450,6 +502,7 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
+
 var Dashboard =
 /*#__PURE__*/
 function (_React$Component) {
@@ -466,7 +519,7 @@ function (_React$Component) {
     value: function render() {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "dashboard-container"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_nav_bar_navBar_container__WEBPACK_IMPORTED_MODULE_1__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_task_booking_main_container__WEBPACK_IMPORTED_MODULE_2__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_footer_nav__WEBPACK_IMPORTED_MODULE_3__["default"], null));
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_nav_bar_navBar_container__WEBPACK_IMPORTED_MODULE_1__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_task_booking_main_container__WEBPACK_IMPORTED_MODULE_2__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_my_tasks_redux__WEBPACK_IMPORTED_MODULE_4__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_footer_nav__WEBPACK_IMPORTED_MODULE_3__["default"], null));
     }
   }]);
 
@@ -503,6 +556,148 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch, ownProps) {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps, mapDispatchToProps)(_dashboard__WEBPACK_IMPORTED_MODULE_2__["default"]));
+
+/***/ }),
+
+/***/ "./frontend/components/dashboard/my-tasks-redux.js":
+/*!*********************************************************!*\
+  !*** ./frontend/components/dashboard/my-tasks-redux.js ***!
+  \*********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _my_tasks__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./my-tasks */ "./frontend/components/dashboard/my-tasks.jsx");
+/* harmony import */ var _actions_task_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/task_actions */ "./frontend/actions/task_actions.js");
+
+
+
+
+var mapStateToProps = function mapStateToProps(state) {
+  return {
+    currentTasks: state.entities.tasks.myTasks,
+    currentUser: state.entities.users[state.session.currentUser.id]
+  };
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    fetchAllTasks: function fetchAllTasks(userId) {
+      return dispatch(Object(_actions_task_actions__WEBPACK_IMPORTED_MODULE_2__["fetchAllTasks"])(userId));
+    },
+    deleteSelectedTask: function deleteSelectedTask(taskId) {
+      return dispatch(Object(_actions_task_actions__WEBPACK_IMPORTED_MODULE_2__["deleteSelectedTask"])(taskId));
+    }
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mapStateToProps, mapDispatchToProps)(_my_tasks__WEBPACK_IMPORTED_MODULE_1__["default"]));
+
+/***/ }),
+
+/***/ "./frontend/components/dashboard/my-tasks.jsx":
+/*!****************************************************!*\
+  !*** ./frontend/components/dashboard/my-tasks.jsx ***!
+  \****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+// This component renders all tasks assigned to the logged-in user in /dashboard
+
+
+var MyTasks =
+/*#__PURE__*/
+function (_React$Component) {
+  _inherits(MyTasks, _React$Component);
+
+  function MyTasks(props) {
+    var _this;
+
+    _classCallCheck(this, MyTasks);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(MyTasks).call(this, props));
+    _this.deleteTask = _this.deleteTask.bind(_assertThisInitialized(_this));
+    return _this;
+  } // componentWillMount() {
+  //     user_id = 
+  //     this.props.fetchAllTasks(user_id)
+  // }
+
+
+  _createClass(MyTasks, [{
+    key: "componentWillMount",
+    value: function componentWillMount() {
+      var userId = this.props.currentUser.id;
+      this.props.fetchAllTasks(userId);
+    }
+  }, {
+    key: "deleteTask",
+    value: function deleteTask(e) {
+      var taskId = e.currentTarget.value;
+      this.props.deleteSelectedTask(taskId);
+    } //     ajax_fetchAllUserTasks(user_id) // ajax call
+    //     .then( response => { // return object contains all tasks assigned to user_id
+    //         this.setState(response); // update the local state w / task information
+    //     })
+
+  }, {
+    key: "render",
+    value: function render() {
+      var _this2 = this;
+
+      // this.props.currentTasks returns {} of task objects
+      // need to convert { {task1}, {task2}, {task3} ...} into an array [ {}, {}, {} ...]
+      var objectOfTasks = this.props.currentTasks ? this.props.currentTasks : {};
+      var arrayOfTasks = [];
+      Object.keys(objectOfTasks).map(function (key) {
+        var singleTask = objectOfTasks[key];
+        arrayOfTasks.push(singleTask);
+      });
+      console.log(arrayOfTasks);
+      var myTask = arrayOfTasks.map(function (task, idx) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          key: "my-task-".concat(idx)
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, task.task_category), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+          className: "tasker-profile-img",
+          src: task.tasker.profile_img,
+          alt: ""
+        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          value: task.id,
+          onClick: _this2.deleteTask
+        }, "Cancel Task")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Your task is booked with ", task.tasker.first_name, " ", task.tasker.last_name)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "RENDER ", task.scheduled_date, " & ", task.scheduled_time), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", null, "Location"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, task.location), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", null, "Tasker"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, task.tasker.first_name, " ", task.tasker.last_name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", null, "Price"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "$", task.tasker.hourly_rate, "/hr"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", null, "Description"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, task.description), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", null, "Vehicle Requirements"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, task.vehicle_type)));
+      });
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", null, "Tasks"), myTask);
+    }
+  }]);
+
+  return MyTasks;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+/* harmony default export */ __webpack_exports__["default"] = (MyTasks);
 
 /***/ }),
 
@@ -1880,6 +2075,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _task_confirm_page__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./task-confirm-page */ "./frontend/components/task_form/task-confirm-page.jsx");
 /* harmony import */ var _actions_task_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/task_actions */ "./frontend/actions/task_actions.js");
+/* harmony import */ var _actions_tasker_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/tasker_actions */ "./frontend/actions/tasker_actions.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/es/index.js");
+
+
 
 
 
@@ -1887,7 +2086,8 @@ __webpack_require__.r(__webpack_exports__);
 var mapStateToProps = function mapStateToProps(state) {
   return {
     currentTask: state.entities.tasks,
-    currentTasker: state.entities.users
+    currentTasker: state.entities.taskers,
+    currentUser: state.entities.users[state.session.currentUser.id]
   };
 };
 
@@ -1895,11 +2095,17 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
     fetchLatestTask: function fetchLatestTask() {
       return dispatch(Object(_actions_task_actions__WEBPACK_IMPORTED_MODULE_2__["fetchLatestTask"])());
+    },
+    fetchAssignedTasker: function fetchAssignedTasker(taskerId) {
+      return dispatch(Object(_actions_tasker_actions__WEBPACK_IMPORTED_MODULE_3__["fetchAssignedTasker"])(taskerId));
+    },
+    updateTaskDescription: function updateTaskDescription(taskDescription) {
+      return dispatch(Object(_actions_task_actions__WEBPACK_IMPORTED_MODULE_2__["updateTaskDescription"])(taskDescription));
     }
   };
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mapStateToProps, mapDispatchToProps)(_task_confirm_page__WEBPACK_IMPORTED_MODULE_1__["default"]));
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["withRouter"])(Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mapStateToProps, mapDispatchToProps)(_task_confirm_page__WEBPACK_IMPORTED_MODULE_1__["default"])));
 
 /***/ }),
 
@@ -1948,7 +2154,8 @@ function (_React$Component) {
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(TaskConfirmPage).call(this, props));
     _this.state = {
-      description: 'RENDER taskDescription'
+      description: '',
+      userId: _this.props.currentUser.id
     };
     _this.handleChange = _this.handleChange.bind(_assertThisInitialized(_this));
     _this.handleClick = _this.handleClick.bind(_assertThisInitialized(_this));
@@ -1958,10 +2165,17 @@ function (_React$Component) {
   _createClass(TaskConfirmPage, [{
     key: "componentWillMount",
     value: function componentWillMount() {
-      this.props.fetchLatestTask().then( // fetchLatestTask: ajax call to retrieve current task
-      // upon receival, redux-store is updated so mSTP will receive the new state and we now have access to tasker_id!
-      // task_id = this.props.currentTask.tasker_id
-      this.props.fetchAssignedTasker(this.props.currentTask.tasker_id));
+      var _this2 = this;
+
+      this.props.fetchLatestTask().then(function (res) {
+        var tasker_id = res.task.tasker_id;
+
+        _this2.props.fetchAssignedTasker(tasker_id);
+
+        _this2.setState({
+          description: res.task.description
+        });
+      });
     }
   }, {
     key: "handleChange",
@@ -1972,12 +2186,21 @@ function (_React$Component) {
     }
   }, {
     key: "handleClick",
-    value: function handleClick() {}
+    value: function handleClick() {
+      var taskDescription = this.state;
+      this.props.updateTaskDescription(taskDescription);
+      this.props.history.push('/dashboard');
+    }
   }, {
     key: "render",
     value: function render() {
-      console.log(this.props.currentTask);
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.props.currentTask.task_category), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "RENDER hourlyRate")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Date & Time"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "RENDER Date (RENDER Time)"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Task Location"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "RENDER taskLocation"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Vehicle Requirements"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "RENDER vehicleType")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Tasker"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "RENDER taskerImageURL"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "RENDER taskerName")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Task Description"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
+      console.log('current task', this.props.currentTask);
+      console.log('current tasker', this.props.currentTasker);
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.props.currentTask.task_category), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "$", this.props.currentTasker.hourly_rate, "/hr")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "Date & Time"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.props.currentTask.scheduled_date, " / ", this.props.currentTask.scheduled_time), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "Task Location"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.props.currentTask.location), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "Vehicle Requirements"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.props.currentTask.vehicle_type)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "Tasker"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        className: "tasker-profile-img",
+        src: this.props.currentTasker.profile_img,
+        alt: ""
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.props.currentTasker.first_name, " ", this.props.currentTasker.last_name)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "Task Description"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
         onChange: this.handleChange,
         value: this.state.description,
         name: "",
@@ -2239,7 +2462,7 @@ function (_React$Component) {
     key: "handleSubmit",
     value: function handleSubmit() {
       // console.log(this.state);
-      this.props.updateTaskDescription(this.state);
+      this.props.updateTaskRequirement(this.state);
       this.props.history.push('taskers');
     }
   }, {
@@ -2415,8 +2638,8 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     fetchLatestTask: function fetchLatestTask() {
       return dispatch(Object(_actions_task_actions__WEBPACK_IMPORTED_MODULE_3__["fetchLatestTask"])());
     },
-    updateTaskDescription: function updateTaskDescription(taskDescription) {
-      return dispatch(Object(_actions_task_actions__WEBPACK_IMPORTED_MODULE_3__["updateTaskDescription"])(taskDescription));
+    updateTaskRequirement: function updateTaskRequirement(taskRequirement) {
+      return dispatch(Object(_actions_task_actions__WEBPACK_IMPORTED_MODULE_3__["updateTaskRequirement"])(taskRequirement));
     }
   };
 };
@@ -2853,7 +3076,7 @@ var taskersReducer = function taskersReducer() {
       });
 
     case _actions_tasker_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_ASSIGNED_TASKER"]:
-      return Object.assigne({}, state, {
+      return Object.assign({}, state, {
         first_name: action.tasker.first_name,
         last_name: action.tasker.last_name,
         profile_img: action.tasker.profile_img,
@@ -2897,19 +3120,21 @@ var tasksReducer = function tasksReducer() {
         description: action.task.description,
         estimated_time_req: action.task.estimated_time_req,
         vehicle_type: action.task.vehicle_type,
+        scheduled_time: action.task.scheduled_time,
+        scheduled_date: action.task.scheduled_date,
         user_id: action.task.user_id,
         tasker_id: action.task.tasker_id
       });
 
-    case _actions_task_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_TASK_DESCRIPTION"]:
+    case _actions_task_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_TASK_REQUIREMENT"]:
       return Object.assign({}, state, {
         // id: action.task_description.id,
-        task_category: action.task_description.task_category,
-        location: action.task_description.location,
-        specific_location: action.task_description.specific_location,
-        estimated_time_req: action.task_description.estimated_time_req,
-        vehicle_type: action.task_description.vehicle_type,
-        description: action.task_description.description
+        task_category: action.taskRequirement.task_category,
+        location: action.taskRequirement.location,
+        specific_location: action.taskRequirement.specific_location,
+        estimated_time_req: action.taskRequirement.estimated_time_req,
+        vehicle_type: action.taskRequirement.vehicle_type,
+        description: action.taskRequirement.description
       });
 
     case _actions_task_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_TASKER_ID"]:
@@ -2926,6 +3151,31 @@ var tasksReducer = function tasksReducer() {
       return Object.assign({}, state, {
         scheduled_time: action.taskTime
       });
+
+    case _actions_task_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_TASK_DESCRIPTION"]:
+      return Object.assign({}, state, {
+        description: action.taskDescription
+      });
+
+    case _actions_task_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_ALL_TASKS"]:
+      return Object.assign({}, state, {
+        myTasks: action.tasks
+      });
+
+    case _actions_task_actions__WEBPACK_IMPORTED_MODULE_0__["DELETE_SELECTED_TASK"]:
+      var objectOfTasks = Object.assign({}, state.myTasks);
+      var arrayOfTasks = [];
+      Object.keys(objectOfTasks).map(function (key) {
+        var singleTask = objectOfTasks[key];
+        arrayOfTasks.push(singleTask);
+      });
+      var taskId = action.taskId;
+      var newState = arrayOfTasks.filter(function (task) {
+        return task.id !== taskId;
+      });
+      return {
+        myTasks: newState
+      };
 
     default:
       return state;
@@ -3160,17 +3410,20 @@ var deleteSession = function deleteSession() {
 /*!*****************************************!*\
   !*** ./frontend/util/task_api_util.jsx ***!
   \*****************************************/
-/*! exports provided: postNewTask, getLatestTask, patchTaskDescription, patchTaskerId, patchTaskDate, patchTaskTime */
+/*! exports provided: postNewTask, getLatestTask, patchTaskRequirement, patchTaskerId, patchTaskDate, patchTaskTime, patchTaskDescription, getAllTasks, deleteSelectedTask */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "postNewTask", function() { return postNewTask; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getLatestTask", function() { return getLatestTask; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "patchTaskDescription", function() { return patchTaskDescription; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "patchTaskRequirement", function() { return patchTaskRequirement; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "patchTaskerId", function() { return patchTaskerId; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "patchTaskDate", function() { return patchTaskDate; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "patchTaskTime", function() { return patchTaskTime; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "patchTaskDescription", function() { return patchTaskDescription; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getAllTasks", function() { return getAllTasks; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteSelectedTask", function() { return deleteSelectedTask; });
 var postNewTask = function postNewTask(taskCategory) {
   return $.ajax({
     url: 'api/tasks',
@@ -3186,12 +3439,12 @@ var getLatestTask = function getLatestTask() {
     method: 'GET'
   });
 };
-var patchTaskDescription = function patchTaskDescription(taskDescription) {
+var patchTaskRequirement = function patchTaskRequirement(taskRequirement) {
   return $.ajax({
-    url: "api/tasks/".concat(taskDescription.id),
+    url: "api/tasks/".concat(taskRequirement.id),
     method: 'PATCH',
     data: {
-      taskDescription: taskDescription
+      taskRequirement: taskRequirement
     }
   });
 };
@@ -3219,6 +3472,33 @@ var patchTaskTime = function patchTaskTime(taskTime) {
     method: 'PATCH',
     data: {
       taskTime: taskTime
+    }
+  });
+};
+var patchTaskDescription = function patchTaskDescription(taskDescription) {
+  return $.ajax({
+    url: "api/tasks/".concat(taskDescription.id),
+    method: 'PATCH',
+    data: {
+      taskDescription: taskDescription
+    }
+  });
+};
+var getAllTasks = function getAllTasks(userId) {
+  return $.ajax({
+    url: 'api/tasks',
+    method: 'GET',
+    data: {
+      userId: userId
+    }
+  });
+};
+var deleteSelectedTask = function deleteSelectedTask(taskId) {
+  return $.ajax({
+    url: "/api/tasks/".concat(taskId),
+    method: 'DELETE',
+    data: {
+      taskId: taskId
     }
   });
 };

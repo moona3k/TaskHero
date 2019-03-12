@@ -8,12 +8,15 @@ class User < ApplicationRecord
 
     after_initialize :ensure_session_token
 
-    has_many :tasks,
+    has_many :user_tasks,
+        primary_key: :id,
+        foreign_key: :user_id,
+        class_name: 'Task'
+    
+    has_many :tasker_tasks,
         primary_key: :id,
         foreign_key: :tasker_id,
         class_name: 'Task'
-
-
 
     # 'user.tasks' - return all tasks requested by user
     # 'task.tasker_id' - return the user/tasker assigned to task

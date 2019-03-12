@@ -1,9 +1,12 @@
 import { RECEIVE_TASK_CATEGORY,
         RECEIVE_LATEST_TASK,
-        RECEIVE_TASK_DESCRIPTION, 
+        RECEIVE_TASK_REQUIREMENT, 
         RECEIVE_TASKER_ID,
         RECEIVE_TASK_DATE,
-        RECEIVE_TASK_TIME
+        RECEIVE_TASK_TIME,
+        RECEIVE_TASK_DESCRIPTION,
+        RECEIVE_ALL_TASKS,
+        DELETE_SELECTED_TASK
     } from '../actions/task_actions';
 
 const tasksReducer = (state = {}, action) => {
@@ -21,19 +24,21 @@ const tasksReducer = (state = {}, action) => {
                 description: action.task.description,
                 estimated_time_req: action.task.estimated_time_req,
                 vehicle_type: action.task.vehicle_type,
+                scheduled_time: action.task.scheduled_time,
+                scheduled_date: action.task.scheduled_date,
                 user_id: action.task.user_id,
                 tasker_id: action.task.tasker_id
             })
 
-        case RECEIVE_TASK_DESCRIPTION:
+        case RECEIVE_TASK_REQUIREMENT:
             return Object.assign({}, state, {
                 // id: action.task_description.id,
-                task_category: action.task_description.task_category,
-                location: action.task_description.location,
-                specific_location: action.task_description.specific_location,
-                estimated_time_req: action.task_description.estimated_time_req,
-                vehicle_type: action.task_description.vehicle_type,
-                description: action.task_description.description,
+                task_category: action.taskRequirement.task_category,
+                location: action.taskRequirement.location,
+                specific_location: action.taskRequirement.specific_location,
+                estimated_time_req: action.taskRequirement.estimated_time_req,
+                vehicle_type: action.taskRequirement.vehicle_type,
+                description: action.taskRequirement.description,
             })
    
         case RECEIVE_TASKER_ID:
@@ -50,6 +55,36 @@ const tasksReducer = (state = {}, action) => {
             return Object.assign({}, state, {
                 scheduled_time: action.taskTime
             })
+
+        case RECEIVE_TASK_DESCRIPTION:
+            return Object.assign({}, state, {
+                description: action.taskDescription
+            })
+            
+        case RECEIVE_ALL_TASKS:
+            return Object.assign({}, state, {
+                myTasks: action.tasks
+            })
+
+        case DELETE_SELECTED_TASK:
+            
+            let objectOfTasks = Object.assign({}, state.myTasks)
+
+            let arrayOfTasks = [];
+            Object.keys(objectOfTasks).map( key => {
+                let singleTask = objectOfTasks[key];
+                arrayOfTasks.push(singleTask);
+            });
+
+            let taskId = action.taskId;
+
+            let newState = arrayOfTasks.filter( task => {
+                    return task.id !== taskId
+                })
+
+            return {
+                myTasks: newState
+            }
 
         default:
             return state;

@@ -5,7 +5,8 @@ class TaskConfirmPage extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-            description: 'RENDER taskDescription'
+            description: '',
+            userId: this.props.currentUser.id
         }
 
         this.handleChange = this.handleChange.bind(this);
@@ -13,13 +14,13 @@ class TaskConfirmPage extends React.Component {
     }
 
     componentWillMount() {
+        
         this.props.fetchLatestTask()
-            .then(
-                // fetchLatestTask: ajax call to retrieve current task
-                // upon receival, redux-store is updated so mSTP will receive the new state and we now have access to tasker_id!
-                // task_id = this.props.currentTask.tasker_id
-                this.props.fetchAssignedTasker(this.props.currentTask.tasker_id)
-            )
+            .then( res => {
+                let tasker_id = res.task.tasker_id;
+                this.props.fetchAssignedTasker(tasker_id)
+                this.setState({ description: res.task.description })
+            })
     }
 
     handleChange(e) {
@@ -27,33 +28,37 @@ class TaskConfirmPage extends React.Component {
     }
 
     handleClick() {
-        
+        let taskDescription = this.state;
+        this.props.updateTaskDescription(taskDescription)
+        this.props.history.push('/dashboard');
     }
 
     render() {
-        console.log(this.props.currentTask)
+        console.log('current task', this.props.currentTask)
+        console.log('current tasker', this.props.currentTasker)
+
         return(
             <div>
                 <div>
                     <div>
                         <div>{this.props.currentTask.task_category}</div>
-                        <div>RENDER hourlyRate</div>
+                        <div>${this.props.currentTasker.hourly_rate}/hr</div>
                     </div>
                     <div>
-                        <div>Date & Time</div>
-                        <div>RENDER Date (RENDER Time)</div>
-                        <div>Task Location</div>
-                        <div>RENDER taskLocation</div>
-                        <div>Vehicle Requirements</div>
-                        <div>RENDER vehicleType</div>
+                        <h4>Date & Time</h4>
+                        <div>{this.props.currentTask.scheduled_date} / {this.props.currentTask.scheduled_time}</div>
+                        <h4>Task Location</h4>
+                        <div>{this.props.currentTask.location}</div>
+                        <h4>Vehicle Requirements</h4>
+                        <div>{this.props.currentTask.vehicle_type}</div>
                     </div>
                     <div>
-                        <div>Tasker</div>
-                        <div>RENDER taskerImageURL</div>
-                        <div>RENDER taskerName</div>
+                        <h4>Tasker</h4>
+                        <img className="tasker-profile-img" src={this.props.currentTasker.profile_img} alt=""/>
+                        <div>{this.props.currentTasker.first_name} {this.props.currentTasker.last_name}</div>
                     </div>
                     <div>
-                        <div>Task Description</div>        
+                        <h4>Task Description</h4>        
                         <textarea onChange={this.handleChange} value={this.state.description} name="" id="" cols="30" rows="10">
                         </textarea>
                     </div>

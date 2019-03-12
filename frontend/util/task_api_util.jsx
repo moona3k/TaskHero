@@ -13,11 +13,11 @@ export const getLatestTask = () => {
     })
 };
 
-export const patchTaskDescription = taskDescription => {
+export const patchTaskRequirement = taskRequirement => {
     return $.ajax({
-        url: `api/tasks/${taskDescription.id}`,
+        url: `api/tasks/${taskRequirement.id}`,
         method: 'PATCH',
-        data: { taskDescription }
+        data: { taskRequirement }
     })
 };
 
@@ -42,5 +42,29 @@ export const patchTaskTime = taskTime => {
         url: `api/tasks/${taskTime.id}`,
         method: 'PATCH',
         data: { taskTime }
+    })
+};
+
+export const patchTaskDescription = taskDescription => {
+    return $.ajax({
+        url: `api/tasks/${taskDescription.id}`,
+        method: 'PATCH',
+        data: { taskDescription }
+    })
+};
+
+export const getAllTasks = userId => {
+    return $.ajax({
+        url: 'api/tasks',
+        method: 'GET',
+        data: { userId }
+    })
+};
+
+export const deleteSelectedTask = taskId => {
+    return $.ajax({
+        url: `/api/tasks/${taskId}`,
+        method: 'DELETE',
+        data: { taskId }
     })
 };
