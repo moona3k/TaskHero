@@ -35,6 +35,8 @@
 
 .task-description-box {
     box-shadow: 1px 1px 6px $light-gray, -1px 1px 6px $light-gray;    
+    border-radius: 4px;
+
     text-align: center;
     margin-bottom: 1.5rem;
     width: 80%;
@@ -111,19 +113,28 @@
 }
 
 .task-size-radio-button-container {
+    padding-top: 15px;
     display: flex;
-    align-items: center;
+    justify-content: space-around;
     margin-bottom: 25px;
 }
 
 .vehicle-radio-button-container {
+    padding-top: 5px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
 }
 
+.radio-button-input {
+    height: 14px;
+    width: 14px;
+}
+
 .radio-button-label {
+    padding-top: 4px;
     text-align: left;
+    
 }
 
 .task-description-subtext-1 {
@@ -155,6 +166,7 @@
 
 .task-description-box-edit {
     box-shadow: 1px 1px 6px $light-gray, -1px 1px 6px $light-gray;    
+    border-radius: 4px;
     margin-bottom: 1.5rem;
     width: 80%;
     background: white;

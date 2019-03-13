@@ -19,7 +19,7 @@ const navBar = (props) => {
         return (
             <div className="session-bar">
                 <Link to="/dashboard"><img className="task-hero-logo" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSETR13ThV9CFXJveiFI4lPVYmzn0tSUnaw9BCccSXwPGvNW24F" /></Link>
-                <h2>Welcome {props.currentUser.first_name}</h2>
+                {/* <h2>Welcome {props.currentUser.first_name}</h2> */}
                 <button className="logout-button" onClick={props.logout}>Log Out</button>
             </div>
         )

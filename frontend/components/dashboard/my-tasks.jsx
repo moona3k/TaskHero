@@ -1,6 +1,7 @@
 // This component renders all tasks assigned to the logged-in user in /dashboard
 
 import React from 'react';
+import ToggleMenu from './toggle-menu';
 
 class MyTasks extends React.Component {
     constructor(props){
@@ -21,6 +22,10 @@ class MyTasks extends React.Component {
     deleteTask(e){
         let taskId = e.currentTarget.value;
         this.props.deleteSelectedTask(taskId);
+    }
+
+    handleTogger() {
+        
     }
 
 
@@ -47,8 +52,10 @@ class MyTasks extends React.Component {
                 <div key={`my-task-${idx}`} className="dashboard-task-container">
                     <div className="dashboard-task-box-1">
                         <h3 className="dashboard-task-h3">{task.task_category}</h3>
-                        <img className="tasker-profile-img" src={task.tasker.profile_img} alt=""/>
-                        <button value={task.id} onClick={this.deleteTask}>Cancel Task</button>
+                        <div className="tasker-profile-container-box">
+                            <img className="tasker-profile-img-small" src={task.tasker.profile_img} alt=""/>
+                            <a onClick={this.deleteTask}><input type="hidden" value={task.id}/>Cancel Task</a>
+                        </div>
                     </div>
                     
                     <div className="dashboard-task-box-2">
@@ -59,20 +66,15 @@ class MyTasks extends React.Component {
                         <div className="dashboard-scheduled-date">{task.scheduled_date}</div>
                         <div className="dashboard-scheduled-time">{task.scheduled_time}</div>
                     </div>
-
-                    <div>
-                        <h5>Location</h5>
-                        <div>{task.location}</div>
-                        <h5>Tasker</h5>
-                        <div>{task.tasker.first_name} {task.tasker.last_name}</div>
-                        <h5>Price</h5>
-                        <div>${task.tasker.hourly_rate}/hr</div>
-                        <h5>Description</h5>
-                        <div>{task.description}</div>
-                        <h5>Vehicle Requirements</h5>
-                        <div>{task.vehicle_type}</div>
-                    </div>
-
+                 
+                    <ToggleMenu 
+                        location={task.location}
+                        first_name={task.tasker.first_name}
+                        last_name={task.tasker.last_name}
+                        hourly_rate={task.tasker.hourly_rate}
+                        description={task.description}
+                        vehicle_type={task.vehicle_type}
+                    />
                 </div>
             )
         })
@@ -87,3 +89,7 @@ class MyTasks extends React.Component {
 }
 
 export default MyTasks;
+
+// <div className="toggle-detail">
+//     <strong>Show Details <i className="fa fa-angle-up"></i></strong>
+// </div>

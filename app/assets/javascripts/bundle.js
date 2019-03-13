@@ -617,6 +617,7 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _toggle_menu__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./toggle-menu */ "./frontend/components/dashboard/toggle-menu.jsx");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -636,6 +637,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
 // This component renders all tasks assigned to the logged-in user in /dashboard
+
 
 
 var MyTasks =
@@ -668,7 +670,10 @@ function (_React$Component) {
     value: function deleteTask(e) {
       var taskId = e.currentTarget.value;
       this.props.deleteSelectedTask(taskId);
-    } //     ajax_fetchAllUserTasks(user_id) // ajax call
+    }
+  }, {
+    key: "handleTogger",
+    value: function handleTogger() {} //     ajax_fetchAllUserTasks(user_id) // ajax call
     //     .then( response => { // return object contains all tasks assigned to user_id
     //         this.setState(response); // update the local state w / task information
     //     })
@@ -695,14 +700,18 @@ function (_React$Component) {
           className: "dashboard-task-box-1"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
           className: "dashboard-task-h3"
-        }, task.task_category), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-          className: "tasker-profile-img",
+        }, task.task_category), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "tasker-profile-container-box"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+          className: "tasker-profile-img-small",
           src: task.tasker.profile_img,
           alt: ""
-        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-          value: task.id,
+        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
           onClick: _this2.deleteTask
-        }, "Cancel Task")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+          type: "hidden",
+          value: task.id
+        }), "Cancel Task"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "dashboard-task-box-2"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Your task is booked with ", task.tasker.first_name, " ", task.tasker.last_name)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "dashboard-task-box-3"
@@ -710,7 +719,14 @@ function (_React$Component) {
           className: "dashboard-scheduled-date"
         }, task.scheduled_date), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "dashboard-scheduled-time"
-        }, task.scheduled_time)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", null, "Location"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, task.location), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", null, "Tasker"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, task.tasker.first_name, " ", task.tasker.last_name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", null, "Price"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "$", task.tasker.hourly_rate, "/hr"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", null, "Description"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, task.description), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", null, "Vehicle Requirements"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, task.vehicle_type)));
+        }, task.scheduled_time)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_toggle_menu__WEBPACK_IMPORTED_MODULE_1__["default"], {
+          location: task.location,
+          first_name: task.tasker.first_name,
+          last_name: task.tasker.last_name,
+          hourly_rate: task.tasker.hourly_rate,
+          description: task.description,
+          vehicle_type: task.vehicle_type
+        }));
       });
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "dashboard-root-container"
@@ -723,7 +739,9 @@ function (_React$Component) {
   return MyTasks;
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
-/* harmony default export */ __webpack_exports__["default"] = (MyTasks);
+/* harmony default export */ __webpack_exports__["default"] = (MyTasks); // <div className="toggle-detail">
+//     <strong>Show Details <i className="fa fa-angle-up"></i></strong>
+// </div>
 
 /***/ }),
 
@@ -791,7 +809,7 @@ function (_React$Component) {
     value: function render() {
       var _this2 = this;
 
-      // console.log(this.state);
+      // console.log(this.props.currentUser);
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "dashboard-search-container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -801,8 +819,10 @@ function (_React$Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "dashboard-search-content-top"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
-        className: "dashboard-search-header"
-      }, "Book Your Next Task"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), "Search Bar Component Will Render Here")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "dashboard-search-header-1"
+      }, "Welcome back, ", this.props.currentUser.first_name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
+        className: "dashboard-search-header-2"
+      }, "Book Your Next Task Today!"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), "Search Bar Component Will Render Here")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "dashboard-search-content-bottom"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
         className: "dashboard-search-content-bottom-container"
@@ -889,7 +909,14 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
- // 'dispatch' is provided by the store
+
+
+var mapStateToProps = function mapStateToProps(state) {
+  return {
+    currentUser: state.entities.users[state.session.currentUser.id]
+  };
+}; // 'dispatch' is provided by the store
+
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
@@ -899,7 +926,130 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   };
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["withRouter"])(Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(null, mapDispatchToProps)(_task_booking_main__WEBPACK_IMPORTED_MODULE_3__["default"])));
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["withRouter"])(Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mapStateToProps, mapDispatchToProps)(_task_booking_main__WEBPACK_IMPORTED_MODULE_3__["default"])));
+
+/***/ }),
+
+/***/ "./frontend/components/dashboard/toggle-menu.jsx":
+/*!*******************************************************!*\
+  !*** ./frontend/components/dashboard/toggle-menu.jsx ***!
+  \*******************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+var ToggleMenu =
+/*#__PURE__*/
+function (_React$Component) {
+  _inherits(ToggleMenu, _React$Component);
+
+  function ToggleMenu(props) {
+    var _this;
+
+    _classCallCheck(this, ToggleMenu);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(ToggleMenu).call(this, props));
+    _this.state = {
+      show: true
+    };
+    return _this;
+  }
+
+  _createClass(ToggleMenu, [{
+    key: "handleClick",
+    value: function handleClick() {
+      this.setState({
+        show: !this.state.show
+      });
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var showDetail = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "toggle-detail-show"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", {
+        className: "toggle-detail-hover",
+        onClick: this.handleClick.bind(this)
+      }, "Show Details ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+        className: "fa fa-angle-down"
+      })));
+      var hideDetail = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "dashboard-task-box-4"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "box-4-container"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "my-task-small-box"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
+        className: "my-task-subtitle"
+      }, "Location"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+        className: "fa fa-map-marker"
+      }), " ", this.props.location)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "box-4-inner-box"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "my-task-small-box-tasker"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
+        className: "my-task-subtitle"
+      }, "Tasker"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.props.first_name, " ", this.props.last_name)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "my-task-small-box"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
+        className: "my-task-subtitle"
+      }, "Price"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "$", this.props.hourly_rate, "/hr")))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "my-task-small-box"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
+        className: "my-task-subtitle"
+      }, "Description"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.props.description)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "horizontal-short-line"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "my-task-small-box"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
+        className: "my-task-subtitle"
+      }, "Vehicle Requirements"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.props.vehicle_type))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "toggle-detail-hide"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", {
+        className: "toggle-detail-hover",
+        onClick: this.handleClick.bind(this)
+      }, "Hide Details ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+        className: "fa fa-angle-up"
+      }))));
+      var renderDetail;
+
+      if (this.state.show === false) {
+        renderDetail = hideDetail;
+      } else {
+        renderDetail = showDetail;
+      }
+
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, renderDetail);
+    }
+  }]);
+
+  return ToggleMenu;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+/* harmony default export */ __webpack_exports__["default"] = (ToggleMenu);
 
 /***/ }),
 
@@ -977,7 +1127,7 @@ var navBar = function navBar(props) {
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
       className: "task-hero-logo",
       src: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSETR13ThV9CFXJveiFI4lPVYmzn0tSUnaw9BCccSXwPGvNW24F"
-    })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Welcome ", props.currentUser.first_name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
       className: "logout-button",
       onClick: props.logout
     }, "Log Out"));
@@ -2588,7 +2738,8 @@ function (_React$Component) {
         className: "general-line"
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "task-size-radio-button-container"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        className: "radio-button-input",
         type: "radio",
         name: "task_size",
         value: "small",
@@ -2596,7 +2747,8 @@ function (_React$Component) {
         onClick: this.handleRadioButtonClick('estimated_time_req')
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         className: "radio-button-label"
-      }, "Small - Est. 1 hr"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      }, " Small - Est. 1 hr")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        className: "radio-button-input",
         type: "radio",
         name: "task_size",
         value: "medium",
@@ -2604,7 +2756,8 @@ function (_React$Component) {
         onClick: this.handleRadioButtonClick('estimated_time_req')
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         className: "radio-button-label"
-      }, "Medium - Est. 2-3 hrs"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      }, " Medium - Est. 2-3 hrs")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        className: "radio-button-input",
         type: "radio",
         name: "task_size",
         value: "large",
@@ -2612,31 +2765,40 @@ function (_React$Component) {
         onClick: this.handleRadioButtonClick('estimated_time_req')
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         className: "radio-button-label"
-      }, "Large - Est. 4+ hrs")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
+      }, " Large - Est. 4+ hrs"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
         className: "task-options-headers"
       }, "Vehicle Requirements"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", {
         className: "general-line"
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "vehicle-radio-button-container"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        className: "radio-button-label"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        className: "radio-button-input",
         type: "radio",
         name: "vehicle_type",
         value: "None",
         checked: this.state.vehicle_type === "None",
         onClick: this.handleRadioButtonClick('vehicle_type')
-      }), "Not needed for task"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      }), " Not needed for task"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        className: "radio-button-label"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        className: "radio-button-input",
         type: "radio",
         name: "vehicle_type",
         value: "Car",
         checked: this.state.vehicle_type === "Car",
         onClick: this.handleRadioButtonClick('vehicle_type')
-      }), "Task requires a car"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      }), " Task requires a car"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        className: "radio-button-label"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        className: "radio-button-input",
         type: "radio",
         name: "vehicle_type",
         value: "Truck",
         checked: this.state.vehicle_type === "Truck",
         onClick: this.handleRadioButtonClick('vehicle_type')
-      }), "Task requires a truck")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      }), " Task requires a truck")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         className: "task-description-button"
       }, "Continue")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "task-description-box-edit"

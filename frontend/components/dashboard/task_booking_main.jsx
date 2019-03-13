@@ -24,13 +24,14 @@ class TaskBookingMain extends React.Component {
     }
 
     render() {
-        // console.log(this.state);
+        // console.log(this.props.currentUser);
         return (
             <div className="dashboard-search-container">
                 <div className="dashboard-search-container-inner">
                     <div className="dashboard-search-content">
                         <div className="dashboard-search-content-top">
-                            <h1 className="dashboard-search-header">Book Your Next Task</h1>
+                            <h1 className="dashboard-search-header-1">Welcome back, {this.props.currentUser.first_name}</h1>
+                            <h1 className="dashboard-search-header-2">Book Your Next Task Today!</h1>
                             <div><br />Search Bar Component Will Render Here</div>
                         </div>
                         <div className="dashboard-search-content-bottom">
