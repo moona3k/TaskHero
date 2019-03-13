@@ -2192,7 +2192,9 @@ function (_React$Component) {
         className: "sorted-by-text"
       }, "SORTED BY: (insert sort feature)")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "choose-tasker-body-container"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_task_date_time_task_date_time_redux__WEBPACK_IMPORTED_MODULE_1__["default"], null), renderAllTaskers)));
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_task_date_time_task_date_time_redux__WEBPACK_IMPORTED_MODULE_1__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "available-taskers-container"
+      }, renderAllTaskers))));
     }
   }]);
 
@@ -2380,12 +2382,16 @@ function (_React$Component) {
       console.log('current task', this.props.currentTask);
       console.log('current tasker', this.props.currentTasker);
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: ""
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "confirm-task-root-container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "confirm-task-container"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "confirm-task-header"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, this.props.currentTask.task_category), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "$", this.props.currentTasker.hourly_rate, "/hr")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
+        className: "confirm-task-category"
+      }, this.props.currentTask.task_category), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
+        className: "confirm-hourly-rate"
+      }, "$", this.props.currentTasker.hourly_rate, "/hr")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "confirm-task-big-box"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "confirm-task-box-1"
@@ -2405,7 +2411,9 @@ function (_React$Component) {
         className: "confirm-task-box"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
         className: "confirm-task-title"
-      }, "Task Location"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.props.currentTask.location)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, "Task Location"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+        className: "fa fa-map-marker"
+      }), " ", this.props.currentTask.location)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "confirm-task-box"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
         className: "confirm-task-title"
@@ -2415,13 +2423,32 @@ function (_React$Component) {
         onChange: this.handleChange,
         value: this.state.description,
         className: "confirm-task-textarea"
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "You are charged only after your task is completed."), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        onClick: this.handleClick
-      }, "Confirm & Book"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "confirm-bottom-box"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+        className: "confirm-edit-link",
         to: "/task-form/new"
-      }, "Edit Task")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+        className: "fa fa-cog",
+        "aria-hidden": "true"
+      }), " Edit Task"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        className: "confirm-button",
+        onClick: this.handleClick
+      }, "Confirm & Book"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("small", {
+        className: "confirm-bottom-box-text"
+      }, "You are charged only after your task is completed."))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "confirm-task-footer"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Tasks have a one-hour minimum. A ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, "13.5% Trust and Support fee"), " is added to the Tasker\u2019s total rate."), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Pursuant to the Terms of Service, if you cancel your task within 24 hours of the scheduled start time, you may be charged a one-hour cancellation fee at the Tasker's hourly rate. If you selected a recurring cleaning, this is a task with repeat appointments. If you cancel the task (all appointments) or skip any individual appointment within 24 hours of the scheduled start time, you may be charged a one-hour cancellation fee at the Tasker's hourly rate."), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "For more details see ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, "Terms of Service"))));
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        className: "confirm-footer-text"
+      }, "Tasks have a one-hour minimum. A ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", {
+        className: "confirm-footer-text-highlight"
+      }, "13.5% Trust and Support fee"), " is added to the Tasker\u2019s total rate."), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        className: "confirm-footer-text"
+      }, "Pursuant to the Terms of Service, if you cancel your task within 24 hours of the scheduled start time, you may be charged a one-hour cancellation fee at the Tasker's hourly rate. If you selected a recurring cleaning, this is a task with repeat appointments. If you cancel the task (all appointments) or skip any individual appointment within 24 hours of the scheduled start time, you may be charged a one-hour cancellation fee at the Tasker's hourly rate."), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        className: "confirm-footer-text"
+      }, "For more details see ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", {
+        className: "confirm-footer-text-highlight"
+      }, "Terms of Service"))));
     }
   }]);
 
@@ -2536,16 +2563,22 @@ function (_React$Component) {
     key: "render",
     value: function render() {
       // console.log(this.state);
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "date-time-root-container"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
+        className: "date-time-header"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
         className: "fa fa-calendar"
-      }), " TASK DATE & TIME"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      }), "  TASK DATE & TIME"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        className: "date-input-field",
         type: "date",
         name: "taskDate",
         onChange: this.handleInput('taskDate'),
         min: new Date() // this doesn't work...
 
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
-        onChange: this.handleInput('taskTime')
+        onChange: this.handleInput('taskTime'),
+        className: "time-input-field"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
         value: "I'm Flexible"
       }, "I'm Flexible"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
@@ -2554,7 +2587,9 @@ function (_React$Component) {
         value: "Afternoon (12PM - 4PM)"
       }, "Afternoon (12PM - 4PM)"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
         value: "Evening (4PM - 8PM)"
-      }, "Evening (4PM - 8PM)")));
+      }, "Evening (4PM - 8PM)")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "date-time-footer-note"
+      }, "You can agree on exact start time with your selected Tasker after confirmation"));
     }
   }]);
 
@@ -2777,8 +2812,8 @@ function (_React$Component) {
         className: "radio-button-input",
         type: "radio",
         name: "vehicle_type",
-        value: "None",
-        checked: this.state.vehicle_type === "None",
+        value: "No vehicle needed",
+        checked: this.state.vehicle_type === "No vehicle needed",
         onClick: this.handleRadioButtonClick('vehicle_type')
       }), " Not needed for task"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         className: "radio-button-label"
@@ -3089,28 +3124,41 @@ function (_React$Component) {
         className: "tasker-img",
         src: this.props.profile_img
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        className: "choose-tasker-button",
         onClick: function onClick() {
           return _this.chooseTasker();
         }
-      }, "Select & Continue")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
+      }, "Select & Continue")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "tasker-text-container"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "tasker-name-rate-box"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "tasker-name"
-      }, this.props.first_name, " ", this.props.last_name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "$", this.props.hourly_rate, "/hr"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "tasker-stats"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-        className: "fas fa-tasks"
-      }), this.props.num_completed_tasks, " ", this.props.task_category, " Tasks"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "tasker-stats"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-        className: "far fa-star"
-      }), this.props.reviews_rating, " Positive Reviews"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, this.props.first_name, " ", this.props.last_name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "tasker-hourly-rate"
+      }, "$", this.props.hourly_rate, "/hr")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "tasker-stats"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
         className: "far fa-check-circle"
-      }), this.props.reviews_num, " Reviews"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }), " ", this.props.num_completed_tasks, " ", this.props.task_category, " Tasks"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "tasker-stats"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+        className: "far fa-star"
+      }), " ", this.props.reviews_rating, "% Positive Reviews"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "tasker-stats"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+        className: "far fa-check-circle"
+      }), " ", this.props.reviews_num, " Reviews"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "tasker-stats"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
         className: "fas fa-car"
-      }), "Vehicle: ", this.props.vehicle_type), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "How I can help:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.props.aboutme), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null)));
+      }), " Vehicle: ", this.props.vehicle_type), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "tasker-profile-box-bottom"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "how-can-i-help"
+      }, "How I can help:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        className: "tasker-about-me"
+      }, this.props.aboutme)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null)));
     }
   }]);
 

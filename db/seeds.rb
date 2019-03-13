@@ -16,7 +16,7 @@ task_categories_arr = [
 ] # arr.length = 19
 
 vehicle_type_arr = [
-    "None", "Car", "Truck"
+    "No vehicle needed", "Car", "Truck"
 ]
 
 tasker_rank_arr = [

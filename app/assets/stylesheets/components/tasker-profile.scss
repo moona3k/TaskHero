@@ -1,9 +1,10 @@
 .tasker-container {
-    
-    border: 1px solid darkgray;
+    background-color: white;
+
+    border: 1px solid #dce0E6;
     padding: 40px;
-    margin: 10px;
-    width: 700px;
+    margin: 10px 10px 20px 10px;
+    width: 730px;
     border-radius: 5px;
 
     display: flex;
@@ -12,13 +13,77 @@
 .tasker-profile {
     display: flex;
     flex-direction: column;
+    align-items: center;
+    width: 195px;
+    padding-right: 40px;
 }
 
 .tasker-img {
     width: 160px;
     height: 160px;
+    border-radius: 50%;
 }
 
 .tasker-name {
     font-size: 32px;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.tasker-hourly-rate {
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+}
+
+.choose-tasker-button {
+    color: white;
+    background-color: $green;
+
+    max-height: 45px;
+    max-width: 170px;
+    padding: 12px 22px 12px 22px;
+    margin: 15px 0 0 0;
+}
+
+.choose-tasker-button:hover {
+  background-color: $dark-green;
+}
+
+.tasker-text-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.tasker-name-rate-box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.tasker-stats {
+    font-size: 16px;
+    color: #242A30;
+    line-height: 24px;
+}
+
+.tasker-profile-box-bottom {
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid #dce0E6;
+    margin-top: 5px;
+    padding-top: 15px;
+}
+
+.how-can-i-help {
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 0.3;
+}
+
+.tasker-about-me {
+    font-size: 16px;
+    font-weight: 300;
+    color: #242A30;
+    padding-top: 15px;
 }

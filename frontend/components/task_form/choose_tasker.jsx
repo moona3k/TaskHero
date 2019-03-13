@@ -97,7 +97,9 @@ class ChooseTasker extends React.Component {
                     </div>
                     <div className="choose-tasker-body-container">
                         <TaskDateTimeRedux />
-                        {renderAllTaskers}
+                        <div className="available-taskers-container">
+                            {renderAllTaskers}
+                        </div>
                     </div>
                 </div>
             </div>

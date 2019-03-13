@@ -99,7 +99,7 @@ class TaskDescription extends React.Component {
                         <h3 className="task-options-headers">Vehicle Requirements</h3>
                         <hr className="general-line" />
                         <div className="vehicle-radio-button-container">
-                            <label className="radio-button-label"><input className="radio-button-input"  type="radio" name="vehicle_type" value="None" checked={this.state.vehicle_type === "None"} onClick={this.handleRadioButtonClick('vehicle_type')} /> Not needed for task</label>
+                            <label className="radio-button-label"><input className="radio-button-input"  type="radio" name="vehicle_type" value="No vehicle needed" checked={this.state.vehicle_type === "No vehicle needed"} onClick={this.handleRadioButtonClick('vehicle_type')} /> Not needed for task</label>
                             <label className="radio-button-label"><input className="radio-button-input"  type="radio" name="vehicle_type" value="Car" checked={this.state.vehicle_type === "Car"} onClick={this.handleRadioButtonClick('vehicle_type')} /> Task requires a car</label>
                             <label className="radio-button-label"><input className="radio-button-input"  type="radio" name="vehicle_type" value="Truck" checked={this.state.vehicle_type === "Truck"} onClick={this.handleRadioButtonClick('vehicle_type')} /> Task requires a truck</label>
                         </div>

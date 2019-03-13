@@ -38,11 +38,11 @@ class TaskConfirmPage extends React.Component {
         console.log('current tasker', this.props.currentTasker)
 
         return(
-            <div className="">
-                <div className="confirm-task-root-container">
+            <div className="confirm-task-root-container">
+                <div className="confirm-task-container">
                     <div className="confirm-task-header">
-                        <h2>{this.props.currentTask.task_category}</h2>
-                        <h2>${this.props.currentTasker.hourly_rate}/hr</h2>
+                        <h2 className="confirm-task-category">{this.props.currentTask.task_category}</h2>
+                        <h2 className="confirm-hourly-rate">${this.props.currentTasker.hourly_rate}/hr</h2>
                     </div>
 
                     <div className="confirm-task-big-box">
@@ -63,7 +63,7 @@ class TaskConfirmPage extends React.Component {
 
                     <div className="confirm-task-box">
                         <h3 className="confirm-task-title">Task Location</h3>
-                        <div>{this.props.currentTask.location}</div>
+                        <div><i className="fa fa-map-marker" /> {this.props.currentTask.location}</div>
                     </div>
 
                     <div className="confirm-task-box">
@@ -76,18 +76,19 @@ class TaskConfirmPage extends React.Component {
                         <textarea onChange={this.handleChange} value={this.state.description} className="confirm-task-textarea">
                         </textarea>
                     </div>
-                    <div>You are charged only after your task is completed.</div>
-                    <button onClick={this.handleClick}>Confirm & Book</button>
-                    <br/>
-                    <Link to='/task-form/new'>Edit Task</Link>
+                    <div className="confirm-bottom-box">
+                        <Link className="confirm-edit-link" to='/task-form/new'><i className="fa fa-cog" aria-hidden="true"></i> Edit Task</Link>
+                        <button className="confirm-button" onClick={this.handleClick}>Confirm & Book</button>
+                        <small className="confirm-bottom-box-text">You are charged only after your task is completed.</small>
+                    </div>
                 </div>
 
                 <div className="confirm-task-footer">
-                    <p>Tasks have a one-hour minimum. A <b>13.5% Trust and Support fee</b> is added to the Tasker’s total rate.</p>
+                    <p className="confirm-footer-text">Tasks have a one-hour minimum. A <b className="confirm-footer-text-highlight">13.5% Trust and Support fee</b> is added to the Tasker’s total rate.</p>
                     <br />
-                    <p>Pursuant to the Terms of Service, if you cancel your task within 24 hours of the scheduled start time, you may be charged a one-hour cancellation fee at the Tasker's hourly rate. If you selected a recurring cleaning, this is a task with repeat appointments. If you cancel the task (all appointments) or skip any individual appointment within 24 hours of the scheduled start time, you may be charged a one-hour cancellation fee at the Tasker's hourly rate.</p>
+                    <p className="confirm-footer-text">Pursuant to the Terms of Service, if you cancel your task within 24 hours of the scheduled start time, you may be charged a one-hour cancellation fee at the Tasker's hourly rate. If you selected a recurring cleaning, this is a task with repeat appointments. If you cancel the task (all appointments) or skip any individual appointment within 24 hours of the scheduled start time, you may be charged a one-hour cancellation fee at the Tasker's hourly rate.</p>
                     <br />
-                    <p>For more details see <b>Terms of Service</b></p>
+                    <p className="confirm-footer-text">For more details see <b className="confirm-footer-text-highlight">Terms of Service</b></p>
                 </div>
             </div>
         )

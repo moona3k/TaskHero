@@ -24,21 +24,23 @@ class TaskCalendar extends React.Component {
     render() {
         // console.log(this.state);
         return (
-            <div>
-                <h2><i className="fa fa-calendar"></i> TASK DATE & TIME</h2>
+            <div className="date-time-root-container">
+                <h2 className="date-time-header"><i className="fa fa-calendar"></i>  TASK DATE & TIME</h2>
                 <input 
+                    className="date-input-field"
                     type="date"
                     name="taskDate" 
                     onChange={ this.handleInput('taskDate')}
                     min={new Date()} // this doesn't work...
                 />
                 <br />
-                <select onChange={this.handleInput('taskTime')}>
+                <select onChange={this.handleInput('taskTime')} className="time-input-field">
                     <option value="I'm Flexible">I'm Flexible</option>
                     <option value="Morning (8AM - 12PM)">Morning (8AM - 12PM)</option>
                     <option value="Afternoon (12PM - 4PM)">Afternoon (12PM - 4PM)</option>
                     <option value="Evening (4PM - 8PM)">Evening (4PM - 8PM)</option>
                 </select>
+                <div className="date-time-footer-note">You can agree on exact start time with your selected Tasker after confirmation</div>
 
             </div>
         )

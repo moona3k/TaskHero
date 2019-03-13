@@ -3,16 +3,25 @@
 }
 
 .confirm-task-root-container {
+    background-color: #f9fafb;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 60px;
+}
+
+.confirm-task-container {
     display: flex;
     flex-direction: column;
 
+    background-color: white;
     border: 1px solid #DCE0E6;
     border-radius: 5px;
 
     padding: 40px;
-    margin: 40px;
 
-    max-width: 50%;
+    max-width: 70%;
 
 }
 
@@ -28,6 +37,16 @@
     color: #545E69;
     padding-top: 5px;
     padding-bottom: 10px;
+}
+
+.confirm-task-category {
+    font-size: 32px;
+    font-weight: 500;
+    letter-spacing: 0.3;
+}
+
+.confirm-hourly-rate {
+    font-size: 28px;
 }
 
 .confirm-task-big-box {
@@ -79,6 +98,49 @@
     line-height: 24px;
 
     padding: 12px;
-    width: 100%;
+    width: 97%;
     height: 150px;
+}
+
+.confirm-footer-text {
+    font-size: 14px;
+    line-height: 24px;
+    color: #545E69;
+}
+
+.confirm-footer-text-highlight {
+    font-weight: 300;
+    color: $green;
+}
+
+.confirm-footer-text-highlight:hover {
+    cursor: pointer;
+}
+
+.confirm-bottom-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 20px;
+}
+
+.confirm-edit-link {
+    font-size: 14px;
+}
+
+.confirm-bottom-box-text {
+    font-size: 14px;
+    color: #6f6f6f;
+}
+
+.confirm-button {
+    color: white;
+    background-color: $green;
+    margin: 20px 10px 10px 10px;
+    // max-height: 
+}
+
+.confirm-button:hover {
+    background-color: $dark-green;
 }

@@ -13,8 +13,9 @@
     padding-bottom: 1rem;
 }
 
-.choose-tasker-header {
-
+.choose-tasker-header-sub {
+    font-size: 20px;
+    color: $darkest-gray;
 }
 
 .sorted-by-text {
@@ -24,5 +25,51 @@
 
 .choose-tasker-body-container {
     display: flex;
+}
+
+.available-taskers-container {
+    display: flex;
     flex-direction: column;
+}
+
+.date-time-root-container {
+    margin-left: 50px;
+    margin-right: 20px;
+    width: 400px;
+    height: 250px;
+    background-color: white;
+
+    margin-top: 10px;
+
+    border: 1px solid #DCE0E6;
+    border-radius: 5px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.date-time-header {
+    font-size: 16px;
+    font-weight: 500;
+    padding-top: 20px;
+    padding-bottom: 15px;
+    padding-right: 170px;
+}
+
+.date-input-field {
+    max-width: 80%
+}
+
+.time-input-field {
+    width: 355px;
+}
+
+.date-time-footer-note {
+    color: #6f6f6f;
+    font-size: 15px;
+    line-height: 1.4;
+    padding-left: 25px;
+    padding-top: 15px;
+    margin-right: 20px;
 }
