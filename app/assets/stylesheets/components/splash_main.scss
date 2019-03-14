@@ -1,6 +1,6 @@
 .splash-main-container {
-    background-size: 1597px 500px;
-    height: 500px;
+    background-size: 1597px 530px;
+    height: 530px;
     background-image: url(https://bit.ly/2T67c19);
     display: flex;
     justify-content: center;
@@ -28,8 +28,9 @@
 }
 
 .main-sub-header {
-    font-size: 1.5rem;
+    font-size: 22px;
     font-weight: 300;
+    padding-bottom: 5px;
 }
 
 .main-task-categories-container {

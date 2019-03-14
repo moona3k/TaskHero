@@ -39,7 +39,7 @@ export const taskCategories = [
     "Yard Work & Removal"
 ];
 
-export const taskCategoryImages = {
+export const taskImageLink = {
     "Delivery": "https://images.unsplash.com/photo-1526367790999-0150786686a2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1651&q=80",
     "Cleaning": "https://images.unsplash.com/photo-1527515637462-cff94eecc1ac?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1567&q=80",
     "Event Planning": "https://images.unsplash.com/photo-1539074012390-794e447a2d9e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80",

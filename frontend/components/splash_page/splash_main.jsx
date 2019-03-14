@@ -1,4 +1,5 @@
 import React from 'react';
+import TaskSearchBarContainer from '../search_bar/task-search-bar-redux';
 
 class SplashMain extends React.Component {
 
@@ -16,7 +17,7 @@ class SplashMain extends React.Component {
                         <a><button className="task-category-button">General Handyman</button></a>
                         <a><button className="task-category-button">Heavy Lifting</button></a>
                     </ul>
-                    <div>SearchBar Component goes here</div>
+                    <TaskSearchBarContainer/>
                 </div>
             </div>
         )
