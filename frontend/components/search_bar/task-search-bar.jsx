@@ -8,7 +8,8 @@ class TaskSearchBar extends React.Component {
         this.state = {
             queryString: '',
             isFocus: false,
-            searchResults: ["Minor Home Repairs", "Cleaning", "Help Moving", "Event Planning"]
+            searchResults: ["Minor Home Repairs", "Cleaning", "Help Moving", "Event Planning"],
+            noResultsFound: false
         }
     }
 
@@ -16,7 +17,30 @@ class TaskSearchBar extends React.Component {
         this.setState({
             queryString: e.currentTarget.value
         }, () => {
-            console.log('run query here, then setState searchResult')
+            
+            let taskCategories = AllTasks.taskCategories // array of all task categories
+            let searchResults = []; // items in this array will be rendered
+            let category; // initialize category variable
+            
+            for (category of taskCategories){
+                if (category.toLowerCase().includes(this.state.queryString.toLowerCase())
+                    && searchResults.length < 6){
+                    
+                    searchResults.push(category);
+                    this.setState({ noResultsFound: false })
+                    
+                } else if (searchResults.length === 0){
+                    this.setState( { noResultsFound: true} )
+                }   
+            }
+
+            this.setState(
+                { searchResults: searchResults }
+            )
+
+        // 1) run query logic, select all tasks that match the input letter',
+        // 2) with return response, setState searchResult: response'
+                
         })
     }
 
@@ -28,7 +52,9 @@ class TaskSearchBar extends React.Component {
 
     handleBlur(){
         this.setState({
-            isFocus: false
+            isFocus: false,
+            searchResults: ["Minor Home Repairs", "Cleaning", "Help Moving", "Event Planning"],
+            noResultsFound: false
         })
     }
 
@@ -39,7 +65,7 @@ class TaskSearchBar extends React.Component {
 
         let renderResults = <div/>
 
-        if (this.state.isFocus){
+        if (this.state.isFocus && !this.state.noResultsFound){
 
             renderResults = this.state.searchResults.map( (result, idx) => {
                 return (
@@ -49,6 +75,15 @@ class TaskSearchBar extends React.Component {
                     </div>
                 )
             })
+        }
+        
+        if (this.state.isFocus && this.state.noResultsFound){
+
+            renderResults =
+                <div className="search-bar-result-box-noresults">
+                We apologize, "<b>{this.state.queryString}</b>" is not a recognized task. 
+                <br/>Try us again later!
+                </div>
         }
 
         return (

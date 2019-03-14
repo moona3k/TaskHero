@@ -79,3 +79,9 @@ export const taskImageLink = {
     "Writing & Editing": "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?ixlib=rb-1.2.1&auto=format&fit=crop&w=1650&q=80",
     "Yard Work & Removal": "https://images.unsplash.com/photo-1470504932531-e5e26873b408?ixlib=rb-1.2.1&auto=format&fit=crop&w=1650&q=80"
 }
+
+// add below
+// "Mounting & Installation",
+// "Moving & Packing",
+// "Home Improvement",
+// "General Handyman"

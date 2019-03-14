@@ -23,7 +23,6 @@
     border-radius: 5px; // this doesn't work :(
 }
 
-
 .search-bar-result-box {
     display: flex;
     align-items: center;
@@ -37,10 +36,23 @@
     padding: 12px 12px 12px 20px;
 }
 
+
 .search-bar-result-box:hover {
     background-color: #f9fafb;
     cursor: pointer;
 }    
+
+.search-bar-result-box-noresults {
+    font-size: 16px;
+    font-weight: 300;
+    max-width: 100%;
+    line-height: 1.4;
+
+    background-color: #f9fafb;
+    
+    padding: 12px 20px 12px 20px;
+
+}
 
 .search-bar-result-text {
     padding-left: 20px;
@@ -55,3 +67,4 @@
     height: 50px;
     width: 50px;
 }
+

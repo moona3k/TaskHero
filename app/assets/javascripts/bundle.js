@@ -1288,7 +1288,8 @@ function (_React$Component) {
     _this.state = {
       queryString: '',
       isFocus: false,
-      searchResults: ["Minor Home Repairs", "Cleaning", "Help Moving", "Event Planning"]
+      searchResults: ["Minor Home Repairs", "Cleaning", "Help Moving", "Event Planning"],
+      noResultsFound: false
     };
     return _this;
   }
@@ -1296,10 +1297,57 @@ function (_React$Component) {
   _createClass(TaskSearchBar, [{
     key: "handleChange",
     value: function handleChange(e) {
+      var _this2 = this;
+
       this.setState({
         queryString: e.currentTarget.value
       }, function () {
-        console.log('run query here, then setState searchResult');
+        var taskCategories = _util_task_categories__WEBPACK_IMPORTED_MODULE_1__["taskCategories"]; // array of all task categories
+
+        var searchResults = []; // items in this array will be rendered
+
+        var category; // initialize category variable
+
+        var _iteratorNormalCompletion = true;
+        var _didIteratorError = false;
+        var _iteratorError = undefined;
+
+        try {
+          for (var _iterator = taskCategories[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+            category = _step.value;
+
+            if (category.toLowerCase().includes(_this2.state.queryString.toLowerCase()) && searchResults.length < 6) {
+              searchResults.push(category);
+
+              _this2.setState({
+                noResultsFound: false
+              });
+            } else if (searchResults.length === 0) {
+              _this2.setState({
+                noResultsFound: true
+              });
+            }
+          }
+        } catch (err) {
+          _didIteratorError = true;
+          _iteratorError = err;
+        } finally {
+          try {
+            if (!_iteratorNormalCompletion && _iterator.return != null) {
+              _iterator.return();
+            }
+          } finally {
+            if (_didIteratorError) {
+              throw _iteratorError;
+            }
+          }
+        }
+
+        _this2.setState({
+          searchResults: searchResults
+        }); // 1) run query logic, select all tasks that match the input letter',
+        // 2) with return response, setState searchResult: response'
+
       });
     }
   }, {
@@ -1313,7 +1361,9 @@ function (_React$Component) {
     key: "handleBlur",
     value: function handleBlur() {
       this.setState({
-        isFocus: false
+        isFocus: false,
+        searchResults: ["Minor Home Repairs", "Cleaning", "Help Moving", "Event Planning"],
+        noResultsFound: false
       });
     }
   }, {
@@ -1324,7 +1374,7 @@ function (_React$Component) {
       console.log(this.state);
       var renderResults = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null);
 
-      if (this.state.isFocus) {
+      if (this.state.isFocus && !this.state.noResultsFound) {
         renderResults = this.state.searchResults.map(function (result, idx) {
           return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
             className: "search-bar-result-box",
@@ -1336,6 +1386,12 @@ function (_React$Component) {
             className: "search-bar-result-text"
           }, result));
         });
+      }
+
+      if (this.state.isFocus && this.state.noResultsFound) {
+        renderResults = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "search-bar-result-box-noresults"
+        }, "We apologize, \"", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, this.state.queryString), "\" is not a recognized task.", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), "Try us again later!");
       }
 
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
@@ -3878,7 +3934,12 @@ var taskImageLink = {
   "Videography": "https://images.unsplash.com/photo-1534949532948-7c512aa3921b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80",
   "Web Design & Development": "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80",
   "Writing & Editing": "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?ixlib=rb-1.2.1&auto=format&fit=crop&w=1650&q=80",
-  "Yard Work & Removal": "https://images.unsplash.com/photo-1470504932531-e5e26873b408?ixlib=rb-1.2.1&auto=format&fit=crop&w=1650&q=80"
+  "Yard Work & Removal": "https://images.unsplash.com/photo-1470504932531-e5e26873b408?ixlib=rb-1.2.1&auto=format&fit=crop&w=1650&q=80" // add below
+  // "Mounting & Installation",
+  // "Moving & Packing",
+  // "Home Improvement",
+  // "General Handyman"
+
 };
 
 /***/ }),
