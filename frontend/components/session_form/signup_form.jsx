@@ -10,8 +10,6 @@ class SignupForm extends React.Component {
             password: '',
             zipcode: ''
         }
-
-        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     componentDidMount() {
@@ -36,8 +34,7 @@ class SignupForm extends React.Component {
         );
     }
 
-    handleSubmit(e) {
-        e.preventDefault();
+    handleClick() {
         const user = Object.assign({}, this.state);
         // Object.assign creates a copy of an object
         this.props.processForm(user) // alternatively, you can simply write processForm(this.state)
@@ -47,40 +44,26 @@ class SignupForm extends React.Component {
     render() {
         return (
             <div className="session-form-container">
-                <div className="session-form-background-image">
-                    <div className="session-form-box">
-                        <form onSubmit={this.handleSubmit}>
-                            <img className="session-form-logo" src="https://bit.ly/2V9Rgsd" />
-                            <br />
-
-                            <div className="session-form">
-
-                                <label>First Name</label>
-                                <input type="text" value={this.state.first_name} onChange={this.handleInput('first_name')} className="login-input"/>
-                                <br />
-                                <label>Last Name</label>
-                                <input type="text" value={this.state.last_name} onChange={this.handleInput('last_name')} className="login-input"/>
-                                <br />
-                                <label>Email Address</label>
-                                <input type="text" value={this.state.email} onChange={this.handleInput('email')} className="login-input"/>
-                                <br />
-                                <label>Password</label>
-                                <input type="text" value={this.state.password} onChange={this.handleInput('password')} className="login-input"/>
-                                <br />
-                                <label>Zip Code</label>
-                                <input type="text" value={this.state.zipcode} onChange={this.handleInput('zipcode')} className="login-input"/>
-                                <br />
-                                
-                                <button type="submit" className="session-submit"> Create Account</button>
-
-                                <div>{this.renderErrors()}</div>
-                                <div className="session-already-have-account">Already have an account? {this.props.navLink}</div>
-                            </div>
-                        </form>
-                        <span>
-                            
-                        </span>
-                    </div>
+                <div className="session-form-box">
+                    <img className="session-form-logo" src="https://bit.ly/2V9Rgsd" />
+                    <form>
+                        <div className="session-form">
+                            <div className="session-form-label">First Name</div>
+                            <input type="text" value={this.state.first_name} onChange={this.handleInput('first_name')} className="session-form-input"/>
+                            <div className="session-form-label">Last Name</div>
+                            <input type="text" value={this.state.last_name} onChange={this.handleInput('last_name')} className="session-form-input"/>
+                            <div className="session-form-label">Email Address</div>
+                            <input type="text" value={this.state.email} onChange={this.handleInput('email')} className="session-form-input" />
+                            <div className="session-form-label">Password</div>
+                            <input type="text" value={this.state.password} onChange={this.handleInput('password')} className="session-form-input"/>
+                            <div className="session-form-label">Zip Code</div>
+                            <input type="text" value={this.state.zipcode} onChange={this.handleInput('zipcode')} className="session-form-input"/>
+                        </div>
+                    </form>
+                    <div className="session-form-disclaimer">By clicking below and creating an account, I agree to TaskHero's <b className="session-green-text">Terms of Service</b> and <b className="session-green-text">Privacy Policy</b>.</div>
+                    <button onClick={this.handleClick.bind(this)} className="session-submit-button"> Create Account</button>
+                    <div>{this.renderErrors()}</div>
+                    <div className="session-already-have-account">Already have an account? {this.props.navLink}</div>
                 </div>
             </div>
     

@@ -87,7 +87,7 @@ class ChooseTasker extends React.Component {
 
         return (
             <div>
-                <div className="root-container">
+                <div className="choose-tasker-root-container">
                     <div className="choose-tasker-header-container">
                         <h2 className="choose-tasker-header-title">Pick a Tasker</h2>
                         <h3 className="choose-tasker-header-sub">After booking, you can chat with your Tasker, agree on an exact time, or go over any requirements or questions, if necessary.</h3>

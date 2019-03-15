@@ -63,12 +63,12 @@ class TaskConfirmPage extends React.Component {
 
                     <div className="confirm-task-box">
                         <h3 className="confirm-task-title">Task Location</h3>
-                        <div><i className="fa fa-map-marker" /> {this.props.currentTask.location}</div>
+                        <div><i className="fas fa-map-marker-alt" /> {this.props.currentTask.location}</div>
                     </div>
 
                     <div className="confirm-task-box">
                         <h3 className="confirm-task-title">Vehicle Requirements</h3>
-                        <div>{this.props.currentTask.vehicle_type}</div>
+                        <div><i className="fas fa-car"></i> {this.props.currentTask.vehicle_type}</div>
                     </div>
                   
                     <div>

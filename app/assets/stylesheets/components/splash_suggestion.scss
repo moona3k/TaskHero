@@ -1,3 +1,97 @@
+
+// .get-inspired-container {
+//     display: flex;
+//     flex-direction: column;
+//     justify-content: center;
+//     align-items: center;
+    
+//     background-color: white;
+//     max-width: 100%;
+    
+//     padding: 60px 150px 60px 150px;
+// }
+
+// .get-inspired-header {
+//     font-size: 45px;
+//     margin-bottom: 45px;
+// }
+
+// .get-inspired-body-top {
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+
+//     margin-bottom: 40px;
+// }
+
+// .get-inspired-image-big {
+//     height: 100%;
+// }
+
+// .get-inspired-box-1-inner {
+//     display: flex;
+//     flex-direction: column;
+//     justify-content: center;
+//     align-items: center;
+
+//     background-color: #f9fafb;
+//     text-align: center;
+
+//     height: 390px;
+
+//     margin-left: 30px;
+// }
+
+// .get-inspired-text-main {
+//     font-size: 22px;
+//     line-height: 1.5;
+//     padding-bottom: 1rem;
+//     width: 60%;
+// }
+
+
+// .get-inspired-body-bottom {
+//     display: flex;
+//     justify-content: space-evenly;
+//     // max-width: 100%;
+// }
+
+// .task-suggestion-box {
+//     display: flex;
+//     flex-direction: column;
+//     justify-content: center;
+//     align-items: center;
+// }
+
+// .task-suggestion-image {
+//     height: 300px;
+//     width: 100%;
+// }
+
+// .task-suggestion-title {
+//     font-size: 1.5rem;
+//     font-weight: 300;
+//     color: #242a30;
+//     margin-bottom: 0.5rem;
+// }
+
+// .task-suggestion-price {
+//     color: #438E39;
+//     margin-bottom: 20px;
+// }
+
+// .task-suggestion-button {
+//     color: white;
+//     background-color: $green;
+// }
+
+// .task-suggestion-button:hover {
+//     background-color: $dark-green;
+// }
+
+
+
+
 .get-inspired-container {
     background-color: white;
     padding: 3em 0;
@@ -99,10 +193,7 @@
 }
 
 .task-suggestion-button {
-    padding-top: 0.625em;
-    padding-bottom: 0.625em;
     font-size: 1rem;
-    padding: .475em 1.75em .325em;
     color: white;
     border: 1px solid #51af33;
     background-color: #51af33;

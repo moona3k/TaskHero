@@ -27,6 +27,7 @@ class TaskSearchBar extends React.Component {
                     && searchResults.length < 6){
                     
                     searchResults.push(category);
+                    searchResults.sort();
                     this.setState({ noResultsFound: false })
                     
                 } else if (searchResults.length === 0){

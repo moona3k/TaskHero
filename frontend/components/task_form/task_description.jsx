@@ -74,15 +74,6 @@ class TaskDescription extends React.Component {
                     <div className="task-description-box">
                         <h3 className="task-description-mini-title">YOUR TASK LOCATION</h3>
                         <div id="location-container">
-                            <Autocomplete
-                                style={{ width: '90%' }}
-                                onPlaceSelected={(place) => {
-                                    {/* console.log(place); */}
-                                }}
-                                types={['(regions)']}
-                                componentRestrictions={{ country: "US" }}
-                            />
-                            
                             <input id="location-general" type="text" value={this.state.location} onChange={this.handleInput('location')} placeholder="Add autocomplete address feature"/>
                             &nbsp;&nbsp;&nbsp;&nbsp;
                             <input id="location-specific" type="text" value={this.state.specific_location} onChange={this.handleInput('specific_location')} placeholder="Unit or Apt #"/>
@@ -103,9 +94,9 @@ class TaskDescription extends React.Component {
                         <h3 className="task-options-headers">Vehicle Requirements</h3>
                         <hr className="general-line" />
                         <div className="vehicle-radio-button-container">
-                            <label className="radio-button-label"><input className="radio-button-input"  type="radio" name="vehicle_type" value="No vehicle needed" checked={this.state.vehicle_type === "No vehicle needed"} onClick={this.handleRadioButtonClick('vehicle_type')} /> Not needed for task</label>
-                            <label className="radio-button-label"><input className="radio-button-input"  type="radio" name="vehicle_type" value="Car" checked={this.state.vehicle_type === "Car"} onClick={this.handleRadioButtonClick('vehicle_type')} /> Task requires a car</label>
-                            <label className="radio-button-label"><input className="radio-button-input"  type="radio" name="vehicle_type" value="Truck" checked={this.state.vehicle_type === "Truck"} onClick={this.handleRadioButtonClick('vehicle_type')} /> Task requires a truck</label>
+                            <label className="radio-button-label"><input className="radio-button-input" type="radio" name="vehicle_type" value="No vehicle needed" checked={this.state.vehicle_type === "No vehicle needed"} onClick={this.handleRadioButtonClick('vehicle_type')} /> <b className="vehicle-radio-text-bold">Not needed</b> for task</label>
+                            <label className="radio-button-label"><input className="radio-button-input" type="radio" name="vehicle_type" value="Car" checked={this.state.vehicle_type === "Car"} onClick={this.handleRadioButtonClick('vehicle_type')} /> Task requires a <b className="vehicle-radio-text-bold">car</b></label>
+                            <label className="radio-button-label"><input className="radio-button-input" type="radio" name="vehicle_type" value="Truck" checked={this.state.vehicle_type === "Truck"} onClick={this.handleRadioButtonClick('vehicle_type')} /> Task requires a <b className="vehicle-radio-text-bold">truck</b></label>
                         </div>
                         <br />
                         <button className="task-description-button">Continue</button>
@@ -126,3 +117,10 @@ class TaskDescription extends React.Component {
 export default TaskDescription;
 
 
+// <Autocomplete
+//     style={{ width: '90%' }}
+//     onPlaceSelected={(place) => {
+//     }}
+//     types={['(regions)']}
+//     componentRestrictions={{ country: "US" }}
+// />

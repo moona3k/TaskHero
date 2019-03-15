@@ -1100,7 +1100,7 @@ function (_React$Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
         className: "my-task-subtitle"
       }, "Location"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-        className: "fa fa-map-marker"
+        className: "fas fa-map-marker-alt"
       }), " ", this.props.location)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "box-4-inner-box"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -1417,6 +1417,7 @@ function (_React$Component) {
 
             if (category.toLowerCase().includes(_this2.state.queryString.toLowerCase()) && searchResults.length < 6) {
               searchResults.push(category);
+              searchResults.sort();
 
               _this2.setState({
                 noResultsFound: false
@@ -1546,9 +1547,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
 function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
@@ -1571,7 +1572,6 @@ function (_React$Component) {
       email: '',
       password: ''
     };
-    _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -1601,9 +1601,9 @@ function (_React$Component) {
       }));
     }
   }, {
-    key: "handleSubmit",
-    value: function handleSubmit(e) {
-      e.preventDefault();
+    key: "handleClick",
+    value: function handleClick() {
+      console.log('render');
       var user = Object.assign({}, this.state); // Object.assign creates a copy of an object
 
       this.props.processForm(user); // alternatively, you can simply write processForm(this.state)
@@ -1612,35 +1612,34 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
+      console.log(this.state);
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "session-form-container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "session-form-background-image"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "session-form-box"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
-        onSubmit: this.handleSubmit
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         className: "session-form-logo",
         src: "https://bit.ly/2V9Rgsd"
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "session-form"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Email Address"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "session-form-label"
+      }, "Email Address"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "text",
         value: this.state.email,
         onChange: this.handleInput('email'),
-        className: "login-input"
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Password"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        className: "session-form-input"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "session-form-label"
+      }, "Password"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "text",
         value: this.state.password,
         onChange: this.handleInput('password'),
-        className: "login-input"
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        type: "submit",
-        className: "session-submit"
-      }, "Log in"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.renderErrors()), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "session-form-input"
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.renderErrors()), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        onClick: this.handleClick.bind(this),
+        className: "session-submit-button"
+      }, "Log in"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "session-already-have-account"
-      }, "No account?  ", this.props.navLink))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null))));
+      }, "Don't have an account? ", this.props.navLink)));
     }
   }]);
 
@@ -1720,9 +1719,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
 function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
@@ -1748,7 +1747,6 @@ function (_React$Component) {
       password: '',
       zipcode: ''
     };
-    _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -1778,9 +1776,8 @@ function (_React$Component) {
       }));
     }
   }, {
-    key: "handleSubmit",
-    value: function handleSubmit(e) {
-      e.preventDefault();
+    key: "handleClick",
+    value: function handleClick() {
       var user = Object.assign({}, this.state); // Object.assign creates a copy of an object
 
       this.props.processForm(user); // alternatively, you can simply write processForm(this.state)
@@ -1792,47 +1789,59 @@ function (_React$Component) {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "session-form-container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "session-form-background-image"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "session-form-box"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
-        onSubmit: this.handleSubmit
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         className: "session-form-logo",
         src: "https://bit.ly/2V9Rgsd"
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "session-form"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "First Name"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "session-form-label"
+      }, "First Name"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "text",
         value: this.state.first_name,
         onChange: this.handleInput('first_name'),
-        className: "login-input"
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Last Name"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        className: "session-form-input"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "session-form-label"
+      }, "Last Name"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "text",
         value: this.state.last_name,
         onChange: this.handleInput('last_name'),
-        className: "login-input"
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Email Address"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        className: "session-form-input"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "session-form-label"
+      }, "Email Address"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "text",
         value: this.state.email,
         onChange: this.handleInput('email'),
-        className: "login-input"
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Password"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        className: "session-form-input"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "session-form-label"
+      }, "Password"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "text",
         value: this.state.password,
         onChange: this.handleInput('password'),
-        className: "login-input"
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Zip Code"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        className: "session-form-input"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "session-form-label"
+      }, "Zip Code"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "text",
         value: this.state.zipcode,
         onChange: this.handleInput('zipcode'),
-        className: "login-input"
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        type: "submit",
-        className: "session-submit"
+        className: "session-form-input"
+      }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "session-form-disclaimer"
+      }, "By clicking below and creating an account, I agree to TaskHero's ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", {
+        className: "session-green-text"
+      }, "Terms of Service"), " and ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", {
+        className: "session-green-text"
+      }, "Privacy Policy"), "."), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        onClick: this.handleClick.bind(this),
+        className: "session-submit-button"
       }, " Create Account"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.renderErrors()), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "session-already-have-account"
-      }, "Already have an account? ", this.props.navLink))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null))));
+      }, "Already have an account? ", this.props.navLink)));
     }
   }]);
 
@@ -2544,7 +2553,7 @@ function (_React$Component) {
       console.log('this is allTaskers', allTaskers);
       console.log('this is props', this.props.currentTask);
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "root-container"
+        className: "choose-tasker-root-container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "choose-tasker-header-container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
@@ -2775,12 +2784,14 @@ function (_React$Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
         className: "confirm-task-title"
       }, "Task Location"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-        className: "fa fa-map-marker"
+        className: "fas fa-map-marker-alt"
       }), " ", this.props.currentTask.location)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "confirm-task-box"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
         className: "confirm-task-title"
-      }, "Vehicle Requirements"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.props.currentTask.vehicle_type)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
+      }, "Vehicle Requirements"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+        className: "fas fa-car"
+      }), " ", this.props.currentTask.vehicle_type)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
         className: "confirm-task-title"
       }, "Task Description"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
         onChange: this.handleChange,
@@ -3103,20 +3114,7 @@ function (_React$Component) {
         className: "task-description-mini-title"
       }, "YOUR TASK LOCATION"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         id: "location-container"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_google_autocomplete__WEBPACK_IMPORTED_MODULE_2___default.a, {
-        style: {
-          width: '90%'
-        },
-        onPlaceSelected: function onPlaceSelected(place) {
-          {
-            /* console.log(place); */
-          }
-        },
-        types: ['(regions)'],
-        componentRestrictions: {
-          country: "US"
-        }
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         id: "location-general",
         type: "text",
         value: this.state.location,
@@ -3182,7 +3180,9 @@ function (_React$Component) {
         value: "No vehicle needed",
         checked: this.state.vehicle_type === "No vehicle needed",
         onClick: this.handleRadioButtonClick('vehicle_type')
-      }), " Not needed for task"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+      }), " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", {
+        className: "vehicle-radio-text-bold"
+      }, "Not needed"), " for task"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         className: "radio-button-label"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         className: "radio-button-input",
@@ -3191,7 +3191,9 @@ function (_React$Component) {
         value: "Car",
         checked: this.state.vehicle_type === "Car",
         onClick: this.handleRadioButtonClick('vehicle_type')
-      }), " Task requires a car"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+      }), " Task requires a ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", {
+        className: "vehicle-radio-text-bold"
+      }, "car")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         className: "radio-button-label"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         className: "radio-button-input",
@@ -3200,7 +3202,9 @@ function (_React$Component) {
         value: "Truck",
         checked: this.state.vehicle_type === "Truck",
         onClick: this.handleRadioButtonClick('vehicle_type')
-      }), " Task requires a truck")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      }), " Task requires a ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", {
+        className: "vehicle-radio-text-bold"
+      }, "truck"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         className: "task-description-button"
       }, "Continue")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "task-description-box-edit"
@@ -3229,7 +3233,13 @@ function (_React$Component) {
   return TaskDescription;
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
-/* harmony default export */ __webpack_exports__["default"] = (TaskDescription);
+/* harmony default export */ __webpack_exports__["default"] = (TaskDescription); // <Autocomplete
+//     style={{ width: '90%' }}
+//     onPlaceSelected={(place) => {
+//     }}
+//     types={['(regions)']}
+//     componentRestrictions={{ country: "US" }}
+// />
 
 /***/ }),
 

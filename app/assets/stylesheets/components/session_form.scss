@@ -1,44 +1,99 @@
-.session-form-background-image {
+.session-form-container {
     background-image: image-url('apartment-background.jpg');
-    opacity: 1;
-
     background-position: center center;
-    background-repeat: no-repeat;
     background-size: cover;
-    
-    transition: opacity .3s ease-in-out;
 
-    position: fixed;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
+    /* Set rules to fill background */
+    min-height: 100%;
+    min-width: 1024px;
+	
+    /* Set up proportionate scaling */
+    width: 100%;
+    height: auto;
+	
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
+
 
 .session-form-logo {
     width: 50%;
+    margin-bottom: 20px;
 }
 
 .session-form-box {
     max-width: 500px;
-    margin-bottom: 1em;
-    border-radius: 4px;
+    border-radius: 3px;
 
-    position: relative;
-    margin-left: auto !important;
-    margin-right: auto !important;
-    width: 100%;
-    top: 2em;
+    padding: 24px 32px 24px 32px;
+    border: 1px solid #DCE0E6;
 
-    padding: 1.5rem 2rem;
-
-    background: white;
-    border: 1px solid #dce0e6;
-
-    transition: all 0.2s ease-in-out;
-    overflow: hidden;
+    background-color: white;
 
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
 }
+
+.session-form-label {
+    font-size: 16px;
+    font-weight: 300;
+    color: #86919D;
+
+    word-spacing: 0.8px;
+    margin-top: 15px;
+    margin-bottom: 5px;
+}
+
+.session-form-input {
+    border: 1px solid #B1B9C3;
+    padding: 10px 16px 10px 16px;
+    line-height: 24px;
+    font-size: 15px;
+    word-spacing: 0.6px;
+    transition: border 0.4s ease-in-out;
+}
+
+.session-form-input:focus {
+    border: 1px solid $green;
+}
+
+.session-form-disclaimer {
+    font-size: 14px;
+    line-height: 22px;
+    color: #86919D;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    text-align: center;
+    max-width: 90%;
+}
+
+.session-green-text {
+    font-weight: 300;
+    color: #438E29;
+}
+
+.session-green-text:hover {
+    cursor: not-allowed;
+}
+
+.session-submit-button {
+    color: white;
+    background-color: $green;
+    width: 82%;
+}
+
+.session-submit-button:hover {
+    background-color: $dark-green;
+}
+
+.session-already-have-account {
+    margin-top: 15px;
+    font-size: 18px;
+    color: #86919D;
+    text-align: center;
+}
+
+

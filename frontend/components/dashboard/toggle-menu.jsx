@@ -27,7 +27,7 @@ class ToggleMenu extends React.Component {
                     <div className="box-4-container">
                         <div className="my-task-small-box">
                             <h5 className="my-task-subtitle">Location</h5>
-                            <div><i className="fa fa-map-marker"/> {this.props.location}</div>
+                            <div><i className="fas fa-map-marker-alt"/> {this.props.location}</div>
                         </div>
                         <div className="box-4-inner-box">
                             <div className="my-task-small-box-tasker">
