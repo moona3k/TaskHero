@@ -1,16 +1,12 @@
 import { connect } from 'react-redux';
 import TaskSearchBar from './task-search-bar';
-
-const mapStateToProps = (state) => {
-    return {
-
-    }
-};
+import { initializeTask } from '../../actions/task_actions';
+import { withRouter } from 'react-router-dom';
 
 const mapDispatchToProps = dispatch => {
     return {
-
+        initializeTask: (taskCategory) => dispatch(initializeTask(taskCategory))
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(TaskSearchBar);
+export default withRouter(connect(null, mapDispatchToProps)(TaskSearchBar));

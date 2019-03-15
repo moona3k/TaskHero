@@ -42,13 +42,13 @@ class TaskSearchBar extends React.Component {
         // 2) with return response, setState searchResult: response'
                 
         })
-    }
+    };
 
     handleFocus(){
         this.setState({
             isFocus: true
         })
-    }
+    };
 
     handleBlur(){
         this.setState({
@@ -56,12 +56,18 @@ class TaskSearchBar extends React.Component {
             searchResults: ["Minor Home Repairs", "Cleaning", "Help Moving", "Event Planning"],
             noResultsFound: false
         })
+    };
+
+    handleClick(e){
+        console.log(e)
+        // let taskCategory;
+        // this.props.initializeTask(taskCategory);
+        // this.props.history.push('/task-form/new');
     }
 
     render(){
         // let taskCategory = AllTasks.taskCategories[5];
         // AllTasks.taskImageLink[taskCategory]
-        console.log(this.state);
 
         let renderResults = <div/>
 
@@ -69,7 +75,7 @@ class TaskSearchBar extends React.Component {
 
             renderResults = this.state.searchResults.map( (result, idx) => {
                 return (
-                    <div className="search-bar-result-box" key={`search-${idx}`}>
+                    <div onClick={console.log('this does not work', result)} className="search-bar-result-box" key={`search-${idx}`}>
                         <img className="search-bar-result-image" src={AllTasks.taskImageLink[result]} />
                         <div className="search-bar-result-text">{result}</div>
                     </div>
@@ -87,7 +93,7 @@ class TaskSearchBar extends React.Component {
         }
 
         return (
-            <div>
+            <div className="search-bar-root-container">
                 <input 
                     type="text" 
                     className="search-bar-input-field"
@@ -95,7 +101,7 @@ class TaskSearchBar extends React.Component {
                     onFocus={this.handleFocus.bind(this)}
                     onBlur={this.handleBlur.bind(this)}
                     value={this.state.queryString} 
-                    placeholder="&#xF002; Need something different?"
+                    placeholder="&#xF002; What do you need help with?"
                 />
                 <div className="search-bar-result-root-container">
                     {renderResults}

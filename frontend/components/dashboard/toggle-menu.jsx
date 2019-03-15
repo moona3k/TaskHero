@@ -23,7 +23,7 @@ class ToggleMenu extends React.Component {
 
         let hideDetail = 
             <div>
-                <div className="dashboard-task-box-4">
+                <div className="assigned-task-box-4">
                     <div className="box-4-container">
                         <div className="my-task-small-box">
                             <h5 className="my-task-subtitle">Location</h5>

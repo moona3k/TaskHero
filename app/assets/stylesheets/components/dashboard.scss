@@ -1,178 +1,80 @@
-.dashboard-root-container {
+.dashboard-task-categories-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: #f9fafb;
-    margin-top: 30px;
-    padding-top: 20px;
-}
 
-.dashboard-header {
-    font-size: 20px;
-    font-weight: 400;
-    color: #43484E;
-    width: 70%;
-    padding-bottom: 20px;
-    margin: 20px;
+    background-image: url("https://assets.taskrabbit.com/v3/assets/static/heros/homepage/hero-bookatask-small@3x-a9ece046a5f6b60122a5ccbe93c3ebfb.png");
+    background-size: contain;
+    background-repeat: no-repeat;
 
-    border-bottom: 1px solid rgb(220, 224, 230);
+    height: auto;
+    
+    margin-bottom: 30px;
 
 }
 
-.dashboard-task-container {
+.task-categories-header-container {
     display: flex;
     flex-direction: column;
-    border: 1px solid #DCE0E6;
-    border-radius: 5px;
-    width: 55%;
-    margin: 20px;
-}
-
-.dashboard-task-box-1 {
-    background-color: white;
-    display: flex;
-    justify-content: space-between;
-
-    height: 40px;
-	max-width: 100%;
-    padding: 18px 25px;
-    border-radius: 5px;
-
-    
-}
-
-.tasker-profile-container-box {
-    display: flex;
+    justify-content: center;
     align-items: center;
+
+    margin-top: 50px;
 }
 
-.tasker-profile-img-small {
-    height: 50px;
-    width: 50px;
-    border-radius: 50%;
-    margin-right: 15px;
-}
-
-.dashboard-task-h3 {
+.task-categories-header-1 {
     font-size: 28px;
-    word-spacing: 0.8px;
-    color: black;
+    letter-spacing: 0.3px;
+    margin-bottom: 10px;
 }
 
-.dashboard-task-box-2 {
-    font-size: 15px;
-    max-width: 100%;
+.task-categories-header-2 {
+    font-size: 30px;
+    letter-spacing: 0.3px;
+    font-weight: 500;
+}
 
-    background-color: #F9FAFB;
 
-    border-top: 1px solid #DCE0E6;
-	border-bottom: 1px solid #DCE0E6;
-	border-left: 5px solid rgb(249, 195, 57);
-    padding: 27px 0px;
-    
+.dashboard-search-bar {
+    padding-top: 20px;
     text-align: center;
 }
 
-.dashboard-task-box-3 {
-    display: flex;
-    align-items: center;
-
-    background: white;
-
-    height: 40px;
-	max-width: 100%;
-    padding: 18px 25px;
-    border-bottom: 1px solid #DCE0E6;
-    
-}
-
-.dashboard-scheduled-time {
-    border-left: 1px solid #DCE0E6;
-    padding-left: 30px;
-    height: 50px;
-    display: flex;
-    align-items: center;
-}
-
-.dashboard-scheduled-date {
-    padding-right: 30px;
-}
-
-.dashboard-task-box-4 {
+.task-categories-body-container {
     display: flex;
     flex-direction: column;
-
-    background-color: white;
-    padding: 28px 20px 28px 20px;
-}
-
-.toggle-detail-show {
-    color: #438E29;
-    font-size: 15px;
-    font-weight: 300;
-
-    height: 40px;
-    background-color: white;
-    // border-top: 1px solid #DCE0E6;
-    
-    display: flex;
     justify-content: center;
     align-items: center;
 
-    border-radius: 0 0 5px  5px;
+    margin-top: 20px;
 }
 
-.toggle-detail-hide {
-    color: #438E29;
-    font-size: 15px;
-    font-weight: 300;
-
-    height: 40px;
-    background-color: white;
-    border-top: 1px solid #DCE0E6;
-    
+.task-categories-box-1 {
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
-
-    border-radius: 0 0 5px  5px;
 }
 
-.toggle-detail-hover:hover{
+.task-categories-box-2 {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center
+}
+
+.task-categories-box-3 {
+    text-align: center;
+}
+
+.text-see-more-less {
+    margin-top: 20px;
+    color: #438E29
+}
+
+.text-see-more-less:hover {
     cursor: pointer;
 }
 
-.box-4-container {
-    display: flex;
-    justify-content: space-between;
-}
 
-.box-4-inner-box {
-    display: flex;
-}
 
-.my-task-subtitle {
-    font-size: 15px;
-    color: #6f6f6f;
-    font-weight: 300;
-}
 
-.my-task-small-box-tasker {
-    display: flex;
-    flex-direction: column;
-    padding-right: 50px;
-}
-
-.my-task-small-box {
-    display: flex;
-    flex-direction: column;
-
-}
-
-.horizontal-short-line {
-    margin-top: 30px;
-    width: 20%;
-    height: 1px;
-    background-color: #6F6F6F;
-}

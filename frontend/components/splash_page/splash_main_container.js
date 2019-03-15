@@ -1,8 +1,13 @@
-import React from 'react';
-import { connect } from 'react-redux';
 import SplashMain from './splash_main';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 
+import { initializeTask } from '../../actions/task_actions';
 
-export default connect(null, null)(SplashMain);
+const mapDispatchToProps = (dispatch) => {
+    return {
+        initializeTask: (taskCategory) => dispatch(initializeTask(taskCategory))
+    }
+}
 
-
+export default withRouter(connect(null, mapDispatchToProps)(SplashMain));

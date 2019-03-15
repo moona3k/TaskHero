@@ -7,7 +7,8 @@ import { updateTaskRequirement, fetchLatestTask } from '../../actions/task_actio
 const mapStateToProps = (state, ownProps) => {
     // debugger;
     return {
-        currentTask: state.entities.tasks
+        currentTask: state.entities.tasks,
+        currentUser: state.entities.users[state.session.currentUser.id]
     }
 }
 

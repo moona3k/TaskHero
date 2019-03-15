@@ -695,11 +695,11 @@ function (_React$Component) {
       var myTask = arrayOfTasks.map(function (task, idx) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           key: "my-task-".concat(idx),
-          className: "dashboard-task-container"
+          className: "assigned-task-container"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "dashboard-task-box-1"
+          className: "assigned-task-box-1"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
-          className: "dashboard-task-h3"
+          className: "assigned-task-h3"
         }, task.task_category), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "tasker-profile-container-box"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
@@ -712,13 +712,13 @@ function (_React$Component) {
           type: "hidden",
           value: task.id
         }), "Cancel Task"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "dashboard-task-box-2"
+          className: "assigned-task-box-2"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Your task is booked with ", task.tasker.first_name, " ", task.tasker.last_name)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "dashboard-task-box-3"
+          className: "assigned-task-box-3"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "dashboard-scheduled-date"
+          className: "assigned-scheduled-date"
         }, task.scheduled_date), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "dashboard-scheduled-time"
+          className: "assigned-scheduled-time"
         }, task.scheduled_time)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_toggle_menu__WEBPACK_IMPORTED_MODULE_1__["default"], {
           location: task.location,
           first_name: task.tasker.first_name,
@@ -729,9 +729,9 @@ function (_React$Component) {
         }));
       });
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "dashboard-root-container"
+        className: "my-tasks-root-container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
-        className: "dashboard-header"
+        className: "my-tasks-header"
       }, "My Tasks"), myTask);
     }
   }]);
@@ -756,6 +756,7 @@ function (_React$Component) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _search_bar_task_search_bar_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../search_bar/task-search-bar-redux */ "./frontend/components/search_bar/task-search-bar-redux.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -776,6 +777,7 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
+
 var TaskBookingMain =
 /*#__PURE__*/
 function (_React$Component) {
@@ -788,8 +790,8 @@ function (_React$Component) {
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(TaskBookingMain).call(this, props));
     _this.state = {
-      task_category: '' // this.handleClick = this.handleClick.bind(this);
-
+      task_category: '',
+      showMoreTasks: false
     };
     return _this;
   } // handleClick function will do the following: 
@@ -805,27 +807,118 @@ function (_React$Component) {
       // 'withRouter' gives access to 'match', 'location', and 'history' properties of the browser's native API
     }
   }, {
+    key: "showMoreTasks",
+    value: function showMoreTasks() {
+      this.setState({
+        showMoreTasks: true
+      });
+    }
+  }, {
+    key: "showLessTasks",
+    value: function showLessTasks() {
+      this.setState({
+        showMoreTasks: false
+      });
+    }
+  }, {
     key: "render",
     value: function render() {
       var _this2 = this;
 
-      // console.log(this.props.currentUser);
+      console.log(this.state.showMoreTasks);
+      var renderMoreTasks = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null);
+
+      if (this.state.showMoreTasks === true) {
+        renderMoreTasks = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          onClick: function onClick() {
+            return _this2.handleClick('Personal Assistant');
+          },
+          className: "task-category-button"
+        }, "Personal Assistant")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          onClick: function onClick() {
+            return _this2.handleClick('Arts / Crafts');
+          },
+          className: "task-category-button"
+        }, "Arts / Crafts")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          onClick: function onClick() {
+            return _this2.handleClick('Carpentry');
+          },
+          className: "task-category-button"
+        }, "Carpentry")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          onClick: function onClick() {
+            return _this2.handleClick('Electrician');
+          },
+          className: "task-category-button"
+        }, "Electrician")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          onClick: function onClick() {
+            return _this2.handleClick('Decoration');
+          },
+          className: "task-category-button"
+        }, "Decoration"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          onClick: function onClick() {
+            return _this2.handleClick('Graphic Design');
+          },
+          className: "task-category-button"
+        }, "Graphic Design")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          onClick: function onClick() {
+            return _this2.handleClick('Accounting');
+          },
+          className: "task-category-button"
+        }, "Accounting")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          onClick: function onClick() {
+            return _this2.handleClick('Packing & Shipping');
+          },
+          className: "task-category-button"
+        }, "Packing & Shipping")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          onClick: function onClick() {
+            return _this2.handleClick('Videography');
+          },
+          className: "task-category-button"
+        }, "Videography"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          onClick: function onClick() {
+            return _this2.handleClick('Shopping');
+          },
+          className: "task-category-button"
+        }, "Shopping")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          onClick: function onClick() {
+            return _this2.handleClick('Sewing');
+          },
+          className: "task-category-button"
+        }, "Sewing")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          onClick: function onClick() {
+            return _this2.handleClick('Delivery');
+          },
+          className: "task-category-button"
+        }, "Delivery")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          onClick: function onClick() {
+            return _this2.handleClick('Marketing');
+          },
+          className: "task-category-button"
+        }, "Marketing"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          onClick: this.showLessTasks.bind(this),
+          className: "text-see-more-less"
+        }, "See Less"));
+      } else {
+        renderMoreTasks = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          onClick: this.showMoreTasks.bind(this),
+          className: "text-see-more-less"
+        }, "See More");
+      }
+
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "dashboard-search-container"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "dashboard-search-container-inner"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "dashboard-search-content"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "dashboard-search-content-top"
+        className: "dashboard-task-categories-container"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "task-categories-header-container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
-        className: "dashboard-search-header-1"
+        className: "task-categories-header-1"
       }, "Welcome back, ", this.props.currentUser.first_name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
-        className: "dashboard-search-header-2"
-      }, "Book Your Next Task Today!"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), "Search Bar Component Will Render Here")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "dashboard-search-content-bottom"
+        className: "task-categories-header-2"
+      }, "Book Your Next Task Today!")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "dashboard-search-bar"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_search_bar_task_search_bar_redux__WEBPACK_IMPORTED_MODULE_1__["default"], null)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "task-categories-body-container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
-        className: "dashboard-search-content-bottom-container"
+        className: "task-categories-box-1"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         onClick: function onClick() {
           return _this2.handleClick('Moving');
@@ -852,7 +945,7 @@ function (_React$Component) {
         },
         className: "task-category-button"
       }, "Cleaning"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
-        className: "dashboard-search-content-bottom-container"
+        className: "task-categories-box-2"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         onClick: function onClick() {
           return _this2.handleClick('Furniture Assembly');
@@ -878,7 +971,9 @@ function (_React$Component) {
           return _this2.handleClick('Event Staffing');
         },
         className: "task-category-button"
-      }, "Event Staffing"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "See More")))));
+      }, "Event Staffing")))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "task-categories-box-3"
+      }, renderMoreTasks)));
     }
   }]);
 
@@ -997,7 +1092,7 @@ function (_React$Component) {
         className: "fa fa-angle-down"
       })));
       var hideDetail = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "dashboard-task-box-4"
+        className: "assigned-task-box-4"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "box-4-container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -1226,18 +1321,22 @@ var Root = function Root(_ref) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _task_search_bar__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./task-search-bar */ "./frontend/components/search_bar/task-search-bar.jsx");
+/* harmony import */ var _actions_task_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/task_actions */ "./frontend/actions/task_actions.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/es/index.js");
 
 
 
-var mapStateToProps = function mapStateToProps(state) {
-  return {};
-};
+
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
-  return {};
+  return {
+    initializeTask: function initializeTask(taskCategory) {
+      return dispatch(Object(_actions_task_actions__WEBPACK_IMPORTED_MODULE_2__["initializeTask"])(taskCategory));
+    }
+  };
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mapStateToProps, mapDispatchToProps)(_task_search_bar__WEBPACK_IMPORTED_MODULE_1__["default"]));
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["withRouter"])(Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(null, mapDispatchToProps)(_task_search_bar__WEBPACK_IMPORTED_MODULE_1__["default"])));
 
 /***/ }),
 
@@ -1367,16 +1466,23 @@ function (_React$Component) {
       });
     }
   }, {
+    key: "handleClick",
+    value: function handleClick(e) {
+      console.log(e); // let taskCategory;
+      // this.props.initializeTask(taskCategory);
+      // this.props.history.push('/task-form/new');
+    }
+  }, {
     key: "render",
     value: function render() {
       // let taskCategory = AllTasks.taskCategories[5];
       // AllTasks.taskImageLink[taskCategory]
-      console.log(this.state);
       var renderResults = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null);
 
       if (this.state.isFocus && !this.state.noResultsFound) {
         renderResults = this.state.searchResults.map(function (result, idx) {
           return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+            onClick: console.log('this does not work', result),
             className: "search-bar-result-box",
             key: "search-".concat(idx)
           }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
@@ -1394,14 +1500,16 @@ function (_React$Component) {
         }, "We apologize, \"", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, this.state.queryString), "\" is not a recognized task.", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), "Try us again later!");
       }
 
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "search-bar-root-container"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "text",
         className: "search-bar-input-field",
         onChange: this.handleChange.bind(this),
         onFocus: this.handleFocus.bind(this),
         onBlur: this.handleBlur.bind(this),
         value: this.state.queryString,
-        placeholder: "\uF002 Need something different?"
+        placeholder: "\uF002 What do you need help with?"
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "search-bar-result-root-container"
       }, renderResults));
@@ -1901,13 +2009,23 @@ var SplashMain =
 function (_React$Component) {
   _inherits(SplashMain, _React$Component);
 
-  function SplashMain() {
+  function SplashMain(props) {
     _classCallCheck(this, SplashMain);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(SplashMain).apply(this, arguments));
+    return _possibleConstructorReturn(this, _getPrototypeOf(SplashMain).call(this, props));
   }
 
   _createClass(SplashMain, [{
+    key: "handleClick",
+    value: function handleClick(e) {
+      var _this = this;
+
+      var selectedTask = e.currentTarget.innerText;
+      this.props.initializeTask(selectedTask).then(function () {
+        return _this.props.history.push('/task-form/new');
+      });
+    }
+  }, {
     key: "render",
     value: function render() {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -1921,16 +2039,22 @@ function (_React$Component) {
       }, "Choose from over 140,000 vetted Taskers for help without breaking the bank."), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
         className: "main-task-categories-container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        onClick: this.handleClick.bind(this),
         className: "task-category-button"
       }, "Mounting & Installation")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        onClick: this.handleClick.bind(this),
         className: "task-category-button"
       }, "Moving & Packing")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        onClick: this.handleClick.bind(this),
         className: "task-category-button"
       }, "Furniture Assembly")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        onClick: this.handleClick.bind(this),
         className: "task-category-button"
       }, "Home Improvement")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        onClick: this.handleClick.bind(this),
         className: "task-category-button"
       }, "General Handyman")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        onClick: this.handleClick.bind(this),
         className: "task-category-button"
       }, "Heavy Lifting"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_search_bar_task_search_bar_redux__WEBPACK_IMPORTED_MODULE_1__["default"], null)));
     }
@@ -1952,14 +2076,24 @@ function (_React$Component) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _splash_main__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./splash_main */ "./frontend/components/splash_page/splash_main.jsx");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var _splash_main__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./splash_main */ "./frontend/components/splash_page/splash_main.jsx");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/es/index.js");
+/* harmony import */ var _actions_task_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/task_actions */ "./frontend/actions/task_actions.js");
 
 
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(null, null)(_splash_main__WEBPACK_IMPORTED_MODULE_2__["default"]));
+
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    initializeTask: function initializeTask(taskCategory) {
+      return dispatch(Object(_actions_task_actions__WEBPACK_IMPORTED_MODULE_3__["initializeTask"])(taskCategory));
+    }
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["withRouter"])(Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(null, mapDispatchToProps)(_splash_main__WEBPACK_IMPORTED_MODULE_0__["default"])));
 
 /***/ }),
 
@@ -2069,13 +2203,23 @@ var SplashSuggestion =
 function (_React$Component) {
   _inherits(SplashSuggestion, _React$Component);
 
-  function SplashSuggestion() {
+  function SplashSuggestion(props) {
     _classCallCheck(this, SplashSuggestion);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(SplashSuggestion).apply(this, arguments));
+    return _possibleConstructorReturn(this, _getPrototypeOf(SplashSuggestion).call(this, props));
   }
 
   _createClass(SplashSuggestion, [{
+    key: "handleClick",
+    value: function handleClick(e) {
+      var _this = this;
+
+      var selectedTask = e.currentTarget.innerText;
+      this.props.initializeTask(selectedTask).then(function () {
+        return _this.props.history.push('/task-form/new');
+      });
+    }
+  }, {
     key: "render",
     value: function render() {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -2097,6 +2241,7 @@ function (_React$Component) {
       }, "Tackle those home projects & repairs you've been putting off"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "task-suggestion-price"
       }, "Avg. Project $46 - $117"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        onClick: this.handleClick.bind(this),
         className: "task-suggestion-button"
       }, "Book Handyman"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "get-inspired-bottom"
@@ -2112,6 +2257,7 @@ function (_React$Component) {
       }, "Mount a TV or Mirror"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "task-suggestion-price"
       }, "Avg. Project: $48 - $99"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        onClick: this.handleClick.bind(this),
         className: "task-suggestion-button"
       }, "Book Mounting"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
         className: "task-suggestion-box"
@@ -2125,6 +2271,7 @@ function (_React$Component) {
       }, "Put together furniture"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "task-suggestion-price"
       }, "Avg. Project: $47 - $119"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        onClick: this.handleClick.bind(this),
         className: "task-suggestion-button"
       }, "Book Assembly"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
         className: "task-suggestion-box"
@@ -2138,6 +2285,7 @@ function (_React$Component) {
       }, "Lift & shift heavy items"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "task-suggestion-price"
       }, "Avg. Project: $47 - $97"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        onClick: this.handleClick.bind(this),
         className: "task-suggestion-button"
       }, "Book Help Moving"))))));
     }
@@ -2163,10 +2311,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _splash_suggestion__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./splash_suggestion */ "./frontend/components/splash_page/splash_suggestion.jsx");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/es/index.js");
+/* harmony import */ var _actions_task_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../actions/task_actions */ "./frontend/actions/task_actions.js");
 
 
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(null, null)(_splash_suggestion__WEBPACK_IMPORTED_MODULE_2__["default"]));
+
+
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    initializeTask: function initializeTask(taskCategory) {
+      return dispatch(Object(_actions_task_actions__WEBPACK_IMPORTED_MODULE_4__["initializeTask"])(taskCategory));
+    }
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["withRouter"])(Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(null, mapDispatchToProps)(_splash_suggestion__WEBPACK_IMPORTED_MODULE_2__["default"])));
 
 /***/ }),
 
@@ -2883,9 +3044,13 @@ function (_React$Component) {
       });
     }
   }, {
-    key: "backToDashboard",
-    value: function backToDashboard() {
-      this.props.history.push('/dashboard');
+    key: "backtoTaskSelection",
+    value: function backtoTaskSelection() {
+      if (this.props.currentUser) {
+        this.props.history.push('/dashboard');
+      } else {
+        this.props.history.push('/#');
+      }
     }
   }, {
     key: "handleInput",
@@ -2930,7 +3095,7 @@ function (_React$Component) {
         className: "task-description-header-sub"
       }, "Is ", this.props.currentTask.task_category, " not the right task? ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
         onClick: function onClick() {
-          return _this5.backToDashboard();
+          return _this5.backtoTaskSelection();
         }
       }, "Pick another task"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "task-description-box"
@@ -3089,7 +3254,8 @@ __webpack_require__.r(__webpack_exports__);
 var mapStateToProps = function mapStateToProps(state, ownProps) {
   // debugger;
   return {
-    currentTask: state.entities.tasks
+    currentTask: state.entities.tasks,
+    currentUser: state.entities.users[state.session.currentUser.id]
   };
 };
 

@@ -49,22 +49,22 @@ class MyTasks extends React.Component {
 
         let myTask = arrayOfTasks.map( (task, idx) => {
             return (
-                <div key={`my-task-${idx}`} className="dashboard-task-container">
-                    <div className="dashboard-task-box-1">
-                        <h3 className="dashboard-task-h3">{task.task_category}</h3>
+                <div key={`my-task-${idx}`} className="assigned-task-container">
+                    <div className="assigned-task-box-1">
+                        <h3 className="assigned-task-h3">{task.task_category}</h3>
                         <div className="tasker-profile-container-box">
                             <img className="tasker-profile-img-small" src={task.tasker.profile_img} alt=""/>
                             <a onClick={this.deleteTask}><input type="hidden" value={task.id}/>Cancel Task</a>
                         </div>
                     </div>
                     
-                    <div className="dashboard-task-box-2">
+                    <div className="assigned-task-box-2">
                         <p>Your task is booked with {task.tasker.first_name} {task.tasker.last_name}</p>
                     </div>
 
-                    <div className="dashboard-task-box-3">
-                        <div className="dashboard-scheduled-date">{task.scheduled_date}</div>
-                        <div className="dashboard-scheduled-time">{task.scheduled_time}</div>
+                    <div className="assigned-task-box-3">
+                        <div className="assigned-scheduled-date">{task.scheduled_date}</div>
+                        <div className="assigned-scheduled-time">{task.scheduled_time}</div>
                     </div>
                  
                     <ToggleMenu 
@@ -80,8 +80,8 @@ class MyTasks extends React.Component {
         })
 
         return (
-            <div className="dashboard-root-container">
-                <h1 className="dashboard-header">My Tasks</h1>
+            <div className="my-tasks-root-container">
+                <h1 className="my-tasks-header">My Tasks</h1>
                 {myTask}
             </div>    
         )

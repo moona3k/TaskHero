@@ -32,15 +32,19 @@ class TaskDescription extends React.Component {
             }));
     };
 
-    backToDashboard() {
-        this.props.history.push('/dashboard');
-    }
+    backtoTaskSelection() {
+        if (this.props.currentUser){
+            this.props.history.push('/dashboard')
+        } else {
+            this.props.history.push('/#')
+        }
+    };
 
     handleInput(type) {
         return (e) => {
             this.setState({ [type]: e.target.value });
         }
-    }
+    };
 
     handleRadioButtonClick(type) {
         return (e) => {
@@ -64,7 +68,7 @@ class TaskDescription extends React.Component {
             <div className="task-description-container">
                 <div className="task-description-header">
                     <h1 className="task-description-header-title">Describe Your Task: {this.props.currentTask.task_category}</h1>
-                    <h3 className="task-description-header-sub">Is {this.props.currentTask.task_category} not the right task? <a onClick={() => this.backToDashboard()}>Pick another task</a></h3>
+                    <h3 className="task-description-header-sub">Is {this.props.currentTask.task_category} not the right task? <a onClick={() => this.backtoTaskSelection()}>Pick another task</a></h3>
                 </div>
                 <div>
                     <div className="task-description-box">
