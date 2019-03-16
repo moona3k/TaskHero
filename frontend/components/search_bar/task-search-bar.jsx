@@ -60,7 +60,7 @@ class TaskSearchBar extends React.Component {
     };
 
     handleClick(e){
-        console.log(e)
+        // console.log(e)
         // let taskCategory;
         // this.props.initializeTask(taskCategory);
         // this.props.history.push('/task-form/new');
@@ -69,7 +69,7 @@ class TaskSearchBar extends React.Component {
     render(){
         // let taskCategory = AllTasks.taskCategories[5];
         // AllTasks.taskImageLink[taskCategory]
-
+        console.log(this.state);
         let renderResults = <div/>
 
         if (this.state.isFocus && !this.state.noResultsFound){

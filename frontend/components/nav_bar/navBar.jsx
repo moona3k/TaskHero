@@ -2,11 +2,11 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const navBar = (props) => {
-
+    console.log(window.location.origin)
     const preSession = () => {
         return (
             <div className="session-bar">
-                <Link to="/"><img className="task-hero-logo" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSETR13ThV9CFXJveiFI4lPVYmzn0tSUnaw9BCccSXwPGvNW24F"/></Link>
+                <Link to="/"><img className="task-hero-logo" src='../../app/assets/images/task-hero-logo.png'/></Link>
                 <div className="session-button">
                     <Link to="/login">Login</Link>
                     <Link to="/signup">Sign up</Link>

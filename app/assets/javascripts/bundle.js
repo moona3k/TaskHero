@@ -1164,16 +1164,20 @@ __webpack_require__.r(__webpack_exports__);
 var footerNav = function footerNav() {
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "footer-nav"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, "Discover"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, "Become a Tasker"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, "Services by City"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, "All Services"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, "Buy a Gift Card"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, "Elite Taskers"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, "Help")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, "Company"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, "About us"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, "Careers"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, "Press"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, "TaskHero for Good"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, "Blog"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, "Terms & Privacy")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, "Learn More"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, "Discover"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, "Become a Tasker"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, "Services by City"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, "All Services"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, "Buy a Gift Card"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, "Elite Taskers"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, "Help")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, "Company"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, "About us"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, "Careers"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, "Press"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, "TaskHero for Good"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, "Blog"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, "Terms & Privacy")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "footer-learn-more-box"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", {
+    className: "footer-learn-more-text"
+  }, "Learn More"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
     href: "https://www.linkedin.com/in/moon-daniel/"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
     className: "footer-icon",
-    src: "../../app/assets/images/linkedin-icon.png"
+    src: "https://camo.githubusercontent.com/7710b43d0476b6f6d4b4b2865e35c108f69991f3/68747470733a2f2f7777772e69636f6e66696e6465722e636f6d2f646174612f69636f6e732f6f637469636f6e732f313032342f6d61726b2d6769746875622d3235362e706e67"
   })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
     href: "https://github.com/moona3k"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
     className: "footer-icon",
-    src: "../../app/assets/images/github-icon.jpg"
+    src: "https://image.flaticon.com/icons/svg/61/61109.svg"
   }))));
 };
 
@@ -1197,6 +1201,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var navBar = function navBar(props) {
+  console.log(window.location.origin);
+
   var preSession = function preSession() {
     return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "session-bar"
@@ -1204,7 +1210,7 @@ var navBar = function navBar(props) {
       to: "/"
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
       className: "task-hero-logo",
-      src: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSETR13ThV9CFXJveiFI4lPVYmzn0tSUnaw9BCccSXwPGvNW24F"
+      src: "../../app/assets/images/task-hero-logo.png"
     })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "session-button"
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
@@ -1468,8 +1474,8 @@ function (_React$Component) {
     }
   }, {
     key: "handleClick",
-    value: function handleClick(e) {
-      console.log(e); // let taskCategory;
+    value: function handleClick(e) {// console.log(e)
+      // let taskCategory;
       // this.props.initializeTask(taskCategory);
       // this.props.history.push('/task-form/new');
     }
@@ -1478,6 +1484,7 @@ function (_React$Component) {
     value: function render() {
       // let taskCategory = AllTasks.taskCategories[5];
       // AllTasks.taskImageLink[taskCategory]
+      console.log(this.state);
       var renderResults = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null);
 
       if (this.state.isFocus && !this.state.noResultsFound) {
