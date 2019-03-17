@@ -41,7 +41,7 @@
     "@fortawesome/fontawesome-free": "^5.7.2"
   },
   "engines": {
-     "node": "8.4.0",
-     "npm": "6.1.0"
+    "node": "8.4.0",
+    "npm": "6.1.0"
   }
 }

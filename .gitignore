@@ -26,5 +26,6 @@
 # Ignore master key for decrypting credentials and more.
 /config/master.key
 
-# google api key
-/app/views/layouts/application.html.erb
+node_modules/
+bundle.js
+bundle.js.map
