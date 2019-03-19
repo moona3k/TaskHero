@@ -80,6 +80,7 @@ class ChooseTasker extends React.Component {
                     />
                 )
             })
+    
 
         return (
             <div>
@@ -88,9 +89,9 @@ class ChooseTasker extends React.Component {
                         <h2 className="choose-tasker-header-title">Pick a Tasker</h2>
                         <h3 className="choose-tasker-header-sub">After booking, you can chat with your Tasker, agree on an exact time, or go over any requirements or questions, if necessary.</h3>
                     </div>
-                    <div>
+                    {/* <div>
                         <div className="sorted-by-text">SORTED BY: (insert sort feature)</div>
-                    </div>
+                    </div> */}
                     <div className="choose-tasker-body-container">
                         <TaskDateTimeRedux />
                         <div className="available-taskers-container">

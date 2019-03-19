@@ -18,8 +18,17 @@ class TaskCalendar extends React.Component {
                     let taskTime = e.target.value;
                     this.props.updateTaskTime(taskTime);
             }
+            
+            // if (type === 'taskDate'){
+            //     let taskDate = e.target.value;
+            //     this.props.updateTaskDate(taskDate);
+            // } else if (type === 'taskTime'){
+            //     let taskTime = e.target.value;
+            //     this.props.updateTaskTime(taskTime);
+            // }
         }
     }
+    
 
     render() {
         console.log('render taskdate', this.props.taskDate);
@@ -35,10 +44,10 @@ class TaskCalendar extends React.Component {
                 />
                 <br />
                 <select onChange={this.handleInput('taskTime')} className="time-input-field">
-                    <option value="I'm Flexible">I'm Flexible</option>
-                    <option value="Morning (8AM - 12PM)">Morning (8AM - 12PM)</option>
-                    <option value="Afternoon (12PM - 4PM)">Afternoon (12PM - 4PM)</option>
-                    <option value="Evening (4PM - 8PM)">Evening (4PM - 8PM)</option>
+                    <option value="I'm Flexible">&nbsp;&nbsp;I'm Flexible</option>
+                    <option value="Morning (8AM - 12PM)">&nbsp;&nbsp;Morning (8AM - 12PM)</option>
+                    <option value="Afternoon (12PM - 4PM)">&nbsp;&nbsp;Afternoon (12PM - 4PM)</option>
+                    <option value="Evening (4PM - 8PM)">&nbsp;&nbsp;Evening (4PM - 8PM)</option>
                 </select>
                 <div className="date-time-footer-note">You can agree on exact start time with your selected Tasker after confirmation</div>
 

@@ -1234,7 +1234,7 @@ var navBar = function navBar(props) {
       to: "/"
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
       className: "task-hero-logo",
-      src: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSETR13ThV9CFXJveiFI4lPVYmzn0tSUnaw9BCccSXwPGvNW24F"
+      src: "https://i.imgur.com/SsPX10q.png"
     })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "session-button"
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
@@ -1251,7 +1251,7 @@ var navBar = function navBar(props) {
       to: "/dashboard"
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
       className: "task-hero-logo",
-      src: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSETR13ThV9CFXJveiFI4lPVYmzn0tSUnaw9BCccSXwPGvNW24F"
+      src: "https://i.imgur.com/SsPX10q.png"
     })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
       className: "logout-button",
       onClick: props.logout
@@ -1636,23 +1636,36 @@ function (_React$Component) {
   }, {
     key: "handleClick",
     value: function handleClick() {
-      console.log('render');
+      // console.log('render')
       var user = Object.assign({}, this.state); // Object.assign creates a copy of an object
 
       this.props.processForm(user); // alternatively, you can simply write processForm(this.state)
       // .then(() => this.props.history.push('/dashboard'));
     }
   }, {
+    key: "handleDemoUser",
+    value: function handleDemoUser() {
+      var _this3 = this;
+
+      this.setState({
+        email: "demo@taskhero.com",
+        password: "password123"
+      });
+      setTimeout(function () {
+        return _this3.props.processForm(_this3.state);
+      }, 800);
+    }
+  }, {
     key: "render",
     value: function render() {
-      console.log(this.state);
+      // console.log(this.state)
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "session-form-container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "session-form-box"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         className: "session-form-logo",
-        src: "https://bit.ly/2V9Rgsd"
+        src: "https://i.imgur.com/SsPX10q.png"
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "session-form-label"
       }, "Email Address"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
@@ -1663,14 +1676,21 @@ function (_React$Component) {
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "session-form-label"
       }, "Password"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        type: "text",
+        type: "password",
         value: this.state.password,
         onChange: this.handleInput('password'),
         className: "session-form-input"
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.renderErrors()), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "error-text-login"
+      }, this.renderErrors()), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         onClick: this.handleClick.bind(this),
         className: "session-submit-button"
       }, "Log in"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "session-form-short-text"
+      }, "OR"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        onClick: this.handleDemoUser.bind(this),
+        className: "session-submit-button"
+      }, "Click for Demo User"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "session-already-have-account"
       }, "Don't have an account? ", this.props.navLink)));
     }
@@ -1774,11 +1794,11 @@ function (_React$Component) {
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(SignupForm).call(this, props));
     _this.state = {
-      first_name: '',
-      last_name: '',
-      email: '',
-      password: '',
-      zipcode: ''
+      first_name: "",
+      last_name: "",
+      email: "",
+      password: "",
+      zipcode: ""
     };
     return _this;
   }
@@ -1817,15 +1837,35 @@ function (_React$Component) {
       // .then(() => this.props.history.push('/dashboard'));
     }
   }, {
+    key: "handleDemo",
+    value: function handleDemo() {
+      var _this3 = this;
+
+      this.setState({
+        first_name: "Daniel",
+        last_name: "Moon",
+        email: "demo@taskhero.com",
+        password: "password123",
+        zipcode: "94105"
+      });
+      var demoUser = {
+        email: "demo@taskhero.com",
+        password: "password123"
+      };
+      setTimeout(function () {
+        return _this3.props.loginDemo(demoUser);
+      }, 950);
+    }
+  }, {
     key: "render",
     value: function render() {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "session-form-container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "session-form-box"
+        className: "session-form-box-signin"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        className: "session-form-logo",
-        src: "https://bit.ly/2V9Rgsd"
+        className: "session-form-logo-signin",
+        src: "https://i.imgur.com/SsPX10q.png"
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "session-form"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -1833,46 +1873,47 @@ function (_React$Component) {
       }, "First Name"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "text",
         value: this.state.first_name,
-        onChange: this.handleInput('first_name'),
+        onChange: this.handleInput("first_name"),
         className: "session-form-input"
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "session-form-label"
       }, "Last Name"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "text",
         value: this.state.last_name,
-        onChange: this.handleInput('last_name'),
+        onChange: this.handleInput("last_name"),
         className: "session-form-input"
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "session-form-label"
       }, "Email Address"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "text",
         value: this.state.email,
-        onChange: this.handleInput('email'),
+        onChange: this.handleInput("email"),
         className: "session-form-input"
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "session-form-label"
       }, "Password"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        type: "text",
+        type: "password",
         value: this.state.password,
-        onChange: this.handleInput('password'),
+        onChange: this.handleInput("password"),
         className: "session-form-input"
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "session-form-label"
       }, "Zip Code"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "text",
         value: this.state.zipcode,
-        onChange: this.handleInput('zipcode'),
+        onChange: this.handleInput("zipcode"),
         className: "session-form-input"
       }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "session-form-disclaimer"
-      }, "By clicking below and creating an account, I agree to TaskHero's ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", {
-        className: "session-green-text"
-      }, "Terms of Service"), " and ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", {
-        className: "session-green-text"
-      }, "Privacy Policy"), "."), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        className: "error-text-signup"
+      }, this.renderErrors()), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         onClick: this.handleClick.bind(this),
         className: "session-submit-button"
-      }, " Create Account"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.renderErrors()), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, " ", "Create Account"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "session-form-short-text"
+      }, "OR"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        onClick: this.handleDemo.bind(this),
+        className: "session-submit-button"
+      }, " ", "Click for Demo User"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "session-already-have-account"
       }, "Already have an account? ", this.props.navLink)));
     }
@@ -1924,6 +1965,9 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch, ownProps) {
     },
     removeErrors: function removeErrors() {
       return dispatch(Object(_actions_session_actions__WEBPACK_IMPORTED_MODULE_4__["removeErrors"])());
+    },
+    loginDemo: function loginDemo(demoUser) {
+      return dispatch(Object(_actions_session_actions__WEBPACK_IMPORTED_MODULE_4__["login"])(demoUser));
     }
   };
 };
@@ -2589,9 +2633,7 @@ function (_React$Component) {
         className: "choose-tasker-header-title"
       }, "Pick a Tasker"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
         className: "choose-tasker-header-sub"
-      }, "After booking, you can chat with your Tasker, agree on an exact time, or go over any requirements or questions, if necessary.")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "sorted-by-text"
-      }, "SORTED BY: (insert sort feature)")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, "After booking, you can chat with your Tasker, agree on an exact time, or go over any requirements or questions, if necessary.")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "choose-tasker-body-container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_task_date_time_task_date_time_redux__WEBPACK_IMPORTED_MODULE_1__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "available-taskers-container"
@@ -2959,7 +3001,14 @@ function (_React$Component) {
 
             _this.props.updateTaskTime(taskTime);
 
-        }
+        } // if (type === 'taskDate'){
+        //     let taskDate = e.target.value;
+        //     this.props.updateTaskDate(taskDate);
+        // } else if (type === 'taskTime'){
+        //     let taskTime = e.target.value;
+        //     this.props.updateTaskTime(taskTime);
+        // }
+
       };
     }
   }, {
@@ -2984,13 +3033,13 @@ function (_React$Component) {
         className: "time-input-field"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
         value: "I'm Flexible"
-      }, "I'm Flexible"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+      }, "\xA0\xA0I'm Flexible"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
         value: "Morning (8AM - 12PM)"
-      }, "Morning (8AM - 12PM)"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+      }, "\xA0\xA0Morning (8AM - 12PM)"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
         value: "Afternoon (12PM - 4PM)"
-      }, "Afternoon (12PM - 4PM)"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+      }, "\xA0\xA0Afternoon (12PM - 4PM)"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
         value: "Evening (4PM - 8PM)"
-      }, "Evening (4PM - 8PM)")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, "\xA0\xA0Evening (4PM - 8PM)")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "date-time-footer-note"
       }, "You can agree on exact start time with your selected Tasker after confirmation"));
     }
