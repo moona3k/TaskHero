@@ -1,7 +1,14 @@
 .search-bar-root-container {
     width: 561px;
     margin-left: 113px;
+    position: relative;
+}
 
+.search-bar-root-container .fas {
+    position: absolute;
+    color: $green;
+    font-size: 25px;
+    padding: 20px;
 }
 
 .search-bar-input-field {

@@ -92,9 +92,10 @@ class TaskSearchBar extends React.Component {
                 <br/>Try us again later!
                 </div>
         }
-
+        
         return (
             <div className="search-bar-root-container">
+                <i className="fas fa-search"></i>
                 <input 
                     type="text" 
                     className="search-bar-input-field"
@@ -102,7 +103,7 @@ class TaskSearchBar extends React.Component {
                     onFocus={this.handleFocus.bind(this)}
                     onBlur={this.handleBlur.bind(this)}
                     value={this.state.queryString} 
-                    placeholder="&#xF002; What do you need help with?"
+                    placeholder={this.props.location.pathname === '/' ? "Need something different?" : "What do you need help with?" }
                 />
                 <div className="search-bar-result-root-container">
                     {renderResults}
