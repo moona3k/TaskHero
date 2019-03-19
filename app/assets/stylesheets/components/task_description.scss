@@ -51,6 +51,10 @@
   }
 }
 
+.task-description-box:hover {
+    box-shadow: 3px 5px 5px 2px #DCE0E6, -1px 1px 6px #DCE0E6;
+}
+
 .task-description-mini-title {
     text-align: left;
     color: $dark-gray;
@@ -184,9 +188,13 @@
 
     button {
         font-size: 20px;
-  }
+    }
 
-  textarea:focus {
+    textarea:focus {
         border-color: $green;
-  }
+    }
+}
+
+.task-description-box-edit:hover {
+    box-shadow: 3px 5px 5px 2px #DCE0E6, -1px 1px 6px #DCE0E6;
 }

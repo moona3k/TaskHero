@@ -13,9 +13,13 @@ class TaskDescription extends React.Component {
             specific_location: '',
             estimated_time_req: '',
             vehicle_type: '',
-            description: ''
+            description: '',
+            firstDivBorderHighlight: false,
+            secondDivBorderHighlight: false
         }
 
+        this.firstDivScroll = React.createRef();
+        this.secondDivScroll = React.createRef();
         this.handleRadioButtonClick = this.handleRadioButtonClick.bind(this);
     }
 
@@ -56,14 +60,37 @@ class TaskDescription extends React.Component {
 
     handleSubmit() {
         // console.log(this.state);
-        this.props.updateTaskRequirement(this.state);
+        let taskRequirement = Object.assign({}, {
+            task_category: this.state.task_category,
+            location: this.state.location,
+            specific_location: this.state.specific_location,
+            estimated_time_req: this.state.estimated_time_req,
+            vehicle_type: this.state.vehicle_type,
+            description: this.state.description
+        });
+
+        this.props.updateTaskRequirement(taskRequirement);
         this.props.history.push('taskers');
     };
 
+    scrollToFirstDiv() {
+        if (this.firstDivScroll.current) {
+            window.scrollTo(0, this.firstDivScroll.current.offsetTop + 130)
+        }
+        
+        
+    };
+
+    scrollToSecondDiv() {
+        if (this.secondDivScroll.current) {
+          window.scrollTo(0, this.secondDivScroll.current.offsetTop);
+        }
+    }
+
     render() {
         // debugger;
-        console.log('This is props', this.props.currentTask)
-        console.log('This is local state ', this.state);
+        // console.log('This is props', this.props.currentTask)
+        // console.log('This is local state ', this.state);
         return (
             <div className="task-description-container">
                 <div className="task-description-header">
@@ -79,9 +106,9 @@ class TaskDescription extends React.Component {
                             <input id="location-specific" type="text" value={this.state.specific_location} onChange={this.handleInput('specific_location')} placeholder="Unit or Apt #"/>
                         </div>
                         <br/>
-                        <button className="task-description-button">Continue</button>
+                        <button onClick={this.scrollToFirstDiv.bind(this)} className="task-description-button">Continue</button>
                     </div>
-                    <div className="task-description-box">
+                    <div ref={this.firstDivScroll} className="task-description-box">
                         <h3 className="task-options-title">TASK OPTIONS</h3>
                         <h3 className="task-options-headers">How big is your task?</h3>
                         <hr className="general-line" />
@@ -99,9 +126,9 @@ class TaskDescription extends React.Component {
                             <label className="radio-button-label"><input className="radio-button-input" type="radio" name="vehicle_type" value="Truck" checked={this.state.vehicle_type === "Truck"} onClick={this.handleRadioButtonClick('vehicle_type')} /> Task requires a <b className="vehicle-radio-text-bold">truck</b></label>
                         </div>
                         <br />
-                        <button className="task-description-button">Continue</button>
+                        <button onClick={this.scrollToSecondDiv.bind(this)} className="task-description-button">Continue</button>
                     </div>
-                    <div className="task-description-box-edit">
+                    <div ref={this.secondDivScroll} className="task-description-box-edit">
                         <h3 className="task-description-mini-title">TELL US THE DETAILS OF YOUR TASK</h3>
                         <h3 className="task-description-subtext-1">Start the conversation and tell your Tasker what you need done. This helps us show you only qualified and available Taskers for the job. <br />Don't worry, you can edit this later.</h3>
                         <textarea className="task-description-textarea" value={this.state.description} onChange={this.handleInput('description')} cols="30" rows="10" placeholder="Provide a summary of what you need done for your Tasker. Be sure to include details like the size of your space, any equipment/tools needed, and how to get in."></textarea>

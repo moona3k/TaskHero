@@ -1164,11 +1164,35 @@ __webpack_require__.r(__webpack_exports__);
 var footerNav = function footerNav() {
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "footer-nav"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, "Discover"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, "Become a Tasker"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, "Services by City"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, "All Services"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, "Buy a Gift Card"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, "Elite Taskers"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, "Help")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, "Company"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, "About us"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, "Careers"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, "Press"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, "TaskHero for Good"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, "Blog"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, "Terms & Privacy")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, "Discover"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    className: "footer-hover"
+  }, "Become a Tasker"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    className: "footer-hover"
+  }, "Services by City"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    className: "footer-hover"
+  }, "All Services"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    className: "footer-hover"
+  }, "Buy a Gift Card"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    className: "footer-hover"
+  }, "Elite Taskers"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    className: "footer-hover"
+  }, "Help")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, "Company"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    className: "footer-hover"
+  }, "About us"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    className: "footer-hover"
+  }, "Careers"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    className: "footer-hover"
+  }, "Press"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    className: "footer-hover"
+  }, "TaskHero for Good"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    className: "footer-hover"
+  }, "Blog"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    className: "footer-hover"
+  }, "Terms & Privacy")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "footer-learn-more-box"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", {
     className: "footer-learn-more-text"
-  }, "Learn More"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+  }, "Contact Us"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
     href: "https://www.linkedin.com/in/moon-daniel/"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
     className: "footer-icon",
@@ -3040,8 +3064,12 @@ function (_React$Component) {
       specific_location: '',
       estimated_time_req: '',
       vehicle_type: '',
-      description: ''
+      description: '',
+      firstDivBorderHighlight: false,
+      secondDivBorderHighlight: false
     };
+    _this.firstDivScroll = react__WEBPACK_IMPORTED_MODULE_0___default.a.createRef();
+    _this.secondDivScroll = react__WEBPACK_IMPORTED_MODULE_0___default.a.createRef();
     _this.handleRadioButtonClick = _this.handleRadioButtonClick.bind(_assertThisInitialized(_this));
     return _this;
   }
@@ -3094,8 +3122,30 @@ function (_React$Component) {
     key: "handleSubmit",
     value: function handleSubmit() {
       // console.log(this.state);
-      this.props.updateTaskRequirement(this.state);
+      var taskRequirement = Object.assign({}, {
+        task_category: this.state.task_category,
+        location: this.state.location,
+        specific_location: this.state.specific_location,
+        estimated_time_req: this.state.estimated_time_req,
+        vehicle_type: this.state.vehicle_type,
+        description: this.state.description
+      });
+      this.props.updateTaskRequirement(taskRequirement);
       this.props.history.push('taskers');
+    }
+  }, {
+    key: "scrollToFirstDiv",
+    value: function scrollToFirstDiv() {
+      if (this.firstDivScroll.current) {
+        window.scrollTo(0, this.firstDivScroll.current.offsetTop + 130);
+      }
+    }
+  }, {
+    key: "scrollToSecondDiv",
+    value: function scrollToSecondDiv() {
+      if (this.secondDivScroll.current) {
+        window.scrollTo(0, this.secondDivScroll.current.offsetTop);
+      }
     }
   }, {
     key: "render",
@@ -3103,8 +3153,8 @@ function (_React$Component) {
       var _this5 = this;
 
       // debugger;
-      console.log('This is props', this.props.currentTask);
-      console.log('This is local state ', this.state);
+      // console.log('This is props', this.props.currentTask)
+      // console.log('This is local state ', this.state);
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "task-description-container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -3136,8 +3186,10 @@ function (_React$Component) {
         onChange: this.handleInput('specific_location'),
         placeholder: "Unit or Apt #"
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        onClick: this.scrollToFirstDiv.bind(this),
         className: "task-description-button"
       }, "Continue")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        ref: this.firstDivScroll,
         className: "task-description-box"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
         className: "task-options-title"
@@ -3214,8 +3266,10 @@ function (_React$Component) {
       }), " Task requires a ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", {
         className: "vehicle-radio-text-bold"
       }, "truck"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        onClick: this.scrollToSecondDiv.bind(this),
         className: "task-description-button"
       }, "Continue")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        ref: this.secondDivScroll,
         className: "task-description-box-edit"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
         className: "task-description-mini-title"
