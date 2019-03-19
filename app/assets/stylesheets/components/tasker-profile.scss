@@ -10,6 +10,10 @@
     display: flex;
 }
 
+.tasker-container:hover {
+    box-shadow: 3px 5px 5px 2px #DCE0E6, -1px 1px 6px #DCE0E6;
+}
+
 .tasker-profile {
     display: flex;
     flex-direction: column;
