@@ -2548,8 +2548,6 @@ function (_React$Component) {
         console.log(taskRequirement);
       }).then(function () {
         return _this2.props.fetchAllTaskers(taskRequirement).then(function (taskers) {
-          console.log('about to set state');
-
           _this2.setState({
             taskers: taskers.taskers
           }); // .then( res => { console.log('this is returned result', res);
@@ -2583,8 +2581,6 @@ function (_React$Component) {
           aboutme: tasker.tasker_aboutme
         });
       });
-      console.log('this is allTaskers', allTaskers);
-      console.log('this is props', this.props.currentTask);
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "choose-tasker-root-container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -2969,7 +2965,7 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      // console.log(this.state);
+      console.log('render taskdate', this.props.taskDate);
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "date-time-root-container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {

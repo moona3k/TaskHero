@@ -43,7 +43,6 @@ class ChooseTasker extends React.Component {
             })
             .then( () => this.props.fetchAllTaskers(taskRequirement)
             .then( taskers => {
-                console.log('about to set state')
                 this.setState({ taskers: taskers.taskers })
                 
             // .then( res => { console.log('this is returned result', res);
@@ -81,9 +80,6 @@ class ChooseTasker extends React.Component {
                     />
                 )
             })
-        
-        console.log('this is allTaskers', allTaskers);
-        console.log('this is props', this.props.currentTask);
 
         return (
             <div>

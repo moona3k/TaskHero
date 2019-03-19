@@ -22,7 +22,7 @@ class TaskCalendar extends React.Component {
     }
 
     render() {
-        // console.log(this.state);
+        console.log('render taskdate', this.props.taskDate);
         return (
             <div className="date-time-root-container">
                 <h2 className="date-time-header"><i className="fa fa-calendar"></i>  TASK DATE & TIME</h2>

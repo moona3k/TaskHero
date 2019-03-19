@@ -17,6 +17,6 @@ class Task < ApplicationRecord
 
     def set_current_datetime
         self.scheduled_time = "I'm Flexible"
-        self.scheduled_date = Date.new
+        self.scheduled_date = Date.today
     end
 end
