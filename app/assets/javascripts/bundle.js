@@ -1392,16 +1392,25 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
 
-
+ // const searchBox = document.getElementById("unique-id");
+// window.onclick = function(event) {
+//     if (event.target === searchBox){
+//         this.setState({
+//             isFocus: false,
+//             searchResults: ["Minor Home Repairs", "Cleaning", "Help Moving", "Event Planning"],
+//             noResultsFound: false
+//         })
+//     }
+// }
 
 var TaskSearchBar =
 /*#__PURE__*/
@@ -1420,6 +1429,7 @@ function (_React$Component) {
       searchResults: ["Minor Home Repairs", "Cleaning", "Help Moving", "Event Planning"],
       noResultsFound: false
     };
+    _this.handleClick = _this.handleClick.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -1428,6 +1438,7 @@ function (_React$Component) {
     value: function handleChange(e) {
       var _this2 = this;
 
+      // e.preventDefault();
       this.setState({
         queryString: e.currentTarget.value
       }, function () {
@@ -1498,14 +1509,16 @@ function (_React$Component) {
     }
   }, {
     key: "handleClick",
-    value: function handleClick(e) {// console.log(e)
-      // let taskCategory;
-      // this.props.initializeTask(taskCategory);
-      // this.props.history.push('/task-form/new');
+    value: function handleClick(e) {
+      console.log('this is event object', e.target);
+      var taskCategory;
+      this.props.initializeTask(taskCategory); // this.props.history.push('/task-form/new');
     }
   }, {
     key: "render",
     value: function render() {
+      var _this3 = this;
+
       // let taskCategory = AllTasks.taskCategories[5];
       // AllTasks.taskImageLink[taskCategory]
       console.log(this.state);
@@ -1514,7 +1527,7 @@ function (_React$Component) {
       if (this.state.isFocus && !this.state.noResultsFound) {
         renderResults = this.state.searchResults.map(function (result, idx) {
           return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-            onClick: console.log('this does not work', result),
+            onClick: _this3.handleClick,
             className: "search-bar-result-box",
             key: "search-".concat(idx)
           }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
@@ -1541,10 +1554,11 @@ function (_React$Component) {
         className: "search-bar-input-field",
         onChange: this.handleChange.bind(this),
         onFocus: this.handleFocus.bind(this),
-        onBlur: this.handleBlur.bind(this),
         value: this.state.queryString,
         placeholder: this.props.location.pathname === '/' ? "Need something different?" : "What do you need help with?"
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        onBlur: this.handleBlur.bind(this),
+        tabIndex: "-1",
         className: "search-bar-result-root-container"
       }, renderResults));
     }
@@ -1908,12 +1922,12 @@ function (_React$Component) {
       }, this.renderErrors()), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         onClick: this.handleClick.bind(this),
         className: "session-submit-button"
-      }, " ", "Create Account"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, "Create Account"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "session-form-short-text"
       }, "OR"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         onClick: this.handleDemo.bind(this),
         className: "session-submit-button"
-      }, " ", "Click for Demo User"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, "Click for Demo User"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "session-already-have-account"
       }, "Already have an account? ", this.props.navLink)));
     }
@@ -1923,6 +1937,13 @@ function (_React$Component) {
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
 /* harmony default export */ __webpack_exports__["default"] = (SignupForm);
+{
+  /* <div className="session-form-disclaimer">
+             By clicking below and creating an account, I agree to TaskHero's{" "}
+             <b className="session-green-text">Terms of Service</b> and{" "}
+             <b className="session-green-text">Privacy Policy</b>.
+           </div> */
+}
 
 /***/ }),
 

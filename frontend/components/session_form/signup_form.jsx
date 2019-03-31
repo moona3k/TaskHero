@@ -41,12 +41,12 @@ class SignupForm extends React.Component {
 
   handleDemo() {
     
-        this.setState( {
-            first_name: "Daniel",
-            last_name: "Moon",
-            email: "demo@taskhero.com",
-            password: "password123",
-            zipcode: "94105"
+      this.setState( {
+          first_name: "Daniel",
+          last_name: "Moon",
+          email: "demo@taskhero.com",
+          password: "password123",
+          zipcode: "94105"
         })
 
       const demoUser = {
@@ -102,17 +102,11 @@ class SignupForm extends React.Component {
               />
             </div>
           </form>
-          {/* <div className="session-form-disclaimer">
-            By clicking below and creating an account, I agree to TaskHero's{" "}
-            <b className="session-green-text">Terms of Service</b> and{" "}
-            <b className="session-green-text">Privacy Policy</b>.
-          </div> */}
           <div className="error-text-signup">{this.renderErrors()}</div>
           <button
             onClick={this.handleClick.bind(this)}
             className="session-submit-button"
           >
-            {" "}
             Create Account
           </button>
           <div className="session-form-short-text">OR</div>
@@ -120,7 +114,6 @@ class SignupForm extends React.Component {
             onClick={this.handleDemo.bind(this)}
             className="session-submit-button"
           >
-            {" "}
             Click for Demo User
           </button>
           <div className="session-already-have-account">
@@ -133,3 +126,11 @@ class SignupForm extends React.Component {
 }
 
 export default SignupForm;
+
+
+
+{/* <div className="session-form-disclaimer">
+            By clicking below and creating an account, I agree to TaskHero's{" "}
+            <b className="session-green-text">Terms of Service</b> and{" "}
+            <b className="session-green-text">Privacy Policy</b>.
+          </div> */}

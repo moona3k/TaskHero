@@ -1,6 +1,18 @@
 import React from 'react';
 import * as AllTasks from '../../util/task-categories';
 
+// const searchBox = document.getElementById("unique-id");
+
+// window.onclick = function(event) {
+//     if (event.target === searchBox){
+//         this.setState({
+//             isFocus: false,
+//             searchResults: ["Minor Home Repairs", "Cleaning", "Help Moving", "Event Planning"],
+//             noResultsFound: false
+//         })
+//     }
+// }
+
 class TaskSearchBar extends React.Component {
 
     constructor(props){
@@ -11,9 +23,11 @@ class TaskSearchBar extends React.Component {
             searchResults: ["Minor Home Repairs", "Cleaning", "Help Moving", "Event Planning"],
             noResultsFound: false
         }
+        this.handleClick = this.handleClick.bind(this);
     }
 
     handleChange(e){
+        // e.preventDefault();
         this.setState({
             queryString: e.currentTarget.value
         }, () => {
@@ -60,9 +74,9 @@ class TaskSearchBar extends React.Component {
     };
 
     handleClick(e){
-        // console.log(e)
-        // let taskCategory;
-        // this.props.initializeTask(taskCategory);
+        console.log('this is event object', e.target)
+        let taskCategory;
+        this.props.initializeTask(taskCategory);
         // this.props.history.push('/task-form/new');
     }
 
@@ -76,7 +90,7 @@ class TaskSearchBar extends React.Component {
 
             renderResults = this.state.searchResults.map( (result, idx) => {
                 return (
-                    <div onClick={console.log('this does not work', result)} className="search-bar-result-box" key={`search-${idx}`}>
+                    <div onClick={this.handleClick} className="search-bar-result-box" key={`search-${idx}`}>
                         <img className="search-bar-result-image" src={AllTasks.taskImageLink[result]} />
                         <div className="search-bar-result-text">{result}</div>
                     </div>
@@ -101,11 +115,13 @@ class TaskSearchBar extends React.Component {
                     className="search-bar-input-field"
                     onChange={this.handleChange.bind(this)}
                     onFocus={this.handleFocus.bind(this)}
-                    onBlur={this.handleBlur.bind(this)}
                     value={this.state.queryString} 
                     placeholder={this.props.location.pathname === '/' ? "Need something different?" : "What do you need help with?" }
                 />
-                <div className="search-bar-result-root-container">
+                <div
+                    onBlur={this.handleBlur.bind(this)}
+                    tabIndex="-1"
+                    className="search-bar-result-root-container">
                     {renderResults}
                 </div>
             </div>
@@ -114,3 +130,4 @@ class TaskSearchBar extends React.Component {
 }
 
 export default TaskSearchBar;
+
